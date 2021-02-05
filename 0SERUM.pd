@@ -1,0 +1,7 @@
+#N canvas 778 229 450 300 12;
+#X declare -path creb -path motex -path cyclone -path pddp;
+#X obj 26 13 declare -path creb -path motex -path cyclone -path pddp
+;
+#X obj 27 52 ADSR;
+#X obj 28 87 osc;
+#X obj 27 126 filters;
