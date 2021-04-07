@@ -1,4 +1,4 @@
-#N canvas 442 73 1324 714 12;
+#N canvas 717 139 1324 714 12;
 #N canvas 0 50 450 250 (subpatch) 0;
 #X array osc1 515 float 5;
 #A 0 0.900497 0.912286 0.923374 0.93373 0.943352 0.95225 0.960417 0.967806
@@ -71,10 +71,10 @@
 0.538536 0.514807 0.490665 0.466142 0.441261 0.416038 0.39048 0.364623
 0.338485 0.31208 0.285429 0.258559 0.23149;
 #X coords 0 1 514 -1 400 200 1;
-#X restore 794 156 graph;
-#X obj 800 38 hsl 250 15 0 1 0 0 empty empty empty -2 -8 0 10 -4034
--1 -1 8000 1;
-#X floatatom 797 67 10 0 0 0 Pos - -;
+#X restore 40 252 graph;
+#X obj 46 134 hsl 250 15 0 1 0 0 empty waveform_1 empty -2 -8 0 10
+-4034 -1 -1 0 1;
+#X floatatom 43 163 10 0 0 0 Pos - -;
 #N canvas 0 50 450 250 (subpatch) 0;
 #X array osc2 515 float 5;
 #A 0 0.135409 0.153187 0.170964 0.188742 0.20652 0.224297 0.242075
@@ -147,89 +147,90 @@
 0.975806 0.958028 0.940251 0.922473 0.904696 0.886918 0.86914 0.851363
 0.833585 0.815808 0.79803 0.780253 0.762475 0.744698 0.72692;
 #X coords 0 1 514 -1 400 200 1;
-#X restore 1707 145 graph;
-#X obj 1713 27 hsl 250 15 0 1 0 0 empty empty empty -2 -8 0 10 -4034
--1 -1 1300 1;
-#X floatatom 1710 56 10 0 0 0 Pos - -;
-#X obj 795 103 send pos_osc1;
-#X obj 1710 92 send pos_osc2;
-#X obj 1407 981 dac~;
-#X obj 1089 424 notein 1;
-#X obj 1089 486 poly 10, f 10;
-#X obj 1089 453 pack f f;
-#X obj 1089 512 pack f f f;
-#X obj 1103 551 clone -s 1 synthAvox 10, f 74;
-#X msg 1255 467 all 0 0;
-#X msg 1270 267 all env A \$1;
-#X msg 1373 267 all env D \$1;
-#X floatatom 1412 203 5 0 0 0 - - -;
-#X floatatom 1464 202 5 0 0 0 - - -;
-#X floatatom 1518 202 5 0 0 0 - - -;
-#X floatatom 1573 203 5 0 0 0 - - -;
-#X obj 1412 92 vsl 20 50 0.01 1 1 0 empty empty empty 0 -9 0 10 -320
--1 -1 1463 1;
-#X obj 1464 91 vsl 20 50 0.01 1 1 0 empty empty empty 0 -9 0 10 -320
--1 -1 3900 1;
-#X obj 1518 92 vsl 20 50 0.01 1 0 0 empty empty empty 0 -9 0 10 -320
--1 -1 3500 1;
-#X obj 1573 93 vsl 20 50 0.01 1 1 0 empty empty empty 0 -9 0 10 -320
--1 -1 700 1;
-#X text 1412 68 A;
-#X text 1462 69 D;
-#X text 1516 67 S;
-#X text 1573 67 R;
-#X obj 1412 154 pow 2;
-#X obj 1412 180 * 1000;
-#X obj 1464 150 pow 2;
-#X obj 1464 176 * 1000;
-#X obj 1573 152 pow 2;
-#X obj 1518 169 pow 2;
-#X msg 1473 267 all env S \$1;
-#X msg 1573 267 all env R \$1;
-#X obj 1573 178 * 10000;
-#X obj 1662 433 hsl 40 40 0 1 0 0 empty empty empty -2 -8 0 10 -258108
+#X restore 953 241 graph;
+#X obj 959 123 hsl 250 15 0 1 0 0 empty waveform_2 empty -2 -8 0 10
+-4034 -1 -1 0 1;
+#X floatatom 956 152 10 0 0 0 Pos - -;
+#X obj 41 199 send pos_osc1;
+#X obj 956 188 send pos_osc2;
+#X obj 653 1077 dac~;
+#X obj 335 520 notein 1;
+#X obj 335 582 poly 10, f 10;
+#X obj 335 549 pack f f;
+#X obj 335 608 pack f f f;
+#X obj 349 647 clone -s 1 synthAvox 10, f 74;
+#X msg 501 563 all 0 0;
+#X msg 516 363 all env A \$1;
+#X msg 619 363 all env D \$1;
+#X floatatom 658 299 5 0 0 0 - - -;
+#X floatatom 710 298 5 0 0 0 - - -;
+#X floatatom 764 298 5 0 0 0 - - -;
+#X floatatom 819 299 5 0 0 0 - - -;
+#X obj 658 188 vsl 20 50 0.01 1 1 0 empty attack empty 0 -9 0 10 -320
+-1 -1 52 1;
+#X obj 710 187 vsl 20 50 0.01 1 1 0 empty decay empty 0 -9 0 10 -320
+-1 -1 1985 1;
+#X obj 764 188 vsl 20 50 0.01 1 0 0 empty sustain empty 0 -9 0 10 -320
+-1 -1 1811 1;
+#X obj 819 189 vsl 20 50 0.01 1 1 0 empty release empty 0 -9 0 10 -320
 -1 -1 0 1;
-#X obj 1749 439 hsl 40 40 200 20000 1 0 empty empty empty -2 -8 0 10
+#X text 658 164 A;
+#X text 708 165 D;
+#X text 762 163 S;
+#X text 819 163 R;
+#X obj 658 250 pow 2;
+#X obj 658 276 * 1000;
+#X obj 710 246 pow 2;
+#X obj 710 272 * 1000;
+#X obj 819 248 pow 2;
+#X obj 764 265 pow 2;
+#X msg 719 363 all env S \$1;
+#X msg 819 363 all env R \$1;
+#X obj 819 274 * 10000;
+#X obj 908 529 hsl 40 40 0 1 0 0 empty empty empty -2 -8 0 10 -258108
+-1 -1 0 1;
+#X obj 995 535 hsl 40 40 200 20000 1 0 empty empty empty -2 -8 0 10
 -258108 -1 -1 0 1;
-#X obj 1855 432 hsl 40 40 0.1 5 1 0 empty empty empty -2 -8 0 10 -258108
+#X obj 1101 528 hsl 40 40 0.1 5 1 0 empty empty empty -2 -8 0 10 -258108
 -1 -1 0 1;
-#X obj 1416 899 *~;
-#X obj 1456 826 hsl 40 40 0 1 0 0 empty empty empty -2 -8 0 10 -258049
--1 -1 800 1;
-#X text 1454 798 master;
-#X obj 1416 429 hsl 40 40 0 1 0 0 empty empty empty -2 -8 0 10 -258049
--1 -1 3100 1;
-#X text 1405 408 master osc1;
-#X obj 1543 430 hsl 40 40 0 1 0 0 empty empty empty -2 -8 0 10 -258049
--1 -1 1600 1;
-#X text 1528 406 master osc2;
-#X msg 1607 659 roomsize \$1;
-#X msg 1681 799 wet \$1;
-#X msg 1690 859 dry \$1;
-#X obj 1794 826 expr 1-$f1;
-#X obj 1691 608 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -3264
--1 -1 1700 1;
-#X text 1607 610 roomsize;
-#X floatatom 1712 650 5 0 0 0 - - -;
-#X obj 1791 752 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -3264
--1 -1 2100 1;
-#X text 1814 712 wet/dry;
-#X floatatom 1831 791 5 0 0 0 - - -;
-#X obj 1357 751 freeverb~;
-#X obj 1793 969 *~;
-#X text 1639 407 filter type;
-#X text 1750 409 cutoff;
-#X text 1846 402 res;
-#X msg 1602 496 all filt T \$1;
-#X msg 1727 501 all filt C \$1;
-#X msg 1841 502 all filt R \$1;
-#X msg 1384 497 all mast L \$1;
-#X msg 1498 499 all mast R \$1;
-#X obj 965 500 print;
-#X floatatom 1417 474 5 0 0 0 - - -;
-#X floatatom 1540 475 5 0 0 0 - - -;
-#X obj 1334 -4 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
+#X obj 662 995 *~;
+#X obj 702 922 hsl 40 40 0 1 0 0 empty master_vol empty -2 -8 0 10
+-258049 -1 -1 2216 1;
+#X text 700 894 master;
+#X obj 662 525 hsl 40 40 0 1 0 0 empty empty empty -2 -8 0 10 -258049
+-1 -1 0 1;
+#X text 651 504 master osc1;
+#X obj 789 526 hsl 40 40 0 1 0 0 empty empty empty -2 -8 0 10 -258049
+-1 -1 0 1;
+#X text 774 502 master osc2;
+#X msg 853 755 roomsize \$1;
+#X msg 927 895 wet \$1;
+#X msg 936 955 dry \$1;
+#X obj 1040 922 expr 1-$f1;
+#X obj 937 704 hsl 128 15 0 1 0 0 empty reverb_roomsize empty -2 -8
+0 10 -3264 -1 -1 82 1;
+#X text 853 706 roomsize;
+#X floatatom 958 746 5 0 0 0 - - -;
+#X obj 1037 848 hsl 128 15 0 1 0 0 empty reverb_drywet empty -2 -8
+0 10 -3264 -1 -1 10454 1;
+#X text 1060 808 wet/dry;
+#X floatatom 1077 887 5 0 0 0 - - -;
+#X obj 603 847 freeverb~;
+#X obj 1039 1065 *~;
+#X text 885 503 filter type;
+#X text 996 505 cutoff;
+#X text 1092 498 res;
+#X msg 848 592 all filt T \$1;
+#X msg 973 597 all filt C \$1;
+#X msg 1087 598 all filt R \$1;
+#X msg 630 593 all mast L \$1;
+#X msg 744 595 all mast R \$1;
+#X obj 211 596 print;
+#X floatatom 663 570 5 0 0 0 - - -;
+#X floatatom 786 571 5 0 0 0 - - -;
+#X obj 580 92 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 125 882 interface_fraise;
 #X connect 1 0 2 0;
 #X connect 2 0 6 0;
 #X connect 4 0 5 0;

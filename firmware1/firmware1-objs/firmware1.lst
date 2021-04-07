@@ -1,0 +1,1621 @@
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;--------------------------------------------------------
+                      00002 ; File Created by SDCC : free open source ANSI-C Compiler
+                      00003 ; Version 3.6.5 #9830 (MINGW32)
+                      00004 ;--------------------------------------------------------
+                      00005 ; PIC16 port for the Microchip 16-bit core micros
+                      00006 ;--------------------------------------------------------
+                      00007         list    p=18f26k22
+                      00008         radix   dec
+                      00009 
+                      00010 
+                      00011 ;--------------------------------------------------------
+                      00012 ; public variables in this module
+                      00013 ;--------------------------------------------------------
+  0000                00014         global  _setup
+  0000                00015         global  _loop
+  0000                00016         global  _fraiseReceiveChar
+  0000                00017         global  _mainDelay
+                      00018 
+                      00019 ;--------------------------------------------------------
+                      00020 ; extern variables in this module
+                      00021 ;--------------------------------------------------------
+  0000                00022         extern  _ANSELAbits
+  0000                00023         extern  _ANSELBbits
+  0000                00024         extern  _ANSELCbits
+  0000                00025         extern  _PMD2bits
+  0000                00026         extern  _PMD1bits
+  0000                00027         extern  _PMD0bits
+  0000                00028         extern  _DACCON1bits
+  0000                00029         extern  _VREFCON2bits
+  0000                00030         extern  _DACCON0bits
+  0000                00031         extern  _VREFCON1bits
+  0000                00032         extern  _FVRCONbits
+  0000                00033         extern  _VREFCON0bits
+  0000                00034         extern  _CTMUICONbits
+  0000                00035         extern  _CTMUICONHbits
+  0000                00036         extern  _CTMUCON1bits
+  0000                00037         extern  _CTMUCONLbits
+  0000                00038         extern  _CTMUCON0bits
+  0000                00039         extern  _CTMUCONHbits
+  0000                00040         extern  _SRCON1bits
+  0000                00041         extern  _SRCON0bits
+  0000                00042         extern  _CCPTMRS1bits
+  0000                00043         extern  _CCPTMRS0bits
+  0000                00044         extern  _T6CONbits
+  0000                00045         extern  _T5GCONbits
+  0000                00046         extern  _T5CONbits
+  0000                00047         extern  _T4CONbits
+  0000                00048         extern  _CCP5CONbits
+  0000                00049         extern  _CCP4CONbits
+  0000                00050         extern  _PSTR3CONbits
+  0000                00051         extern  _CCP3ASbits
+  0000                00052         extern  _ECCP3ASbits
+  0000                00053         extern  _PWM3CONbits
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00054         extern  _CCP3CONbits
+  0000                00055         extern  _SLRCONbits
+  0000                00056         extern  _WPUBbits
+  0000                00057         extern  _IOCBbits
+  0000                00058         extern  _PSTR2CONbits
+  0000                00059         extern  _CCP2ASbits
+  0000                00060         extern  _ECCP2ASbits
+  0000                00061         extern  _PWM2CONbits
+  0000                00062         extern  _CCP2CONbits
+  0000                00063         extern  _SSP2CON3bits
+  0000                00064         extern  _SSP2MSKbits
+  0000                00065         extern  _SSP2CON2bits
+  0000                00066         extern  _SSP2CON1bits
+  0000                00067         extern  _SSP2STATbits
+  0000                00068         extern  _BAUD2CONbits
+  0000                00069         extern  _BAUDCON2bits
+  0000                00070         extern  _RC2STAbits
+  0000                00071         extern  _RCSTA2bits
+  0000                00072         extern  _TX2STAbits
+  0000                00073         extern  _TXSTA2bits
+  0000                00074         extern  _CM12CONbits
+  0000                00075         extern  _CM2CON1bits
+  0000                00076         extern  _CM2CONbits
+  0000                00077         extern  _CM2CON0bits
+  0000                00078         extern  _CM1CONbits
+  0000                00079         extern  _CM1CON0bits
+  0000                00080         extern  _PIE4bits
+  0000                00081         extern  _PIR4bits
+  0000                00082         extern  _IPR4bits
+  0000                00083         extern  _PIE5bits
+  0000                00084         extern  _PIR5bits
+  0000                00085         extern  _IPR5bits
+  0000                00086         extern  _PORTAbits
+  0000                00087         extern  _PORTBbits
+  0000                00088         extern  _PORTCbits
+  0000                00089         extern  _PORTEbits
+  0000                00090         extern  _LATAbits
+  0000                00091         extern  _LATBbits
+  0000                00092         extern  _LATCbits
+  0000                00093         extern  _DDRAbits
+  0000                00094         extern  _TRISAbits
+  0000                00095         extern  _DDRBbits
+  0000                00096         extern  _TRISBbits
+  0000                00097         extern  _DDRCbits
+  0000                00098         extern  _TRISCbits
+  0000                00099         extern  _TRISEbits
+  0000                00100         extern  _OSCTUNEbits
+  0000                00101         extern  _HLVDCONbits
+  0000                00102         extern  _LVDCONbits
+  0000                00103         extern  _PIE1bits
+  0000                00104         extern  _PIR1bits
+  0000                00105         extern  _IPR1bits
+  0000                00106         extern  _PIE2bits
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00107         extern  _PIR2bits
+  0000                00108         extern  _IPR2bits
+  0000                00109         extern  _PIE3bits
+  0000                00110         extern  _PIR3bits
+  0000                00111         extern  _IPR3bits
+  0000                00112         extern  _EECON1bits
+  0000                00113         extern  _EEADRbits
+  0000                00114         extern  _EEADRHbits
+  0000                00115         extern  _RC1STAbits
+  0000                00116         extern  _RCSTAbits
+  0000                00117         extern  _RCSTA1bits
+  0000                00118         extern  _TX1STAbits
+  0000                00119         extern  _TXSTAbits
+  0000                00120         extern  _TXSTA1bits
+  0000                00121         extern  _T3CONbits
+  0000                00122         extern  _T3GCONbits
+  0000                00123         extern  _ECCP1ASbits
+  0000                00124         extern  _ECCPASbits
+  0000                00125         extern  _PWM1CONbits
+  0000                00126         extern  _PWMCONbits
+  0000                00127         extern  _BAUD1CONbits
+  0000                00128         extern  _BAUDCONbits
+  0000                00129         extern  _BAUDCON1bits
+  0000                00130         extern  _BAUDCTLbits
+  0000                00131         extern  _PSTR1CONbits
+  0000                00132         extern  _PSTRCONbits
+  0000                00133         extern  _T2CONbits
+  0000                00134         extern  _CCP1CONbits
+  0000                00135         extern  _ADCON2bits
+  0000                00136         extern  _ADCON1bits
+  0000                00137         extern  _ADCON0bits
+  0000                00138         extern  _SSP1CON2bits
+  0000                00139         extern  _SSPCON2bits
+  0000                00140         extern  _SSP1CON1bits
+  0000                00141         extern  _SSPCON1bits
+  0000                00142         extern  _SSP1STATbits
+  0000                00143         extern  _SSPSTATbits
+  0000                00144         extern  _SSP1MSKbits
+  0000                00145         extern  _SSPMSKbits
+  0000                00146         extern  _SSP1CON3bits
+  0000                00147         extern  _SSPCON3bits
+  0000                00148         extern  _T1GCONbits
+  0000                00149         extern  _T1CONbits
+  0000                00150         extern  _RCONbits
+  0000                00151         extern  _WDTCONbits
+  0000                00152         extern  _OSCCON2bits
+  0000                00153         extern  _OSCCONbits
+  0000                00154         extern  _T0CONbits
+  0000                00155         extern  _STATUSbits
+  0000                00156         extern  _INTCON3bits
+  0000                00157         extern  _INTCON2bits
+  0000                00158         extern  _INTCONbits
+  0000                00159         extern  _STKPTRbits
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00160         extern  _stdin
+  0000                00161         extern  _stdout
+  0000                00162         extern  _Now
+  0000                00163         extern  _PORTZ
+  0000                00164         extern  _PORTZbits
+  0000                00165         extern  _LATZ
+  0000                00166         extern  _LATZbits
+  0000                00167         extern  _TRICZ
+  0000                00168         extern  _TRISZbits
+  0000                00169         extern  _ANSELZ
+  0000                00170         extern  _ANSELZbits
+  0000                00171         extern  _ANSELA
+  0000                00172         extern  _ANSELB
+  0000                00173         extern  _ANSELC
+  0000                00174         extern  _PMD2
+  0000                00175         extern  _PMD1
+  0000                00176         extern  _PMD0
+  0000                00177         extern  _DACCON1
+  0000                00178         extern  _VREFCON2
+  0000                00179         extern  _DACCON0
+  0000                00180         extern  _VREFCON1
+  0000                00181         extern  _FVRCON
+  0000                00182         extern  _VREFCON0
+  0000                00183         extern  _CTMUICON
+  0000                00184         extern  _CTMUICONH
+  0000                00185         extern  _CTMUCON1
+  0000                00186         extern  _CTMUCONL
+  0000                00187         extern  _CTMUCON0
+  0000                00188         extern  _CTMUCONH
+  0000                00189         extern  _SRCON1
+  0000                00190         extern  _SRCON0
+  0000                00191         extern  _CCPTMRS1
+  0000                00192         extern  _CCPTMRS0
+  0000                00193         extern  _T6CON
+  0000                00194         extern  _PR6
+  0000                00195         extern  _TMR6
+  0000                00196         extern  _T5GCON
+  0000                00197         extern  _T5CON
+  0000                00198         extern  _TMR5
+  0000                00199         extern  _TMR5L
+  0000                00200         extern  _TMR5H
+  0000                00201         extern  _T4CON
+  0000                00202         extern  _PR4
+  0000                00203         extern  _TMR4
+  0000                00204         extern  _CCP5CON
+  0000                00205         extern  _CCPR5
+  0000                00206         extern  _CCPR5L
+  0000                00207         extern  _CCPR5H
+  0000                00208         extern  _CCP4CON
+  0000                00209         extern  _CCPR4
+  0000                00210         extern  _CCPR4L
+  0000                00211         extern  _CCPR4H
+  0000                00212         extern  _PSTR3CON
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00213         extern  _CCP3AS
+  0000                00214         extern  _ECCP3AS
+  0000                00215         extern  _PWM3CON
+  0000                00216         extern  _CCP3CON
+  0000                00217         extern  _CCPR3
+  0000                00218         extern  _CCPR3L
+  0000                00219         extern  _CCPR3H
+  0000                00220         extern  _SLRCON
+  0000                00221         extern  _WPUB
+  0000                00222         extern  _IOCB
+  0000                00223         extern  _PSTR2CON
+  0000                00224         extern  _CCP2AS
+  0000                00225         extern  _ECCP2AS
+  0000                00226         extern  _PWM2CON
+  0000                00227         extern  _CCP2CON
+  0000                00228         extern  _CCPR2
+  0000                00229         extern  _CCPR2L
+  0000                00230         extern  _CCPR2H
+  0000                00231         extern  _SSP2CON3
+  0000                00232         extern  _SSP2MSK
+  0000                00233         extern  _SSP2CON2
+  0000                00234         extern  _SSP2CON1
+  0000                00235         extern  _SSP2STAT
+  0000                00236         extern  _SSP2ADD
+  0000                00237         extern  _SSP2BUF
+  0000                00238         extern  _BAUD2CON
+  0000                00239         extern  _BAUDCON2
+  0000                00240         extern  _RC2STA
+  0000                00241         extern  _RCSTA2
+  0000                00242         extern  _TX2STA
+  0000                00243         extern  _TXSTA2
+  0000                00244         extern  _TX2REG
+  0000                00245         extern  _TXREG2
+  0000                00246         extern  _RC2REG
+  0000                00247         extern  _RCREG2
+  0000                00248         extern  _SP2BRG
+  0000                00249         extern  _SPBRG2
+  0000                00250         extern  _SP2BRGH
+  0000                00251         extern  _SPBRGH2
+  0000                00252         extern  _CM12CON
+  0000                00253         extern  _CM2CON1
+  0000                00254         extern  _CM2CON
+  0000                00255         extern  _CM2CON0
+  0000                00256         extern  _CM1CON
+  0000                00257         extern  _CM1CON0
+  0000                00258         extern  _PIE4
+  0000                00259         extern  _PIR4
+  0000                00260         extern  _IPR4
+  0000                00261         extern  _PIE5
+  0000                00262         extern  _PIR5
+  0000                00263         extern  _IPR5
+  0000                00264         extern  _PORTA
+  0000                00265         extern  _PORTB
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00266         extern  _PORTC
+  0000                00267         extern  _PORTE
+  0000                00268         extern  _LATA
+  0000                00269         extern  _LATB
+  0000                00270         extern  _LATC
+  0000                00271         extern  _DDRA
+  0000                00272         extern  _TRISA
+  0000                00273         extern  _DDRB
+  0000                00274         extern  _TRISB
+  0000                00275         extern  _DDRC
+  0000                00276         extern  _TRISC
+  0000                00277         extern  _TRISE
+  0000                00278         extern  _OSCTUNE
+  0000                00279         extern  _HLVDCON
+  0000                00280         extern  _LVDCON
+  0000                00281         extern  _PIE1
+  0000                00282         extern  _PIR1
+  0000                00283         extern  _IPR1
+  0000                00284         extern  _PIE2
+  0000                00285         extern  _PIR2
+  0000                00286         extern  _IPR2
+  0000                00287         extern  _PIE3
+  0000                00288         extern  _PIR3
+  0000                00289         extern  _IPR3
+  0000                00290         extern  _EECON1
+  0000                00291         extern  _EECON2
+  0000                00292         extern  _EEDATA
+  0000                00293         extern  _EEADR
+  0000                00294         extern  _EEADRH
+  0000                00295         extern  _RC1STA
+  0000                00296         extern  _RCSTA
+  0000                00297         extern  _RCSTA1
+  0000                00298         extern  _TX1STA
+  0000                00299         extern  _TXSTA
+  0000                00300         extern  _TXSTA1
+  0000                00301         extern  _TX1REG
+  0000                00302         extern  _TXREG
+  0000                00303         extern  _TXREG1
+  0000                00304         extern  _RC1REG
+  0000                00305         extern  _RCREG
+  0000                00306         extern  _RCREG1
+  0000                00307         extern  _SP1BRG
+  0000                00308         extern  _SPBRG
+  0000                00309         extern  _SPBRG1
+  0000                00310         extern  _SP1BRGH
+  0000                00311         extern  _SPBRGH
+  0000                00312         extern  _SPBRGH1
+  0000                00313         extern  _T3CON
+  0000                00314         extern  _TMR3
+  0000                00315         extern  _TMR3L
+  0000                00316         extern  _TMR3H
+  0000                00317         extern  _T3GCON
+  0000                00318         extern  _ECCP1AS
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00319         extern  _ECCPAS
+  0000                00320         extern  _PWM1CON
+  0000                00321         extern  _PWMCON
+  0000                00322         extern  _BAUD1CON
+  0000                00323         extern  _BAUDCON
+  0000                00324         extern  _BAUDCON1
+  0000                00325         extern  _BAUDCTL
+  0000                00326         extern  _PSTR1CON
+  0000                00327         extern  _PSTRCON
+  0000                00328         extern  _T2CON
+  0000                00329         extern  _PR2
+  0000                00330         extern  _TMR2
+  0000                00331         extern  _CCP1CON
+  0000                00332         extern  _CCPR1
+  0000                00333         extern  _CCPR1L
+  0000                00334         extern  _CCPR1H
+  0000                00335         extern  _ADCON2
+  0000                00336         extern  _ADCON1
+  0000                00337         extern  _ADCON0
+  0000                00338         extern  _ADRES
+  0000                00339         extern  _ADRESL
+  0000                00340         extern  _ADRESH
+  0000                00341         extern  _SSP1CON2
+  0000                00342         extern  _SSPCON2
+  0000                00343         extern  _SSP1CON1
+  0000                00344         extern  _SSPCON1
+  0000                00345         extern  _SSP1STAT
+  0000                00346         extern  _SSPSTAT
+  0000                00347         extern  _SSP1ADD
+  0000                00348         extern  _SSPADD
+  0000                00349         extern  _SSP1BUF
+  0000                00350         extern  _SSPBUF
+  0000                00351         extern  _SSP1MSK
+  0000                00352         extern  _SSPMSK
+  0000                00353         extern  _SSP1CON3
+  0000                00354         extern  _SSPCON3
+  0000                00355         extern  _T1GCON
+  0000                00356         extern  _T1CON
+  0000                00357         extern  _TMR1
+  0000                00358         extern  _TMR1L
+  0000                00359         extern  _TMR1H
+  0000                00360         extern  _RCON
+  0000                00361         extern  _WDTCON
+  0000                00362         extern  _OSCCON2
+  0000                00363         extern  _OSCCON
+  0000                00364         extern  _T0CON
+  0000                00365         extern  _TMR0
+  0000                00366         extern  _TMR0L
+  0000                00367         extern  _TMR0H
+  0000                00368         extern  _STATUS
+  0000                00369         extern  _FSR2L
+  0000                00370         extern  _FSR2H
+  0000                00371         extern  _PLUSW2
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00372         extern  _PREINC2
+  0000                00373         extern  _POSTDEC2
+  0000                00374         extern  _POSTINC2
+  0000                00375         extern  _INDF2
+  0000                00376         extern  _BSR
+  0000                00377         extern  _FSR1L
+  0000                00378         extern  _FSR1H
+  0000                00379         extern  _PLUSW1
+  0000                00380         extern  _PREINC1
+  0000                00381         extern  _POSTDEC1
+  0000                00382         extern  _POSTINC1
+  0000                00383         extern  _INDF1
+  0000                00384         extern  _WREG
+  0000                00385         extern  _FSR0L
+  0000                00386         extern  _FSR0H
+  0000                00387         extern  _PLUSW0
+  0000                00388         extern  _PREINC0
+  0000                00389         extern  _POSTDEC0
+  0000                00390         extern  _POSTINC0
+  0000                00391         extern  _INDF0
+  0000                00392         extern  _INTCON3
+  0000                00393         extern  _INTCON2
+  0000                00394         extern  _INTCON
+  0000                00395         extern  _PROD
+  0000                00396         extern  _PRODL
+  0000                00397         extern  _PRODH
+  0000                00398         extern  _TABLAT
+  0000                00399         extern  _TBLPTR
+  0000                00400         extern  _TBLPTRL
+  0000                00401         extern  _TBLPTRH
+  0000                00402         extern  _TBLPTRU
+  0000                00403         extern  _PC
+  0000                00404         extern  _PCL
+  0000                00405         extern  _PCLATH
+  0000                00406         extern  _PCLATU
+  0000                00407         extern  _STKPTR
+  0000                00408         extern  _TOS
+  0000                00409         extern  _TOSL
+  0000                00410         extern  _TOSH
+  0000                00411         extern  _TOSU
+  0000                00412         extern  _printf
+  0000                00413         extern  _putchar
+  0000                00414         extern  _time
+  0000                00415         extern  _fraiseService
+  0000                00416         extern  _fraiseGetChar
+  0000                00417         extern  _fraiseGetLen
+  0000                00418         extern  _fruitInit
+  0000                00419         extern  _analogSelectAdc
+  0000                00420         extern  _analogInit
+  0000                00421         extern  _analogService
+  0000                00422         extern  _analogSend
+                      00423 
+                      00424 ;--------------------------------------------------------
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00425 ;       Equates to used internal registers
+                      00426 ;--------------------------------------------------------
+  00000FD8            00427 STATUS  equ     0xfd8
+  00000FE9            00428 FSR0L   equ     0xfe9
+  00000FEA            00429 FSR0H   equ     0xfea
+  00000FE1            00430 FSR1L   equ     0xfe1
+  00000FEF            00431 INDF0   equ     0xfef
+  00000FE6            00432 POSTINC1        equ     0xfe6
+  00000FE5            00433 POSTDEC1        equ     0xfe5
+  00000FE4            00434 PREINC1 equ     0xfe4
+  00000FF3            00435 PRODL   equ     0xff3
+  00000FF4            00436 PRODH   equ     0xff4
+                      00437 
+                      00438 
+                      00439 ; Internal registers
+                      00440 .registers      udata_ovr       0x0000
+000000                00441 r0x00   res     1
+000001                00442 r0x01   res     1
+000002                00443 r0x02   res     1
+000003                00444 r0x03   res     1
+000004                00445 r0x05   res     1
+                      00446 
+                      00447 udata_main_0    udata
+000000                00448 _mainDelay      res     4
+                      00449 
+                      00450 ;--------------------------------------------------------
+                      00451 ; global & static initialisations
+                      00452 ;--------------------------------------------------------
+                      00453 ; I code from now on!
+                      00454 ; ; Starting pCode block
+                      00455 S_main__fraiseReceiveChar       code
+000000                00456 _fraiseReceiveChar:
+                      00457 ;       .line   51; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            void fraiseReceiveChar() // receive text
+000000 C??? F???      00458         MOVFF   r0x00, POSTDEC1
+000004 C??? F???      00459         MOVFF   r0x01, POSTDEC1
+                      00460 ;       .line   55; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            c=fraiseGetChar();
+000008 EC?? F0??      00461         CALL    _fraiseGetChar
+                      00462 ; #     MOVWF   r0x00
+                      00463 ; #     MOVF    r0x00, W
+                      00464 ;       .line   56; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            if(c=='L'){             //switch LED on/off 
+00000C 6E??           00465         MOVWF   r0x00
+00000E 0A4C           00466         XORLW   0x4c
+000010 E1??           00467         BNZ     _00183_DS_
+                      00468 ;       .line   57; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            c=fraiseGetChar();
+000012 EC?? F0??      00469         CALL    _fraiseGetChar
+                      00470 ; #     MOVWF   r0x00
+                      00471 ; #     MOVF    r0x00, W
+                      00472 ;       .line   58; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            digitalWrite(LED, c!='0');              
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 10
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000016 0A30           00473         XORLW   0x30
+000018 E0??           00474         BZ      _00172_DS_
+00001A 82??           00475         BSF     _LATCbits, 1
+00001C D???           00476         BRA     _00185_DS_
+00001E                00477 _00172_DS_:
+00001E 92??           00478         BCF     _LATCbits, 1
+000020 D???           00479         BRA     _00185_DS_
+000022                00480 _00183_DS_:
+                      00481 ;       .line   60; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            else if(c=='E') {       // echo text (send it back to host)
+000022 50??           00482         MOVF    r0x00, W
+000024 0A45           00483         XORLW   0x45
+000026 E1??           00484         BNZ     _00185_DS_
+                      00485 ;       .line   61; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            printf("C");
+000028 0E??           00486         MOVLW   UPPER(___str_0)
+00002A 6EE5           00487         MOVWF   POSTDEC1
+00002C 0E??           00488         MOVLW   HIGH(___str_0)
+00002E 6EE5           00489         MOVWF   POSTDEC1
+000030 0E??           00490         MOVLW   LOW(___str_0)
+000032 6EE5           00491         MOVWF   POSTDEC1
+000034 EC?? F0??      00492         CALL    _printf
+000038 0E03           00493         MOVLW   0x03
+00003A 26E1           00494         ADDWF   FSR1L, F
+                      00495 ;       .line   62; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            c = fraiseGetLen();                     // get length of current packet
+00003C EC?? F0??      00496         CALL    _fraiseGetLen
+000040 6E??           00497         MOVWF   r0x00
+000042                00498 _00177_DS_:
+                      00499 ;       .line   63; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            while(c--) printf("%c",fraiseGetChar());// send each received byte
+000042 C??? F???      00500         MOVFF   r0x00, r0x01
+000046 06??           00501         DECF    r0x00, F
+000048 50??           00502         MOVF    r0x01, W
+00004A E0??           00503         BZ      _00179_DS_
+00004C EC?? F0??      00504         CALL    _fraiseGetChar
+000050 6AE5           00505         CLRF    POSTDEC1
+000052 6EE5           00506         MOVWF   POSTDEC1
+000054 0E??           00507         MOVLW   UPPER(___str_1)
+000056 6EE5           00508         MOVWF   POSTDEC1
+000058 0E??           00509         MOVLW   HIGH(___str_1)
+00005A 6EE5           00510         MOVWF   POSTDEC1
+00005C 0E??           00511         MOVLW   LOW(___str_1)
+00005E 6EE5           00512         MOVWF   POSTDEC1
+000060 EC?? F0??      00513         CALL    _printf
+000064 0E05           00514         MOVLW   0x05
+000066 26E1           00515         ADDWF   FSR1L, F
+000068 D???           00516         BRA     _00177_DS_
+00006A                00517 _00179_DS_:
+                      00518 ;       .line   64; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            putchar('\n');                          // end of line
+00006A 0E0A           00519         MOVLW   0x0a
+00006C EC?? F0??      00520         CALL    _putchar
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 11
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000070                00521 _00185_DS_:
+000070 CFE4 F000      00522         MOVFF   PREINC1, r0x01
+000074 CFE4 F000      00523         MOVFF   PREINC1, r0x00
+000078 0012           00524         RETURN  
+                      00525 
+                      00526 ; ; Starting pCode block
+                      00527 S_main__loop    code
+000000                00528 _loop:
+                      00529 ;       .line   37; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            void loop() {
+000000 C??? F???      00530         MOVFF   r0x00, POSTDEC1
+000004 C??? F???      00531         MOVFF   r0x01, POSTDEC1
+000008 C??? F???      00532         MOVFF   r0x02, POSTDEC1
+00000C C??? F???      00533         MOVFF   r0x03, POSTDEC1
+                      00534 ;       .line   39; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            fraiseService();        // listen to Fraise events
+000010 EC?? F0??      00535         CALL    _fraiseService
+                      00536 ;       .line   40; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            analogService();        // analog management routine
+000014 EC?? F0??      00537         CALL    _analogService
+                      00538 ;       .line   42; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            if(delayFinished(mainDelay)) // when mainDelay triggers :
+000018 EC?? F0??      00539         CALL    _time
+00001C 6E??           00540         MOVWF   r0x00
+00001E CFF3 F000      00541         MOVFF   PRODL, r0x01
+000022 CFF4 F000      00542         MOVFF   PRODH, r0x02
+000026 CFE9 F000      00543         MOVFF   FSR0L, r0x03
+00002A ????           00544         BANKSEL _mainDelay
+00002C 51??           00545         MOVF    _mainDelay, W, B
+00002E 5E??           00546         SUBWF   r0x00, F
+                      00547 ; removed redundant BANKSEL
+000030 51??           00548         MOVF    (_mainDelay + 1), W, B
+000032 5A??           00549         SUBWFB  r0x01, F
+                      00550 ; removed redundant BANKSEL
+000034 51??           00551         MOVF    (_mainDelay + 2), W, B
+000036 5A??           00552         SUBWFB  r0x02, F
+                      00553 ; removed redundant BANKSEL
+000038 51??           00554         MOVF    (_mainDelay + 3), W, B
+00003A 5A??           00555         SUBWFB  r0x03, F
+00003C 9E??           00556         BCF     r0x03, 7
+00003E 0E3F           00557         MOVLW   0x3f
+000040 5C??           00558         SUBWF   r0x03, W
+000042 E1??           00559         BNZ     _00166_DS_
+000044 0EFF           00560         MOVLW   0xff
+000046 5C??           00561         SUBWF   r0x02, W
+000048 E1??           00562         BNZ     _00166_DS_
+00004A 0EFF           00563         MOVLW   0xff
+00004C 5C??           00564         SUBWF   r0x01, W
+00004E E1??           00565         BNZ     _00166_DS_
+000050 0EFF           00566         MOVLW   0xff
+000052 5C??           00567         SUBWF   r0x00, W
+000054                00568 _00166_DS_:
+000054 E2??           00569         BC      _00160_DS_
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 12
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00570 ;       .line   44; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            delayStart(mainDelay, 5000);    // re-init mainDelay
+000056 EC?? F0??      00571         CALL    _time
+00005A CFF3 F000      00572         MOVFF   PRODL, r0x01
+00005E CFF4 F000      00573         MOVFF   PRODH, r0x02
+000062 CFE9 F000      00574         MOVFF   FSR0L, r0x03
+000066 0F88           00575         ADDLW   0x88
+000068 ????           00576         BANKSEL _mainDelay
+00006A 6F??           00577         MOVWF   _mainDelay, B
+00006C 0E13           00578         MOVLW   0x13
+00006E 20??           00579         ADDWFC  r0x01, W
+                      00580 ; removed redundant BANKSEL
+000070 6F??           00581         MOVWF   (_mainDelay + 1), B
+000072 0E00           00582         MOVLW   0x00
+000074 20??           00583         ADDWFC  r0x02, W
+                      00584 ; removed redundant BANKSEL
+000076 6F??           00585         MOVWF   (_mainDelay + 2), B
+000078 0E00           00586         MOVLW   0x00
+00007A 20??           00587         ADDWFC  r0x03, W
+                      00588 ; removed redundant BANKSEL
+00007C 6F??           00589         MOVWF   (_mainDelay + 3), B
+                      00590 ;       .line   45; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            analogSend();           // send analog channels that changed
+00007E EC?? F0??      00591         CALL    _analogSend
+000082                00592 _00160_DS_:
+000082 CFE4 F000      00593         MOVFF   PREINC1, r0x03
+000086 CFE4 F000      00594         MOVFF   PREINC1, r0x02
+00008A CFE4 F000      00595         MOVFF   PREINC1, r0x01
+00008E CFE4 F000      00596         MOVFF   PREINC1, r0x00
+000092 0012           00597         RETURN  
+                      00598 
+                      00599 ; ; Starting pCode block
+                      00600 S_main__setup   code
+000000                00601 _setup:
+                      00602 ;       .line   13; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            void setup(void) {      
+000000 C??? F???      00603         MOVFF   r0x00, POSTDEC1
+000004 C??? F???      00604         MOVFF   r0x01, POSTDEC1
+000008 C??? F???      00605         MOVFF   r0x02, POSTDEC1
+00000C C??? F???      00606         MOVFF   r0x03, POSTDEC1
+000010 C??? F???      00607         MOVFF   r0x05, POSTDEC1
+                      00608 ;       .line   15; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            fruitInit();
+000014 EC?? F0??      00609         CALL    _fruitInit
+                      00610 ;       .line   17; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            pinModeDigitalOut(LED);         // set the LED pin mode to digital out
+000018 92??           00611         BCF     _TRISCbits, 1
+                      00612 ;       .line   18; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            digitalClear(LED);              // clear the LED
+00001A 92??           00613         BCF     _LATCbits, 1
+                      00614 ;       .line   19; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            delayStart(mainDelay, 5000);    // init the mainDelay to 5 ms
+00001C EC?? F0??      00615         CALL    _time
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 13
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000020 CFF3 F000      00616         MOVFF   PRODL, r0x01
+000024 CFF4 F000      00617         MOVFF   PRODH, r0x02
+000028 CFE9 F000      00618         MOVFF   FSR0L, r0x03
+00002C 0F88           00619         ADDLW   0x88
+00002E ????           00620         BANKSEL _mainDelay
+000030 6F??           00621         MOVWF   _mainDelay, B
+000032 0E13           00622         MOVLW   0x13
+000034 20??           00623         ADDWFC  r0x01, W
+                      00624 ; removed redundant BANKSEL
+000036 6F??           00625         MOVWF   (_mainDelay + 1), B
+000038 0E00           00626         MOVLW   0x00
+00003A 20??           00627         ADDWFC  r0x02, W
+                      00628 ; removed redundant BANKSEL
+00003C 6F??           00629         MOVWF   (_mainDelay + 2), B
+00003E 0E00           00630         MOVLW   0x00
+000040 20??           00631         ADDWFC  r0x03, W
+                      00632 ; removed redundant BANKSEL
+000042 6F??           00633         MOVWF   (_mainDelay + 3), B
+                      00634 ;       .line   22; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            analogInit();           // init analog module
+000044 EC?? F0??      00635         CALL    _analogInit
+                      00636 ;       .line   26; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            analogSelect(0,K1); //A
+000048 80??           00637         BSF     _TRISAbits, 0
+00004A 0E??           00638         MOVLW   LOW(_PORTA)
+00004C 6E??           00639         MOVWF   r0x00
+00004E 0E??           00640         MOVLW   HIGH(_PORTA)
+000050 6E??           00641         MOVWF   r0x01
+000052 0E??           00642         MOVLW   HIGH(_ANSELA)
+000054 6E??           00643         MOVWF   r0x03
+000056 0E??           00644         MOVLW   LOW(_ANSELA)
+000058 26??           00645         ADDWF   r0x00, F
+00005A 50??           00646         MOVF    r0x03, W
+00005C 22??           00647         ADDWFC  r0x01, F
+00005E 0E??           00648         MOVLW   LOW(_PORTA)
+000060 6E??           00649         MOVWF   r0x02
+000062 0E??           00650         MOVLW   HIGH(_PORTA)
+000064 6E??           00651         MOVWF   r0x03
+000066 0E??           00652         MOVLW   LOW(_PORTA)
+000068 5E??           00653         SUBWF   r0x00, F
+00006A 50??           00654         MOVF    r0x03, W
+00006C 5A??           00655         SUBWFB  r0x01, F
+00006E 0E??           00656         MOVLW   HIGH(_ANSELA)
+000070 6E??           00657         MOVWF   r0x05
+000072 0E??           00658         MOVLW   LOW(_ANSELA)
+000074 26??           00659         ADDWF   r0x02, F
+000076 50??           00660         MOVF    r0x05, W
+000078 22??           00661         ADDWFC  r0x03, F
+00007A 0E??           00662         MOVLW   HIGH(_PORTA)
+00007C 6E??           00663         MOVWF   r0x05
+00007E 0E??           00664         MOVLW   LOW(_PORTA)
+000080 5E??           00665         SUBWF   r0x02, F
+000082 50??           00666         MOVF    r0x05, W
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 14
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000084 5A??           00667         SUBWFB  r0x03, F
+000086 C??? F???      00668         MOVFF   r0x02, FSR0L
+00008A C??? F???      00669         MOVFF   r0x03, FSR0H
+00008E CFEF F000      00670         MOVFF   INDF0, r0x02
+000092 80??           00671         BSF     r0x02, 0
+000094 C??? F???      00672         MOVFF   r0x00, FSR0L
+000098 C??? F???      00673         MOVFF   r0x01, FSR0H
+00009C C??? F???      00674         MOVFF   r0x02, INDF0
+0000A0 0E00           00675         MOVLW   0x00
+0000A2 6AE5           00676         CLRF    POSTDEC1
+0000A4 6AE5           00677         CLRF    POSTDEC1
+0000A6 EC?? F0??      00678         CALL    _analogSelectAdc
+0000AA 52E6           00679         MOVF    POSTINC1, F
+0000AC 52E6           00680         MOVF    POSTINC1, F
+                      00681 ;       .line   27; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            analogSelect(1,K2); //D
+0000AE 82??           00682         BSF     _TRISAbits, 1
+0000B0 0E??           00683         MOVLW   LOW(_PORTA)
+0000B2 6E??           00684         MOVWF   r0x00
+0000B4 0E??           00685         MOVLW   HIGH(_PORTA)
+0000B6 6E??           00686         MOVWF   r0x01
+0000B8 0E??           00687         MOVLW   HIGH(_ANSELA)
+0000BA 6E??           00688         MOVWF   r0x03
+0000BC 0E??           00689         MOVLW   LOW(_ANSELA)
+0000BE 26??           00690         ADDWF   r0x00, F
+0000C0 50??           00691         MOVF    r0x03, W
+0000C2 22??           00692         ADDWFC  r0x01, F
+0000C4 0E??           00693         MOVLW   LOW(_PORTA)
+0000C6 6E??           00694         MOVWF   r0x02
+0000C8 0E??           00695         MOVLW   HIGH(_PORTA)
+0000CA 6E??           00696         MOVWF   r0x03
+0000CC 0E??           00697         MOVLW   LOW(_PORTA)
+0000CE 5E??           00698         SUBWF   r0x00, F
+0000D0 50??           00699         MOVF    r0x03, W
+0000D2 5A??           00700         SUBWFB  r0x01, F
+0000D4 0E??           00701         MOVLW   HIGH(_ANSELA)
+0000D6 6E??           00702         MOVWF   r0x05
+0000D8 0E??           00703         MOVLW   LOW(_ANSELA)
+0000DA 26??           00704         ADDWF   r0x02, F
+0000DC 50??           00705         MOVF    r0x05, W
+0000DE 22??           00706         ADDWFC  r0x03, F
+0000E0 0E??           00707         MOVLW   HIGH(_PORTA)
+0000E2 6E??           00708         MOVWF   r0x05
+0000E4 0E??           00709         MOVLW   LOW(_PORTA)
+0000E6 5E??           00710         SUBWF   r0x02, F
+0000E8 50??           00711         MOVF    r0x05, W
+0000EA 5A??           00712         SUBWFB  r0x03, F
+0000EC C??? F???      00713         MOVFF   r0x02, FSR0L
+0000F0 C??? F???      00714         MOVFF   r0x03, FSR0H
+0000F4 CFEF F000      00715         MOVFF   INDF0, r0x02
+0000F8 82??           00716         BSF     r0x02, 1
+0000FA C??? F???      00717         MOVFF   r0x00, FSR0L
+0000FE C??? F???      00718         MOVFF   r0x01, FSR0H
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 15
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000102 C??? F???      00719         MOVFF   r0x02, INDF0
+000106 0E01           00720         MOVLW   0x01
+000108 6EE5           00721         MOVWF   POSTDEC1
+00010A 6EE5           00722         MOVWF   POSTDEC1
+00010C EC?? F0??      00723         CALL    _analogSelectAdc
+000110 52E6           00724         MOVF    POSTINC1, F
+000112 52E6           00725         MOVF    POSTINC1, F
+                      00726 ;       .line   28; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            analogSelect(2,K3); //S
+000114 84??           00727         BSF     _TRISAbits, 2
+000116 0E??           00728         MOVLW   LOW(_PORTA)
+000118 6E??           00729         MOVWF   r0x00
+00011A 0E??           00730         MOVLW   HIGH(_PORTA)
+00011C 6E??           00731         MOVWF   r0x01
+00011E 0E??           00732         MOVLW   HIGH(_ANSELA)
+000120 6E??           00733         MOVWF   r0x03
+000122 0E??           00734         MOVLW   LOW(_ANSELA)
+000124 26??           00735         ADDWF   r0x00, F
+000126 50??           00736         MOVF    r0x03, W
+000128 22??           00737         ADDWFC  r0x01, F
+00012A 0E??           00738         MOVLW   LOW(_PORTA)
+00012C 6E??           00739         MOVWF   r0x02
+00012E 0E??           00740         MOVLW   HIGH(_PORTA)
+000130 6E??           00741         MOVWF   r0x03
+000132 0E??           00742         MOVLW   LOW(_PORTA)
+000134 5E??           00743         SUBWF   r0x00, F
+000136 50??           00744         MOVF    r0x03, W
+000138 5A??           00745         SUBWFB  r0x01, F
+00013A 0E??           00746         MOVLW   HIGH(_ANSELA)
+00013C 6E??           00747         MOVWF   r0x05
+00013E 0E??           00748         MOVLW   LOW(_ANSELA)
+000140 26??           00749         ADDWF   r0x02, F
+000142 50??           00750         MOVF    r0x05, W
+000144 22??           00751         ADDWFC  r0x03, F
+000146 0E??           00752         MOVLW   HIGH(_PORTA)
+000148 6E??           00753         MOVWF   r0x05
+00014A 0E??           00754         MOVLW   LOW(_PORTA)
+00014C 5E??           00755         SUBWF   r0x02, F
+00014E 50??           00756         MOVF    r0x05, W
+000150 5A??           00757         SUBWFB  r0x03, F
+000152 C??? F???      00758         MOVFF   r0x02, FSR0L
+000156 C??? F???      00759         MOVFF   r0x03, FSR0H
+00015A CFEF F000      00760         MOVFF   INDF0, r0x02
+00015E 84??           00761         BSF     r0x02, 2
+000160 C??? F???      00762         MOVFF   r0x00, FSR0L
+000164 C??? F???      00763         MOVFF   r0x01, FSR0H
+000168 C??? F???      00764         MOVFF   r0x02, INDF0
+00016C 0E02           00765         MOVLW   0x02
+00016E 6EE5           00766         MOVWF   POSTDEC1
+000170 6EE5           00767         MOVWF   POSTDEC1
+000172 EC?? F0??      00768         CALL    _analogSelectAdc
+000176 52E6           00769         MOVF    POSTINC1, F
+000178 52E6           00770         MOVF    POSTINC1, F
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 16
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00771 ;       .line   29; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            analogSelect(3,K4); //R
+00017A 86??           00772         BSF     _TRISAbits, 3
+00017C 0E??           00773         MOVLW   LOW(_PORTA)
+00017E 6E??           00774         MOVWF   r0x00
+000180 0E??           00775         MOVLW   HIGH(_PORTA)
+000182 6E??           00776         MOVWF   r0x01
+000184 0E??           00777         MOVLW   HIGH(_ANSELA)
+000186 6E??           00778         MOVWF   r0x03
+000188 0E??           00779         MOVLW   LOW(_ANSELA)
+00018A 26??           00780         ADDWF   r0x00, F
+00018C 50??           00781         MOVF    r0x03, W
+00018E 22??           00782         ADDWFC  r0x01, F
+000190 0E??           00783         MOVLW   LOW(_PORTA)
+000192 6E??           00784         MOVWF   r0x02
+000194 0E??           00785         MOVLW   HIGH(_PORTA)
+000196 6E??           00786         MOVWF   r0x03
+000198 0E??           00787         MOVLW   LOW(_PORTA)
+00019A 5E??           00788         SUBWF   r0x00, F
+00019C 50??           00789         MOVF    r0x03, W
+00019E 5A??           00790         SUBWFB  r0x01, F
+0001A0 0E??           00791         MOVLW   HIGH(_ANSELA)
+0001A2 6E??           00792         MOVWF   r0x05
+0001A4 0E??           00793         MOVLW   LOW(_ANSELA)
+0001A6 26??           00794         ADDWF   r0x02, F
+0001A8 50??           00795         MOVF    r0x05, W
+0001AA 22??           00796         ADDWFC  r0x03, F
+0001AC 0E??           00797         MOVLW   HIGH(_PORTA)
+0001AE 6E??           00798         MOVWF   r0x05
+0001B0 0E??           00799         MOVLW   LOW(_PORTA)
+0001B2 5E??           00800         SUBWF   r0x02, F
+0001B4 50??           00801         MOVF    r0x05, W
+0001B6 5A??           00802         SUBWFB  r0x03, F
+0001B8 C??? F???      00803         MOVFF   r0x02, FSR0L
+0001BC C??? F???      00804         MOVFF   r0x03, FSR0H
+0001C0 CFEF F000      00805         MOVFF   INDF0, r0x02
+0001C4 86??           00806         BSF     r0x02, 3
+0001C6 C??? F???      00807         MOVFF   r0x00, FSR0L
+0001CA C??? F???      00808         MOVFF   r0x01, FSR0H
+0001CE C??? F???      00809         MOVFF   r0x02, INDF0
+0001D2 0E03           00810         MOVLW   0x03
+0001D4 6EE5           00811         MOVWF   POSTDEC1
+0001D6 6EE5           00812         MOVWF   POSTDEC1
+0001D8 EC?? F0??      00813         CALL    _analogSelectAdc
+0001DC 52E6           00814         MOVF    POSTINC1, F
+0001DE 52E6           00815         MOVF    POSTINC1, F
+                      00816 ;       .line   31; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            analogSelect(4, K5); //WaveForm 1
+0001E0 86??           00817         BSF     _TRISCbits, 3
+0001E2 0E??           00818         MOVLW   LOW(_PORTC)
+0001E4 6E??           00819         MOVWF   r0x00
+0001E6 0E??           00820         MOVLW   HIGH(_PORTC)
+0001E8 6E??           00821         MOVWF   r0x01
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 17
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0001EA 0E??           00822         MOVLW   HIGH(_ANSELA)
+0001EC 6E??           00823         MOVWF   r0x03
+0001EE 0E??           00824         MOVLW   LOW(_ANSELA)
+0001F0 26??           00825         ADDWF   r0x00, F
+0001F2 50??           00826         MOVF    r0x03, W
+0001F4 22??           00827         ADDWFC  r0x01, F
+0001F6 0E??           00828         MOVLW   HIGH(_PORTA)
+0001F8 6E??           00829         MOVWF   r0x03
+0001FA 0E??           00830         MOVLW   LOW(_PORTA)
+0001FC 5E??           00831         SUBWF   r0x00, F
+0001FE 50??           00832         MOVF    r0x03, W
+000200 5A??           00833         SUBWFB  r0x01, F
+000202 0E??           00834         MOVLW   LOW(_PORTC)
+000204 6E??           00835         MOVWF   r0x02
+000206 0E??           00836         MOVLW   HIGH(_PORTC)
+000208 6E??           00837         MOVWF   r0x03
+00020A 0E??           00838         MOVLW   HIGH(_ANSELA)
+00020C 6E??           00839         MOVWF   r0x05
+00020E 0E??           00840         MOVLW   LOW(_ANSELA)
+000210 26??           00841         ADDWF   r0x02, F
+000212 50??           00842         MOVF    r0x05, W
+000214 22??           00843         ADDWFC  r0x03, F
+000216 0E??           00844         MOVLW   HIGH(_PORTA)
+000218 6E??           00845         MOVWF   r0x05
+00021A 0E??           00846         MOVLW   LOW(_PORTA)
+00021C 5E??           00847         SUBWF   r0x02, F
+00021E 50??           00848         MOVF    r0x05, W
+000220 5A??           00849         SUBWFB  r0x03, F
+000222 C??? F???      00850         MOVFF   r0x02, FSR0L
+000226 C??? F???      00851         MOVFF   r0x03, FSR0H
+00022A CFEF F000      00852         MOVFF   INDF0, r0x02
+00022E 86??           00853         BSF     r0x02, 3
+000230 C??? F???      00854         MOVFF   r0x00, FSR0L
+000234 C??? F???      00855         MOVFF   r0x01, FSR0H
+000238 C??? F???      00856         MOVFF   r0x02, INDF0
+00023C 0E0F           00857         MOVLW   0x0f
+00023E 6EE5           00858         MOVWF   POSTDEC1
+000240 0E04           00859         MOVLW   0x04
+000242 6EE5           00860         MOVWF   POSTDEC1
+000244 EC?? F0??      00861         CALL    _analogSelectAdc
+000248 52E6           00862         MOVF    POSTINC1, F
+00024A 52E6           00863         MOVF    POSTINC1, F
+                      00864 ;       .line   32; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            analogSelect(5, K6); //WaveForm 2
+00024C 84??           00865         BSF     _TRISCbits, 2
+00024E 0E??           00866         MOVLW   LOW(_PORTC)
+000250 6E??           00867         MOVWF   r0x00
+000252 0E??           00868         MOVLW   HIGH(_PORTC)
+000254 6E??           00869         MOVWF   r0x01
+000256 0E??           00870         MOVLW   HIGH(_ANSELA)
+000258 6E??           00871         MOVWF   r0x03
+00025A 0E??           00872         MOVLW   LOW(_ANSELA)
+00025C 26??           00873         ADDWF   r0x00, F
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 18
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00025E 50??           00874         MOVF    r0x03, W
+000260 22??           00875         ADDWFC  r0x01, F
+000262 0E??           00876         MOVLW   HIGH(_PORTA)
+000264 6E??           00877         MOVWF   r0x03
+000266 0E??           00878         MOVLW   LOW(_PORTA)
+000268 5E??           00879         SUBWF   r0x00, F
+00026A 50??           00880         MOVF    r0x03, W
+00026C 5A??           00881         SUBWFB  r0x01, F
+00026E 0E??           00882         MOVLW   LOW(_PORTC)
+000270 6E??           00883         MOVWF   r0x02
+000272 0E??           00884         MOVLW   HIGH(_PORTC)
+000274 6E??           00885         MOVWF   r0x03
+000276 0E??           00886         MOVLW   HIGH(_ANSELA)
+000278 6E??           00887         MOVWF   r0x05
+00027A 0E??           00888         MOVLW   LOW(_ANSELA)
+00027C 26??           00889         ADDWF   r0x02, F
+00027E 50??           00890         MOVF    r0x05, W
+000280 22??           00891         ADDWFC  r0x03, F
+000282 0E??           00892         MOVLW   HIGH(_PORTA)
+000284 6E??           00893         MOVWF   r0x05
+000286 0E??           00894         MOVLW   LOW(_PORTA)
+000288 5E??           00895         SUBWF   r0x02, F
+00028A 50??           00896         MOVF    r0x05, W
+00028C 5A??           00897         SUBWFB  r0x03, F
+00028E C??? F???      00898         MOVFF   r0x02, FSR0L
+000292 C??? F???      00899         MOVFF   r0x03, FSR0H
+000296 CFEF F000      00900         MOVFF   INDF0, r0x02
+00029A 84??           00901         BSF     r0x02, 2
+00029C C??? F???      00902         MOVFF   r0x00, FSR0L
+0002A0 C??? F???      00903         MOVFF   r0x01, FSR0H
+0002A4 C??? F???      00904         MOVFF   r0x02, INDF0
+0002A8 0E0E           00905         MOVLW   0x0e
+0002AA 6EE5           00906         MOVWF   POSTDEC1
+0002AC 0E05           00907         MOVLW   0x05
+0002AE 6EE5           00908         MOVWF   POSTDEC1
+0002B0 EC?? F0??      00909         CALL    _analogSelectAdc
+0002B4 52E6           00910         MOVF    POSTINC1, F
+0002B6 52E6           00911         MOVF    POSTINC1, F
+                      00912 ;       .line   34; C:/Users/sarto/Documents/Travail/M1/M&T/GAYA_SARTORIUS_cheap-SERUM/firmware1/main.c 
+                            analogSelect(8,K8); //main volume
+0002B8 8A??           00913         BSF     _TRISCbits, 5
+0002BA 0E??           00914         MOVLW   LOW(_PORTC)
+0002BC 6E??           00915         MOVWF   r0x00
+0002BE 0E??           00916         MOVLW   HIGH(_PORTC)
+0002C0 6E??           00917         MOVWF   r0x01
+0002C2 0E??           00918         MOVLW   HIGH(_ANSELA)
+0002C4 6E??           00919         MOVWF   r0x03
+0002C6 0E??           00920         MOVLW   LOW(_ANSELA)
+0002C8 26??           00921         ADDWF   r0x00, F
+0002CA 50??           00922         MOVF    r0x03, W
+0002CC 22??           00923         ADDWFC  r0x01, F
+0002CE 0E??           00924         MOVLW   HIGH(_PORTA)
+0002D0 6E??           00925         MOVWF   r0x03
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 19
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0002D2 0E??           00926         MOVLW   LOW(_PORTA)
+0002D4 5E??           00927         SUBWF   r0x00, F
+0002D6 50??           00928         MOVF    r0x03, W
+0002D8 5A??           00929         SUBWFB  r0x01, F
+0002DA 0E??           00930         MOVLW   LOW(_PORTC)
+0002DC 6E??           00931         MOVWF   r0x02
+0002DE 0E??           00932         MOVLW   HIGH(_PORTC)
+0002E0 6E??           00933         MOVWF   r0x03
+0002E2 0E??           00934         MOVLW   HIGH(_ANSELA)
+0002E4 6E??           00935         MOVWF   r0x05
+0002E6 0E??           00936         MOVLW   LOW(_ANSELA)
+0002E8 26??           00937         ADDWF   r0x02, F
+0002EA 50??           00938         MOVF    r0x05, W
+0002EC 22??           00939         ADDWFC  r0x03, F
+0002EE 0E??           00940         MOVLW   HIGH(_PORTA)
+0002F0 6E??           00941         MOVWF   r0x05
+0002F2 0E??           00942         MOVLW   LOW(_PORTA)
+0002F4 5E??           00943         SUBWF   r0x02, F
+0002F6 50??           00944         MOVF    r0x05, W
+0002F8 5A??           00945         SUBWFB  r0x03, F
+0002FA C??? F???      00946         MOVFF   r0x02, FSR0L
+0002FE C??? F???      00947         MOVFF   r0x03, FSR0H
+000302 CFEF F000      00948         MOVFF   INDF0, r0x02
+000306 8A??           00949         BSF     r0x02, 5
+000308 C??? F???      00950         MOVFF   r0x00, FSR0L
+00030C C??? F???      00951         MOVFF   r0x01, FSR0H
+000310 C??? F???      00952         MOVFF   r0x02, INDF0
+000314 0E11           00953         MOVLW   0x11
+000316 6EE5           00954         MOVWF   POSTDEC1
+000318 0E08           00955         MOVLW   0x08
+00031A 6EE5           00956         MOVWF   POSTDEC1
+00031C EC?? F0??      00957         CALL    _analogSelectAdc
+000320 52E6           00958         MOVF    POSTINC1, F
+000322 52E6           00959         MOVF    POSTINC1, F
+000324 CFE4 F000      00960         MOVFF   PREINC1, r0x05
+000328 CFE4 F000      00961         MOVFF   PREINC1, r0x03
+00032C CFE4 F000      00962         MOVFF   PREINC1, r0x02
+000330 CFE4 F000      00963         MOVFF   PREINC1, r0x01
+000334 CFE4 F000      00964         MOVFF   PREINC1, r0x00
+000338 0012           00965         RETURN  
+                      00966 
+                      00967 ; ; Starting pCode block
+00033A                00968 ___str_0:
+00033A 0043           00969         DB      0x43, 0x00
+                      00970 ; ; Starting pCode block
+00033C                00971 ___str_1:
+00033C 6325 0000      00972         DB      0x25, 0x63, 0x00
+                      00973 
+                      00974 
+                      00975 ; Statistics:
+                      00976 ; code size:     1100 (0x044c) bytes ( 0.84%)
+                      00977 ;                 550 (0x0226) words
+                      00978 ; udata size:       4 (0x0004) bytes ( 0.11%)
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 20
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00979 ; access size:      5 (0x0005) bytes
+                      00980 
+                      00981 
+                      00982         end
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 21
+
+
+SYMBOL TABLE
+  LABEL                             VALUE
+
+FSR0H                             00000FEA
+FSR0L                             00000FE9
+FSR1L                             00000FE1
+INDF0                             00000FEF
+POSTDEC1                          00000FE5
+POSTINC1                          00000FE6
+PREINC1                           00000FE4
+PRODH                             00000FF4
+PRODL                             00000FF3
+STATUS                            00000FD8
+_00160_DS_                        00000082
+_00166_DS_                        00000054
+_00172_DS_                        0000001E
+_00177_DS_                        00000042
+_00179_DS_                        0000006A
+_00183_DS_                        00000022
+_00185_DS_                        00000070
+_ADCON0                           00000000
+_ADCON0bits                       00000000
+_ADCON1                           00000000
+_ADCON1bits                       00000000
+_ADCON2                           00000000
+_ADCON2bits                       00000000
+_ADRES                            00000000
+_ADRESH                           00000000
+_ADRESL                           00000000
+_ANSELA                           00000000
+_ANSELAbits                       00000000
+_ANSELB                           00000000
+_ANSELBbits                       00000000
+_ANSELC                           00000000
+_ANSELCbits                       00000000
+_ANSELZ                           00000000
+_ANSELZbits                       00000000
+_BAUD1CON                         00000000
+_BAUD1CONbits                     00000000
+_BAUD2CON                         00000000
+_BAUD2CONbits                     00000000
+_BAUDCON                          00000000
+_BAUDCON1                         00000000
+_BAUDCON1bits                     00000000
+_BAUDCON2                         00000000
+_BAUDCON2bits                     00000000
+_BAUDCONbits                      00000000
+_BAUDCTL                          00000000
+_BAUDCTLbits                      00000000
+_BSR                              00000000
+_CCP1CON                          00000000
+_CCP1CONbits                      00000000
+_CCP2AS                           00000000
+_CCP2ASbits                       00000000
+_CCP2CON                          00000000
+_CCP2CONbits                      00000000
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 22
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_CCP3AS                           00000000
+_CCP3ASbits                       00000000
+_CCP3CON                          00000000
+_CCP3CONbits                      00000000
+_CCP4CON                          00000000
+_CCP4CONbits                      00000000
+_CCP5CON                          00000000
+_CCP5CONbits                      00000000
+_CCPR1                            00000000
+_CCPR1H                           00000000
+_CCPR1L                           00000000
+_CCPR2                            00000000
+_CCPR2H                           00000000
+_CCPR2L                           00000000
+_CCPR3                            00000000
+_CCPR3H                           00000000
+_CCPR3L                           00000000
+_CCPR4                            00000000
+_CCPR4H                           00000000
+_CCPR4L                           00000000
+_CCPR5                            00000000
+_CCPR5H                           00000000
+_CCPR5L                           00000000
+_CCPTMRS0                         00000000
+_CCPTMRS0bits                     00000000
+_CCPTMRS1                         00000000
+_CCPTMRS1bits                     00000000
+_CM12CON                          00000000
+_CM12CONbits                      00000000
+_CM1CON                           00000000
+_CM1CON0                          00000000
+_CM1CON0bits                      00000000
+_CM1CONbits                       00000000
+_CM2CON                           00000000
+_CM2CON0                          00000000
+_CM2CON0bits                      00000000
+_CM2CON1                          00000000
+_CM2CON1bits                      00000000
+_CM2CONbits                       00000000
+_CTMUCON0                         00000000
+_CTMUCON0bits                     00000000
+_CTMUCON1                         00000000
+_CTMUCON1bits                     00000000
+_CTMUCONH                         00000000
+_CTMUCONHbits                     00000000
+_CTMUCONL                         00000000
+_CTMUCONLbits                     00000000
+_CTMUICON                         00000000
+_CTMUICONH                        00000000
+_CTMUICONHbits                    00000000
+_CTMUICONbits                     00000000
+_DACCON0                          00000000
+_DACCON0bits                      00000000
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 23
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_DACCON1                          00000000
+_DACCON1bits                      00000000
+_DDRA                             00000000
+_DDRAbits                         00000000
+_DDRB                             00000000
+_DDRBbits                         00000000
+_DDRC                             00000000
+_DDRCbits                         00000000
+_ECCP1AS                          00000000
+_ECCP1ASbits                      00000000
+_ECCP2AS                          00000000
+_ECCP2ASbits                      00000000
+_ECCP3AS                          00000000
+_ECCP3ASbits                      00000000
+_ECCPAS                           00000000
+_ECCPASbits                       00000000
+_EEADR                            00000000
+_EEADRH                           00000000
+_EEADRHbits                       00000000
+_EEADRbits                        00000000
+_EECON1                           00000000
+_EECON1bits                       00000000
+_EECON2                           00000000
+_EEDATA                           00000000
+_FSR0H                            00000000
+_FSR0L                            00000000
+_FSR1H                            00000000
+_FSR1L                            00000000
+_FSR2H                            00000000
+_FSR2L                            00000000
+_FVRCON                           00000000
+_FVRCONbits                       00000000
+_HLVDCON                          00000000
+_HLVDCONbits                      00000000
+_INDF0                            00000000
+_INDF1                            00000000
+_INDF2                            00000000
+_INTCON                           00000000
+_INTCON2                          00000000
+_INTCON2bits                      00000000
+_INTCON3                          00000000
+_INTCON3bits                      00000000
+_INTCONbits                       00000000
+_IOCB                             00000000
+_IOCBbits                         00000000
+_IPR1                             00000000
+_IPR1bits                         00000000
+_IPR2                             00000000
+_IPR2bits                         00000000
+_IPR3                             00000000
+_IPR3bits                         00000000
+_IPR4                             00000000
+_IPR4bits                         00000000
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 24
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_IPR5                             00000000
+_IPR5bits                         00000000
+_LATA                             00000000
+_LATAbits                         00000000
+_LATB                             00000000
+_LATBbits                         00000000
+_LATC                             00000000
+_LATCbits                         00000000
+_LATZ                             00000000
+_LATZbits                         00000000
+_LVDCON                           00000000
+_LVDCONbits                       00000000
+_Now                              00000000
+_OSCCON                           00000000
+_OSCCON2                          00000000
+_OSCCON2bits                      00000000
+_OSCCONbits                       00000000
+_OSCTUNE                          00000000
+_OSCTUNEbits                      00000000
+_PC                               00000000
+_PCL                              00000000
+_PCLATH                           00000000
+_PCLATU                           00000000
+_PIE1                             00000000
+_PIE1bits                         00000000
+_PIE2                             00000000
+_PIE2bits                         00000000
+_PIE3                             00000000
+_PIE3bits                         00000000
+_PIE4                             00000000
+_PIE4bits                         00000000
+_PIE5                             00000000
+_PIE5bits                         00000000
+_PIR1                             00000000
+_PIR1bits                         00000000
+_PIR2                             00000000
+_PIR2bits                         00000000
+_PIR3                             00000000
+_PIR3bits                         00000000
+_PIR4                             00000000
+_PIR4bits                         00000000
+_PIR5                             00000000
+_PIR5bits                         00000000
+_PLUSW0                           00000000
+_PLUSW1                           00000000
+_PLUSW2                           00000000
+_PMD0                             00000000
+_PMD0bits                         00000000
+_PMD1                             00000000
+_PMD1bits                         00000000
+_PMD2                             00000000
+_PMD2bits                         00000000
+_PORTA                            00000000
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 25
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_PORTAbits                        00000000
+_PORTB                            00000000
+_PORTBbits                        00000000
+_PORTC                            00000000
+_PORTCbits                        00000000
+_PORTE                            00000000
+_PORTEbits                        00000000
+_PORTZ                            00000000
+_PORTZbits                        00000000
+_POSTDEC0                         00000000
+_POSTDEC1                         00000000
+_POSTDEC2                         00000000
+_POSTINC0                         00000000
+_POSTINC1                         00000000
+_POSTINC2                         00000000
+_PR2                              00000000
+_PR4                              00000000
+_PR6                              00000000
+_PREINC0                          00000000
+_PREINC1                          00000000
+_PREINC2                          00000000
+_PROD                             00000000
+_PRODH                            00000000
+_PRODL                            00000000
+_PSTR1CON                         00000000
+_PSTR1CONbits                     00000000
+_PSTR2CON                         00000000
+_PSTR2CONbits                     00000000
+_PSTR3CON                         00000000
+_PSTR3CONbits                     00000000
+_PSTRCON                          00000000
+_PSTRCONbits                      00000000
+_PWM1CON                          00000000
+_PWM1CONbits                      00000000
+_PWM2CON                          00000000
+_PWM2CONbits                      00000000
+_PWM3CON                          00000000
+_PWM3CONbits                      00000000
+_PWMCON                           00000000
+_PWMCONbits                       00000000
+_RC1REG                           00000000
+_RC1STA                           00000000
+_RC1STAbits                       00000000
+_RC2REG                           00000000
+_RC2STA                           00000000
+_RC2STAbits                       00000000
+_RCON                             00000000
+_RCONbits                         00000000
+_RCREG                            00000000
+_RCREG1                           00000000
+_RCREG2                           00000000
+_RCSTA                            00000000
+_RCSTA1                           00000000
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 26
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_RCSTA1bits                       00000000
+_RCSTA2                           00000000
+_RCSTA2bits                       00000000
+_RCSTAbits                        00000000
+_SLRCON                           00000000
+_SLRCONbits                       00000000
+_SP1BRG                           00000000
+_SP1BRGH                          00000000
+_SP2BRG                           00000000
+_SP2BRGH                          00000000
+_SPBRG                            00000000
+_SPBRG1                           00000000
+_SPBRG2                           00000000
+_SPBRGH                           00000000
+_SPBRGH1                          00000000
+_SPBRGH2                          00000000
+_SRCON0                           00000000
+_SRCON0bits                       00000000
+_SRCON1                           00000000
+_SRCON1bits                       00000000
+_SSP1ADD                          00000000
+_SSP1BUF                          00000000
+_SSP1CON1                         00000000
+_SSP1CON1bits                     00000000
+_SSP1CON2                         00000000
+_SSP1CON2bits                     00000000
+_SSP1CON3                         00000000
+_SSP1CON3bits                     00000000
+_SSP1MSK                          00000000
+_SSP1MSKbits                      00000000
+_SSP1STAT                         00000000
+_SSP1STATbits                     00000000
+_SSP2ADD                          00000000
+_SSP2BUF                          00000000
+_SSP2CON1                         00000000
+_SSP2CON1bits                     00000000
+_SSP2CON2                         00000000
+_SSP2CON2bits                     00000000
+_SSP2CON3                         00000000
+_SSP2CON3bits                     00000000
+_SSP2MSK                          00000000
+_SSP2MSKbits                      00000000
+_SSP2STAT                         00000000
+_SSP2STATbits                     00000000
+_SSPADD                           00000000
+_SSPBUF                           00000000
+_SSPCON1                          00000000
+_SSPCON1bits                      00000000
+_SSPCON2                          00000000
+_SSPCON2bits                      00000000
+_SSPCON3                          00000000
+_SSPCON3bits                      00000000
+_SSPMSK                           00000000
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 27
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_SSPMSKbits                       00000000
+_SSPSTAT                          00000000
+_SSPSTATbits                      00000000
+_STATUS                           00000000
+_STATUSbits                       00000000
+_STKPTR                           00000000
+_STKPTRbits                       00000000
+_T0CON                            00000000
+_T0CONbits                        00000000
+_T1CON                            00000000
+_T1CONbits                        00000000
+_T1GCON                           00000000
+_T1GCONbits                       00000000
+_T2CON                            00000000
+_T2CONbits                        00000000
+_T3CON                            00000000
+_T3CONbits                        00000000
+_T3GCON                           00000000
+_T3GCONbits                       00000000
+_T4CON                            00000000
+_T4CONbits                        00000000
+_T5CON                            00000000
+_T5CONbits                        00000000
+_T5GCON                           00000000
+_T5GCONbits                       00000000
+_T6CON                            00000000
+_T6CONbits                        00000000
+_TABLAT                           00000000
+_TBLPTR                           00000000
+_TBLPTRH                          00000000
+_TBLPTRL                          00000000
+_TBLPTRU                          00000000
+_TMR0                             00000000
+_TMR0H                            00000000
+_TMR0L                            00000000
+_TMR1                             00000000
+_TMR1H                            00000000
+_TMR1L                            00000000
+_TMR2                             00000000
+_TMR3                             00000000
+_TMR3H                            00000000
+_TMR3L                            00000000
+_TMR4                             00000000
+_TMR5                             00000000
+_TMR5H                            00000000
+_TMR5L                            00000000
+_TMR6                             00000000
+_TOS                              00000000
+_TOSH                             00000000
+_TOSL                             00000000
+_TOSU                             00000000
+_TRICZ                            00000000
+_TRISA                            00000000
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 28
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_TRISAbits                        00000000
+_TRISB                            00000000
+_TRISBbits                        00000000
+_TRISC                            00000000
+_TRISCbits                        00000000
+_TRISE                            00000000
+_TRISEbits                        00000000
+_TRISZbits                        00000000
+_TX1REG                           00000000
+_TX1STA                           00000000
+_TX1STAbits                       00000000
+_TX2REG                           00000000
+_TX2STA                           00000000
+_TX2STAbits                       00000000
+_TXREG                            00000000
+_TXREG1                           00000000
+_TXREG2                           00000000
+_TXSTA                            00000000
+_TXSTA1                           00000000
+_TXSTA1bits                       00000000
+_TXSTA2                           00000000
+_TXSTA2bits                       00000000
+_TXSTAbits                        00000000
+_VREFCON0                         00000000
+_VREFCON0bits                     00000000
+_VREFCON1                         00000000
+_VREFCON1bits                     00000000
+_VREFCON2                         00000000
+_VREFCON2bits                     00000000
+_WDTCON                           00000000
+_WDTCONbits                       00000000
+_WPUB                             00000000
+_WPUBbits                         00000000
+_WREG                             00000000
+__18F26K22                        00000001
+___str_0                          0000033A
+___str_1                          0000033C
+_analogInit                       00000000
+_analogSelectAdc                  00000000
+_analogSend                       00000000
+_analogService                    00000000
+_fraiseGetChar                    00000000
+_fraiseGetLen                     00000000
+_fraiseReceiveChar                00000000
+_fraiseService                    00000000
+_fruitInit                        00000000
+_loop                             00000000
+_mainDelay                        00000000
+_printf                           00000000
+_putchar                          00000000
+_setup                            00000000
+_stdin                            00000000
+_stdout                           00000000
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:32          PAGE 29
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_time                             00000000
+r0x00                             00000000
+r0x01                             00000001
+r0x02                             00000002
+r0x03                             00000003
+r0x05                             00000004
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+
