@@ -1,4 +1,4 @@
-#N canvas 468 57 1350 807 12;
+#N canvas 90 25 1350 750 12;
 #X obj 44 336 *~;
 #X obj 70 236 == 0;
 #X obj 70 260 pack f 10;
@@ -17,7 +17,7 @@
 #X obj 385 56 * 5.99;
 #X obj 385 83 i, f 4;
 #X obj 391 136 change;
-#X floatatom 385 107 5 0 0 0 - - -;
+#X floatatom 385 107 5 0 0 0 - - -, f 5;
 #X obj 178 316 min~;
 #X obj 200 256 *~ -1;
 #X obj 200 282 +~ 1;
@@ -36,7 +36,7 @@
 #X obj 532 328 -~ 1;
 #X text 612 318 square;
 #X obj 35 237 osc~;
-#X floatatom 550 81 5 0 0 0 - - -;
+#X floatatom 550 81 5 0 0 0 - - -, f 5;
 #X obj 481 271 expr~ $v1 > 0.5;
 #X obj 794 355 *~;
 #X obj 811 266 pack f 10;
@@ -93,7 +93,7 @@
 #X obj 1544 68 * 5.99;
 #X obj 1544 95 i, f 4;
 #X obj 1550 148 change;
-#X floatatom 1544 119 5 0 0 0 - - -;
+#X floatatom 1544 119 5 0 0 0 - - -, f 5;
 #X obj 1337 328 min~;
 #X obj 1359 268 *~ -1;
 #X obj 1359 294 +~ 1;
@@ -112,7 +112,7 @@
 #X obj 1691 340 -~ 1;
 #X text 1771 330 square;
 #X obj 1194 249 osc~;
-#X floatatom 1709 93 5 0 0 0 - - -;
+#X floatatom 1709 93 5 0 0 0 - - -, f 5;
 #X obj 1640 283 expr~ $v1 > 0.5;
 #X obj 1953 367 *~;
 #X obj 1970 278 pack f 10;
@@ -145,6 +145,12 @@
 #X obj 1971 498 route A D S R;
 #X obj 1063 631 *~, f 26;
 #X obj 1544 42 receive pos_osc2;
+#X obj 1092 526 inlet;
+#X floatatom 1097 582 5 0 0 0 - - -, f 5;
+#X obj 997 609 *~;
+#X obj 1284 501 inlet;
+#X floatatom 1289 557 5 0 0 0 - - -, f 5;
+#X obj 1241 600 *~;
 #X connect 0 0 62 0;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;
@@ -217,7 +223,7 @@
 #X connect 60 1 137 0;
 #X connect 61 0 59 0;
 #X connect 61 0 133 0;
-#X connect 62 0 144 0;
+#X connect 62 0 148 0;
 #X connect 63 0 62 1;
 #X connect 64 0 66 0;
 #X connect 64 1 67 0;
@@ -297,7 +303,7 @@
 #X connect 133 0 108 0;
 #X connect 133 0 118 0;
 #X connect 133 0 126 0;
-#X connect 134 0 144 1;
+#X connect 134 0 151 0;
 #X connect 135 0 134 1;
 #X connect 136 0 138 0;
 #X connect 136 1 139 0;
@@ -313,3 +319,9 @@
 #X connect 143 3 142 4;
 #X connect 144 0 72 0;
 #X connect 145 0 91 0;
+#X connect 146 0 147 0;
+#X connect 146 0 148 1;
+#X connect 148 0 144 0;
+#X connect 149 0 150 0;
+#X connect 149 0 151 1;
+#X connect 151 0 144 1;
