@@ -1,0 +1,264 @@
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:42          PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;--------------------------------------------------------
+                      00002 ; File Created by SDCC : free open source ANSI-C Compiler
+                      00003 ; Version 3.6.5 #9830 (MINGW32)
+                      00004 ;--------------------------------------------------------
+                      00005 ; PIC16 port for the Microchip 16-bit core micros
+                      00006 ;--------------------------------------------------------
+                      00007         list    p=18f26k22
+                      00008         radix   dec
+                      00009 
+                      00010 
+                      00011 ;--------------------------------------------------------
+                      00012 ; public variables in this module
+                      00013 ;--------------------------------------------------------
+  0000                00014         global  ___uflags
+  0000                00015         global  __entry
+  0000                00016         global  __startup
+  0000                00017         global  __do_cinit
+                      00018 
+                      00019 ;--------------------------------------------------------
+                      00020 ; extern variables in this module
+                      00021 ;--------------------------------------------------------
+  0000                00022         extern  _stack
+  0000                00023         extern  _stack_end
+  0000                00024         extern  _TBLPTRU
+  0000                00025         extern  _TBLPTRH
+  0000                00026         extern  _TBLPTRL
+  0000                00027         extern  _FSR0L
+  0000                00028         extern  _FSR0H
+  0000                00029         extern  _TABLAT
+  0000                00030         extern  _POSTINC0
+  0000                00031         extern  _POSTDEC0
+  0000                00032         extern  _main
+  0000                00033         extern  _cinit
+                      00034 
+                      00035 
+                      00036         idata
+000000 00             00037 ___uflags       db      0x00
+                      00038 
+                      00039 ;--------------------------------------------------------
+                      00040 ; global & static initialisations
+                      00041 ;--------------------------------------------------------
+                      00042 ; ; Starting pCode block
+                      00043 S_crt0iz_rloc___entry   code    0X000000
+000000                00044 __entry:
+000000 EF?? F0??      00045         goto    __startup 
+                      00046 ; I code from now on!
+                      00047 ; ; Starting pCode block
+                      00048 S_crt0iz_rloc___do_cinit        code
+000000                00049 __do_cinit:
+                      00050         ;       TBLPTR = &cinit
+000000 0E??           00051         movlw   low(_cinit)
+000002 6E??           00052         movwf   _TBLPTRL
+000004 0E??           00053         movlw   high(_cinit)
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:42          PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000006 6E??           00054         movwf   _TBLPTRH
+000008 0E??           00055         movlw   upper(_cinit)
+00000A 6E??           00056         movwf   _TBLPTRU
+                      00057         ;       0x05 = cinit.num_init
+                      00058         ;       movlb 0x07
+00000C 0009           00059         tblrd*+
+00000E 50??           00060         movf    _TABLAT, w
+000010 6E05           00061         movwf   0x05
+000012 0009           00062         tblrd*+
+000014 50??           00063         movf    _TABLAT, w
+000016 6E06           00064         movwf   0x05 +1
+                      00065         ;       while (0x05) {
+000018                00066 test:
+000018 E1??           00067         bnz     cont1 ;;done1
+00001A 6705           00068         tstfsz  0x05, 1
+00001C D???           00069         bra     cont1
+00001E                00070 done1:
+00001E EF?? F0??      00071         goto    done
+000022                00072 cont1:
+                      00073         ;       Count down so we only have to look up the data in _cinit once.
+                      00074         ;       At this point we know that TBLPTR points to the top of the current
+                      00075         ;       entry in _cinit, so we can just start reading the from, to, and
+                      00076         ;       size values.
+                      00077         ;       read the source address low
+000022 0009           00078         tblrd*+
+000024 50??           00079         movf    _TABLAT, w
+000026 6E00           00080         movwf   0x00
+                      00081         ;       source address high
+000028 0009           00082         tblrd*+
+00002A 50??           00083         movf    _TABLAT, w
+00002C 6E01           00084         movwf   0x00 + 1
+                      00085         ;       source address upper
+00002E 0009           00086         tblrd*+
+000030 50??           00087         movf    _TABLAT, w
+000032 6E02           00088         movwf   0x00 + 2
+                      00089         ;       skip a byte since it is stored as a 32bit int
+000034 0009           00090         tblrd*+
+                      00091         ;       read the destination address directly into FSR0
+                      00092         ;       destination address low
+000036 0009           00093         tblrd*+
+000038 50??           00094         movf    _TABLAT, w
+00003A 6E??           00095         movwf   _FSR0L
+                      00096         ;       destination address high
+00003C 0009           00097         tblrd*+
+00003E 50??           00098         movf    _TABLAT, w
+000040 6E??           00099         movwf   _FSR0H
+                      00100         ;       skip two bytes since it is stored as a 32bit int
+000042 0009           00101         tblrd*+
+000044 0009           00102         tblrd*+
+                      00103         ;       read the size of data to transfer to destination address
+000046 0009           00104         tblrd*+
+000048 50??           00105         movf    _TABLAT, w
+00004A 6E03           00106         movwf   0x03
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:42          PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00004C 0009           00107         tblrd*+
+00004E 50??           00108         movf    _TABLAT, w
+000050 6E04           00109         movwf   0x03 +1
+                      00110         ;       skip two bytes since it is stored as a 32bit int
+000052 0009           00111         tblrd*+
+000054 0009           00112         tblrd*+
+                      00113         ;       0x00 = 0x07 ->from;
+                      00114         ;       FSR0 = 0x07 ->to;
+                      00115         ;       0x03 = (unsigned short) 0x07 ->size;
+                      00116         ;       the table pointer now points to the next entry. Save it
+                      00117         ;       off since we will be using the table pointer to do the copying
+                      00118         ;       for the entry
+                      00119         ;       0x07 = TBLPTR
+000056 C??? F???      00120         movff   _TBLPTRL, 0x07
+00005A C??? F???      00121         movff   _TBLPTRH, 0x07 + 1
+00005E C??? F???      00122         movff   _TBLPTRU, 0x07 + 2
+                      00123         ;       now assign the source address to the table pointer
+                      00124         ;       TBLPTR = 0x00
+000062 C000 F000      00125         movff   0x00, _TBLPTRL
+000066 C001 F000      00126         movff   0x00 + 1, _TBLPTRH
+00006A C002 F000      00127         movff   0x00 + 2, _TBLPTRU
+                      00128         ;       do the copy loop
+                      00129         ;       determine if we have any more bytes to copy
+                      00130         ;       movlb 0x03
+00006E 5003           00131         movf    0x03, w
+000070                00132 copy_loop:
+000070 E1??           00133         bnz     copy_one_byte ; copy_one_byte
+000072 5004           00134         movf    0x03 + 1, w
+000074 E0??           00135         bz      done_copying
+000076                00136 copy_one_byte:
+000076 0009           00137         tblrd*+
+000078 50??           00138         movf    _TABLAT, w
+00007A 6E??           00139         movwf   _POSTINC0
+                      00140         ;       decrement byte counter
+00007C 0603           00141         decf    0x03, f
+00007E E2??           00142         bc      copy_loop ; copy_loop
+000080 0604           00143         decf    0x03 + 1, f
+000082 D???           00144         bra     copy_one_byte
+000084                00145 done_copying:
+                      00146         ;       restore the table pointer for the next entry
+                      00147         ;       TBLPTR = 0x07
+000084 C007 F000      00148         movff   0x07, _TBLPTRL
+000088 C008 F000      00149         movff   0x07 + 1, _TBLPTRH
+00008C C009 F000      00150         movff   0x07 + 2, _TBLPTRU
+000090 0605           00151         decf    0x05, f
+000092 E2??           00152         bc      do_next
+000094 0606           00153         decf    0x05 + 1, f
+000096                00154 do_next:
+                      00155         ;       next entry...
+                      00156         ;       _do_cinit_curr_entry--;
+000096 EF?? F0??      00157         goto    test;
+                      00158         ;       emit done label
+00009A                00159 done:
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:42          PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00009A 0012           00160         return
+                      00161         
+                      00162 ; ; Starting pCode block
+                      00163 S_crt0iz_rloc___startup code
+000000                00164 __startup:
+000000 EE?? F0??      00165         lfsr    1, _stack_end
+000004 EE?? F0??      00166         lfsr    2, _stack_end
+000008 6A??           00167         clrf    _TBLPTRU, 0
+00000A 8EA6           00168         bsf     0xa6, 7, 0
+00000C 9CA6           00169         bcf     0xa6, 6, 0
+                      00170         
+                      00171         ;       movlw 0xff
+                      00172         ;       movwf _FSR0L, 0
+00000E 68??           00173         setf    _FSR0L
+000010 0E0E           00174         movlw   0x0e
+000012 6E??           00175         movwf   _FSR0H, 0
+                      00176         ;       movlw 1
+                      00177         ;       movwf 0x00, 0
+000014 6800           00178         setf    0x00
+000016 0E00           00179         movlw   0x00
+000018                00180 clear_loop:
+000018 6A??           00181         clrf    _POSTDEC0
+00001A 5000           00182         movf    0x00, w
+00001C E1??           00183         bnz     clear_loop
+                      00184         
+                      00185 ;       .line   107; C:/Users/sarto/Documents/Pd/externals/Fraise/core/crt0iz-rloc.c    _do_cinit();
+00001E EC?? F0??      00186         CALL    __do_cinit
+                      00187 ;       .line   110; C:/Users/sarto/Documents/Pd/externals/Fraise/core/crt0iz-rloc.c    main();
+000022 EC?? F0??      00188         CALL    _main
+000026                00189 _00110_DS_:
+                      00190 ;       .line   114; C:/Users/sarto/Documents/Pd/externals/Fraise/core/crt0iz-rloc.c    goto loop;
+000026 D???           00191         BRA     _00110_DS_
+                      00192 
+                      00193 
+                      00194 ; Statistics:
+                      00195 ; code size:      276 (0x0114) bytes ( 0.21%)
+                      00196 ;                 138 (0x008a) words
+                      00197 ; udata size:       0 (0x0000) bytes ( 0.00%)
+                      00198 ; access size:      0 (0x0000) bytes
+                      00199 
+                      00200 
+                      00201         end
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:42          PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                             VALUE
+
+_00110_DS_                        00000026
+_FSR0H                            00000000
+_FSR0L                            00000000
+_POSTDEC0                         00000000
+_POSTINC0                         00000000
+_TABLAT                           00000000
+_TBLPTRH                          00000000
+_TBLPTRL                          00000000
+_TBLPTRU                          00000000
+__18F26K22                        00000001
+___uflags                         00000000
+__do_cinit                        00000000
+__entry                           00000000
+__startup                         00000000
+_cinit                            00000000
+_main                             00000000
+_stack                            00000000
+_stack_end                        00000000
+clear_loop                        00000018
+cont1                             00000022
+copy_loop                         00000070
+copy_one_byte                     00000076
+do_next                           00000096
+done                              0000009A
+done1                             0000001E
+done_copying                      00000084
+test                              00000018
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

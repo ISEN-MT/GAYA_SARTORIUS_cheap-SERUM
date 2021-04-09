@@ -1,4 +1,4 @@
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE  1
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -57,7 +57,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000000 0E??           00051         movlw   low(_cinit)
 000002 6E??           00052         movwf   _TBLPTRL
 000004 0E??           00053         movlw   high(_cinit)
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE  2
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -116,7 +116,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000046 0009           00104         tblrd*+
 000048 50??           00105         movf    _TABLAT, w
 00004A 6E03           00106         movwf   0x03
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE  3
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -175,7 +175,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000096 EF?? F0??      00157         goto    test;
                       00158         ;       emit done label
 00009A                00159 done:
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE  4
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -223,7 +223,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00199 
                       00200 
                       00201         end
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE  5
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE  5
 
 
 SYMBOL TABLE

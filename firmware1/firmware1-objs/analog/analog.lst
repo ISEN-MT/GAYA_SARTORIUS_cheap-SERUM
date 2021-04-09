@@ -1,4 +1,4 @@
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE  1
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -57,7 +57,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
   0000                00051         extern  _CCPTMRS1bits
   0000                00052         extern  _CCPTMRS0bits
   0000                00053         extern  _T6CONbits
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE  2
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -116,7 +116,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
   0000                00104         extern  _DDRBbits
   0000                00105         extern  _TRISBbits
   0000                00106         extern  _DDRCbits
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE  3
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -175,7 +175,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
   0000                00157         extern  _T1GCONbits
   0000                00158         extern  _T1CONbits
   0000                00159         extern  _RCONbits
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE  4
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -234,7 +234,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
   0000                00210         extern  _T4CON
   0000                00211         extern  _PR4
   0000                00212         extern  _TMR4
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE  5
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -293,7 +293,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
   0000                00263         extern  _CM2CON
   0000                00264         extern  _CM2CON0
   0000                00265         extern  _CM1CON
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE  6
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -352,7 +352,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
   0000                00316         extern  _SP1BRG
   0000                00317         extern  _SPBRG
   0000                00318         extern  _SPBRG1
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE  7
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -411,7 +411,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
   0000                00369         extern  _RCON
   0000                00370         extern  _WDTCON
   0000                00371         extern  _OSCCON2
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE  8
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE  8
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -470,7 +470,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
   0000                00422         extern  _fraiseSend
   0000                00423         extern  _EEdeclareInt
   0000                00424         extern  __mullong
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE  9
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -529,7 +529,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00473 udata_analog_0  udata
 000000                00474 _Selected       res     2
                       00475 
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 10
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 10
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -588,7 +588,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00001E 6EE5           00526         MOVWF   POSTDEC1
 000020 EC?? F0??      00527         CALL    _EEdeclareInt
 000024 0E03           00528         MOVLW   0x03
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 11
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 11
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -647,7 +647,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00579 ; #     MOVF    r0x02, W
 00007A 6EE5           00580         MOVWF   POSTDEC1
 00007C 0E??           00581         MOVLW   HIGH(_Max + 6)
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 12
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 12
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -706,7 +706,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0000D8 0E03           00632         MOVLW   0x03
 0000DA 26E1           00633         ADDWF   FSR1L, F
 0000DC 0E80           00634         MOVLW   0x80
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 13
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 13
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -765,7 +765,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000132 6EE5           00685         MOVWF   POSTDEC1
 000134 0E??           00686         MOVLW   LOW(_Min + 14)
 000136 6EE5           00687         MOVWF   POSTDEC1
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 14
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 14
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -824,7 +824,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000190 0E80           00738         MOVLW   0x80
                       00739 ; #     MOVWF   r0x02
                       00740 ; #     MOVF    r0x02, W
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 15
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 15
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -883,7 +883,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0001EA 6EE5           00791         MOVWF   POSTDEC1
 0001EC EC?? F0??      00792         CALL    _EEdeclareInt
 0001F0 0E03           00793         MOVLW   0x03
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 16
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 16
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -942,7 +942,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000246 6EE5           00844         MOVWF   POSTDEC1
 000248 0E??           00845         MOVLW   HIGH(_Min + 28)
 00024A 6EE5           00846         MOVWF   POSTDEC1
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 17
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 17
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1001,7 +1001,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                             _MAX_CHANNELS;i++) {
 00002C 6A??           00896         CLRF    r0x01
                       00897 ; ;multiply lit val:0x02 by variable r0x01 and store in r0x02
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 18
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 18
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1060,7 +1060,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000000 CFD9 FFE5      00946         MOVFF   FSR2L, POSTDEC1
 000004 CFE1 FFD9      00947         MOVFF   FSR1L, FSR2L
 000008 C??? F???      00948         MOVFF   r0x00, POSTDEC1
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 19
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 19
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1119,7 +1119,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00002E C??? F???      00996         MOVFF   r0x01, FSR0H
 000032 CFEE F000      00997         MOVFF   POSTINC0, r0x00
 000036 CFEF F000      00998         MOVFF   INDF0, r0x01
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 20
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 20
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1178,7 +1178,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000062 20??           01046         ADDWFC  r0x03, W
 000064 6E??           01047         MOVWF   r0x05
 000066 C??? F???      01048         MOVFF   r0x04, FSR0L
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 21
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 21
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1237,7 +1237,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0000CE 6AEF           01097         CLRF    INDF0
 0000D0                01098 _00386_DS_:
 0000D0 CFE4 F000      01099         MOVFF   PREINC1, r0x05
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 22
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 22
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1296,7 +1296,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000040 D???           01146         BRA     _00307_DS_
 000042 C??? F???      01147         MOVFF   r0x01, r0x03
 000046 2A??           01148         INCF    r0x01, F
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 23
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 23
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1355,7 +1355,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000092 36??           01197         RLCF    r0x05, F
 000094 36??           01198         RLCF    r0x06, F
 000096 0F01           01199         ADDLW   0x01
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 24
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 24
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1414,7 +1414,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0000FC CFEE F000      01248         MOVFF   POSTINC0, r0x07
 000100 CFEF F000      01249         MOVFF   INDF0, r0x08
 000104 50??           01250         MOVF    r0x06, W
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 25
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 25
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1473,7 +1473,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000162 0EFF           01299         MOVLW   0xff
 000164 6E??           01300         MOVWF   r0x0b
                       01301 ; #     MOVWF   r0x0c
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 26
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 26
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1532,7 +1532,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0001C8 EC?? F0??      01351         CALL    __divulong
 0001CC 6E??           01352         MOVWF   r0x03
 0001CE CFF3 F000      01353         MOVFF   PRODL, r0x04
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 27
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 27
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1591,7 +1591,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00021E 0E3F           01401         MOVLW   0x3f
 000220 6E??           01402         MOVWF   r0x06
                       01403 ; ;multiply lit val:0x02 by variable _analogSend_chan_1_104 and store in r0x03
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 28
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 28
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1650,7 +1650,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00027A B0D8           01451         BTFSC   STATUS, 0
 00027C D???           01452         BRA     _00279_DS_
                       01453 ; ;multiply lit val:0x02 by variable _analogSend_chan_1_104 and store in r0x07
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 29
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 29
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1709,7 +1709,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0002E4 C??? F???      01500         MOVFF   r0x07, FSR0L
 0002E8 C??? F???      01501         MOVFF   r0x08, FSR0H
 0002EC CFEE F000      01502         MOVFF   POSTINC0, r0x07
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 30
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 30
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1768,7 +1768,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000344 6E??           01551         MOVWF   r0x04
 000346 CFF3 F000      01552         MOVFF   PRODL, r0x03
 00034A 0E??           01553         MOVLW   LOW(_Dist)
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 31
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 31
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1827,7 +1827,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0003B0 0E??           01600         MOVLW   LOW(_analogSend_buf_1_104)
 0003B2 26??           01601         ADDWF   r0x03, F
 0003B4 0E??           01602         MOVLW   HIGH(_analogSend_buf_1_104)
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 32
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 32
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1886,7 +1886,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00041E D???           01650         BRA     _00283_DS_
                       01651 ;       .line   221; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       buf[len++] = '\n
                             ';
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 33
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 33
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1945,7 +1945,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000008 C??? F???      01699         MOVFF   r0x02, POSTDEC1
 00000C C??? F???      01700         MOVFF   r0x03, POSTDEC1
 000010 C??? F???      01701         MOVFF   r0x04, POSTDEC1
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 34
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 34
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2004,7 +2004,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000082 E1??           01750         BNZ     _00213_DS_
 000084 D???           01751         BRA     _00168_DS_
 000086                01752 _00213_DS_:
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 35
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 35
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2063,7 +2063,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0000E6 0E??           01801         MOVLW   HIGH(_LATA)
 0000E8 22??           01802         ADDWFC  r0x05, F
 0000EA 6A??           01803         CLRF    r0x06
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 36
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 36
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2122,7 +2122,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00014E 32??           01853         RRCF    r0x05, F
 000150 34??           01854         RLCF    r0x06, W
 000152 32??           01855         RRCF    r0x06, F
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 37
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 37
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2181,7 +2181,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0001C0 CFEE F000      01905         MOVFF   POSTINC0, r0x00
 0001C4 CFEF F000      01906         MOVFF   INDF0, r0x01
                       01907 ;       .line   126; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(v < (Min[chan
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 38
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 38
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2240,7 +2240,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000236 CFEE F000      01956         MOVFF   POSTINC0, r0x05
 00023A CFEF F000      01957         MOVFF   INDF0, r0x06
 00023E 0E64           01958         MOVLW   0x64
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 39
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 39
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2299,7 +2299,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00028A 6E??           02007         MOVWF   r0x00
 00028C 6A??           02008         CLRF    r0x01
 00028E 0E??           02009         MOVLW   LOW(_Selected)
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 40
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 40
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2358,7 +2358,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0002F4 CFEF F000      02059         MOVFF   INDF0, r0x00
 0002F8 44??           02060         RLNCF   r0x00, W
 0002FA 44E8           02061         RLNCF   WREG, W
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 41
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 41
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2417,7 +2417,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00035E                02110 _00235_DS_:
 00035E 36??           02111         RLCF    r0x05, F
 000360 0F01           02112         ADDLW   0x01
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 42
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 42
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2476,7 +2476,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0003CE ????           02162         BANKSEL _CTMUCONHbits
                       02163 ;       .line   144; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       CTMUCONHbits.IDI
                             SSEN = 1;               // Drain any charge on the A/D circuit
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 43
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 43
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2535,7 +2535,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00041C 0E01           02208         MOVLW   0x01
 00041E ????           02209         BANKSEL _analogService_conv_1_97
 000420 6F??           02210         MOVWF   _analogService_conv_1_97, B
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 44
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 44
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2594,7 +2594,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000048 50??           02259         MOVF    r0x00, W
 00004A E0??           02260         BZ      _00159_DS_
 00004C 6CE8           02261         NEGF    WREG
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 45
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 45
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2653,7 +2653,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000054 CFDB F000      02311         MOVFF   PLUSW2, r0x05
                       02312 ;       .line   93; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        bitset(Selected[
                             chan>>3],chan&7);
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 46
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 46
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2712,7 +2712,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0000C2 5E??           02361         SUBWF   r0x02, F
 0000C4 0E07           02362         MOVLW   0x07
 0000C6 16??           02363         ANDWF   r0x02, F
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 47
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 47
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2771,7 +2771,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00003C 26??           02412         ADDWF   r0x02, F
 00003E 0E??           02413         MOVLW   HIGH(_Selected)
 000040 22??           02414         ADDWFC  r0x03, F
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 48
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 48
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2830,7 +2830,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0000C0 CFE4 FFD9      02464         MOVFF   PREINC1, FSR2L
 0000C4 0012           02465         RETURN  
                       02466 
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 49
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 49
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2889,7 +2889,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000032 E3??           02512         BNC     _00107_DS_
                       02513 ;       .line   60; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        for(i=0;i<ANALOG
                             _MAX_CHANNELS;i++) {
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 50
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 50
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2948,7 +2948,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00009E 6AEE           02564         CLRF    POSTINC0
 0000A0 6AEF           02565         CLRF    INDF0
                       02566 ;       .line   65; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        Max[i]=0x7FFF;
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 51
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 51
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3007,7 +3007,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
        2520 0A64 0000 
                       02612 
                       02613 
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 52
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 52
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3021,7 +3021,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       02619 
                       02620 
                       02621         end
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 53
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 53
 
 
 SYMBOL TABLE
@@ -3080,7 +3080,7 @@ _00260_DS_                        00000222
 _00262_DS_                        00000264
 _00266_DS_                        0000033C
 _00272_DS_                        0000035E
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 54
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 54
 
 
 SYMBOL TABLE
@@ -3139,7 +3139,7 @@ _BAUDCTL                          00000000
 _BAUDCTLbits                      00000000
 _BSR                              00000000
 _CCP1CON                          00000000
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 55
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 55
 
 
 SYMBOL TABLE
@@ -3198,7 +3198,7 @@ _CTMUCONHbits                     00000000
 _CTMUCONL                         00000000
 _CTMUCONLbits                     00000000
 _CTMUICON                         00000000
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 56
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 56
 
 
 SYMBOL TABLE
@@ -3257,7 +3257,7 @@ _INTCON3bits                      00000000
 _INTCONbits                       00000000
 _IOCB                             00000000
 _IOCBbits                         00000000
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 57
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 57
 
 
 SYMBOL TABLE
@@ -3316,7 +3316,7 @@ _PIR3bits                         00000000
 _PIR4                             00000000
 _PIR4bits                         00000000
 _PIR5                             00000000
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 58
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 58
 
 
 SYMBOL TABLE
@@ -3375,7 +3375,7 @@ _PWMCON                           00000000
 _PWMCONbits                       00000000
 _Pins                             00000000
 _RC1REG                           00000000
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 59
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 59
 
 
 SYMBOL TABLE
@@ -3434,7 +3434,7 @@ _SSP2CON2bits                     00000000
 _SSP2CON3                         00000000
 _SSP2CON3bits                     00000000
 _SSP2MSK                          00000000
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 60
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 60
 
 
 SYMBOL TABLE
@@ -3493,7 +3493,7 @@ _TMR1                             00000000
 _TMR1H                            00000000
 _TMR1L                            00000000
 _TMR2                             00000000
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 61
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 61
 
 
 SYMBOL TABLE
@@ -3552,7 +3552,7 @@ _WREG                             00000000
 __18F26K22                        00000001
 ___str_0                          000000FA
 __divulong                        00000000
-gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-7-2021  18:44:33          PAGE 62
+gpasm-1.0.0 #932 (Jan 21 2013) firmware1-objs   4-9-2021  14:35:05          PAGE 62
 
 
 SYMBOL TABLE

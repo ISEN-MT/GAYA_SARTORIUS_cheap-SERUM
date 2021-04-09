@@ -8,6 +8,7 @@
 #include <fruit.h>
 #include <FSLP.h>
 #include <analog.h>
+#include <switch.h>
 
 t_delay mainDelay;
 
@@ -19,25 +20,37 @@ void setup(void) {
 	digitalClear(LED);		// clear the LED
 	delayStart(mainDelay, 5000); 	// init the mainDelay to 5 ms
 
-	analogSelect(1, K1); //Master 1
-	analogSelect(2, K2); //Master 2
-	analogSelect(3, K3); //Filter type
-	analogSelect(4, K4); //Filter cutoff
-	analogSelect(5, K5); //Filter resonnance
-//----------- FSLP setup ----------------
+	pinModeDigitalOut(K11); 	
+	digitalClear(K11);
+
+	
 	analogInit();
+	switchInit();
+
+	
+	
+	analogSelect(6, K6); //filter resonnance
+	analogSelect(7, K7); //filter cutoff
+	analogSelect(8, K8); //Master 1
+	analogSelect(9, K9); //Master 2
+	analogSelect(10, K10); //filter type
+
+	switchSelect(0, K12); //filter type
+//----------- FSLP setup ----------------
+	
 	FSLP_Init();
 }
 
 void loop() {
 // ---------- Main loop ------------
 	fraiseService();	// listen to Fraise events
-	analogService();	// analog management routine
+	switchService();  analogService();	// analog management routine
 
 	if(delayFinished(mainDelay)) // when mainDelay triggers :
 	{
 		delayStart(mainDelay, 5000); 	// re-init mainDelay
-		analogSend();		// send analog channels that changed
+		if(!switchSend()) analogSend();		// send analog channels that changed
+		
 	}
 }
 
@@ -51,6 +64,10 @@ void fraiseReceiveChar() // receive text
 	if(c=='L'){		//switch LED on/off 
 		c=fraiseGetChar();
 		digitalWrite(LED, c!='0');		
+	}
+	else if (c == 'O') {		//switch LED on/off 
+		c = fraiseGetChar();
+		digitalWrite(K11, c != '0');
 	}
 	else if(c=='E') { 	// echo text (send it back to host)
 		printf("C");

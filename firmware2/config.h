@@ -12,6 +12,8 @@
 #define FSLP_SL MOTA_CURRENT
 #define FSLP_R0 MAPWM // R0 must be connected to SL through 4.7k
 
+#endif
+
 /*
 VNH1:
 1(GND)
@@ -29,4 +31,5 @@ VNH1:
 #define FSLP_SLCHAN2 2
 
 #endif // _CONFIG_H_
+*/
 

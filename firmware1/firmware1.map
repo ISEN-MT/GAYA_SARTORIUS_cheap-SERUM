@@ -1,5 +1,5 @@
 gplink-1.0.0 #932 (Jan 21 2013)
-Map File - Created 4-7-2021  18:29:54
+Map File - Created 4-9-2021  14:35:05
  
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
@@ -12,103 +12,103 @@ S_strmmssp____stream_mssp_putchar       code   0x000004    program   0x000004
      S_vfprintf__vfprintf       code   0x00001c    program   0x000800
      S_analog__analogSend       code   0x00081c    program   0x00048c
   S_analog__analogService       code   0x000ca8    program   0x000454
-S_analog__analogDeclareEE       code   0x0010fc    program   0x000282
-      S_mullong___mullong       code   0x00137e    program   0x000214
-S_fraisedevice__fraiseISR       code   0x001592    program   0x000208
-            S_main__setup       code   0x00179a    program   0x000202
-            S_ltoa__ultoa       code   0x00199c    program   0x0001b8
-    S_modulong___modulong       code   0x001b54    program   0x00013a
-    S_divulong___divulong       code   0x001c8e    program   0x000120
-   S_eeparams__EELoadLong       code   0x001dae    program   0x00011a
-S_strmputchar____stream_putchar       code   0x001ec8    program   0x000118
-S_fraisedevice__fraiseService       code   0x001fe0    program   0x000114
-S_analog__analogSelectAdcTouch       code   0x0020f4    program   0x000114
-S_fraisedevice__fraiseDecodeNextTXPacket       code   0x002208    program   0x000112
-S_fraisedevice__fraiseSendBroadcast       code   0x00231a    program   0x000108
-     S_analog__analogInit       code   0x002422    program   0x000106
-S_fraisedevice__fraiseSend       code   0x002528    program   0x0000f6
-      S_analog__analogSet       code   0x00261e    program   0x0000ee
-      S_modsint___modsint       code   0x00270c    program   0x0000dc
-   S_eeparams__EESaveLong       code   0x0027e8    program   0x0000da
-S_eeparams__EEdeclareLong       code   0x0028c2    program   0x0000cc
-S_analog__analogSelectAdc       code   0x00298e    program   0x0000c6
-             S_ltoa__ltoa       code   0x002a54    program   0x0000c6
-         S_core__high_ISR       code   0x002b1a    program   0x0000bc
-      S_moduint___moduint       code   0x002bd6    program   0x0000ba
-S_fraisedevice__fraiseSendCopy       code   0x002c90    program   0x0000a4
- S_eeparams__EEdeclareInt       code   0x002d34    program   0x00009c
- S_crt0iz_rloc___do_cinit       code   0x002dd0    program   0x00009c
-             S_main__loop       code   0x002e6c    program   0x000094
-  S_analog__analogScaling       code   0x002f00    program   0x000092
-   S_fraisedevice__Assign       code   0x002f92    program   0x000084
-          S_core__low_ISR       code   0x003016    program   0x000082
- S_analog__analogDeselect       code   0x003098    program   0x000080
-         S_printf__printf       code   0x003118    program   0x000080
-S_eeparams__EEdeclareChar       code   0x003198    program   0x00007e
-S_main__fraiseReceiveChar       code   0x003216    program   0x00007a
-    S_eeparams__EESaveInt       code   0x003290    program   0x00007a
-S_fraisedevice__fraisePutChar       code   0x00330a    program   0x000078
-S_fraisedevice__fraiseGetAt       code   0x003382    program   0x000076
-S_fraisedevice__CompareName       code   0x0033f8    program   0x000074
-    S_eeparams__EELoadInt       code   0x00346c    program   0x000068
-  S_fraisedevice__putchar       code   0x0034d4    program   0x000062
-S_fraisedevice__fraiseInit       code   0x003536    program   0x000062
-             S_core__time       code   0x003598    program   0x000054
-S_fraisedevice__fraiseGetChar       code   0x0035ec    program   0x000054
-         S_core__coreInit       code   0x003640    program   0x00004e
-S_analog__analogGetDistance       code   0x00368e    program   0x00004e
-      S_analog__analogGet       code   0x0036dc    program   0x00004e
-   S_eeparams__EESaveChar       code   0x00372a    program   0x00004c
-      S_core__eeWriteByte       code   0x003776    program   0x000048
-    S_gptrget4___gptrget4       code   0x0037be    program   0x000040
-S_fraisedevice__fraiseGetTXChar       code   0x0037fe    program   0x00003e
-S_eeprom16_gptrput4____eeprom16_gptrput4       code   0x00383c    program   0x00003c
-S_eeprom16_gptrget4____eeprom16_gptrget4       code   0x003878    program   0x00003a
-    S_gptrget3___gptrget3       code   0x0038b2    program   0x000036
-S_eeprom16_gptrput3____eeprom16_gptrput3       code   0x0038e8    program   0x000034
-S_fraisedevice__fraiseSetID       code   0x00391c    program   0x000030
-S_eeprom16_gptrget3____eeprom16_gptrget3       code   0x00394c    program   0x000030
-S_fraisedevice__fraisePeekChar       code   0x00397c    program   0x00002e
-       S_islower__islower       code   0x0039aa    program   0x00002e
-   S_eeparams__EELoadChar       code   0x0039d8    program   0x00002c
-S_fraisedevice__fraiseSetInterruptEnable       code   0x003a04    program   0x00002c
-    S_gptrget2___gptrget2       code   0x003a30    program   0x00002c
-S_eeprom16_gptrput2____eeprom16_gptrput2       code   0x003a5c    program   0x00002c
-  S_crt0iz_rloc___startup       code   0x003a88    program   0x000028
-S_eeprom16_gptrget2____eeprom16_gptrget2       code   0x003ab0    program   0x000026
-S_eeprom16_gptrput1____eeprom16_gptrput1       code   0x003ad6    program   0x000024
-    S_gptrget1___gptrget1       code   0x003afa    program   0x000022
-    S_gptrput4___gptrput4       code   0x003b1c    program   0x000022
-                 .idata_i       code   0x003b3e    program   0x00001e
-    S_gptrput3___gptrput3       code   0x003b5c    program   0x00001e
-       S_core__eeReadByte       code   0x003b7a    program   0x00001c
-S_fraisedevice__Serial_Init_Receiver       code   0x003b96    program   0x00001c
-S_eeprom16_gptrget1____eeprom16_gptrget1       code   0x003bb2    program   0x00001c
-    S_gptrput2___gptrput2       code   0x003bce    program   0x00001a
-S_boardconfig__Generic26kSetup       code   0x003be8    program   0x000016
-S_fraisedevice__ResetToBld       code   0x003bfe    program   0x000016
-S_analog__analogInitTouch       code   0x003c14    program   0x000016
-    S_gptrput1___gptrput1       code   0x003c2a    program   0x000016
-  S_analog__analogSetMode       code   0x003c40    program   0x000014
-S_eeprom16_write____eeprom16_write       code   0x003c54    program   0x000012
-  S_eeparams__EEwriteMain       code   0x003c66    program   0x000010
-   S_eeparams__EEreadMain       code   0x003c76    program   0x00000e
-                   .cinit       code   0x003c84    program   0x00000e
-       S_fruit__fruitInit       code   0x003c92    program   0x00000a
-S_strmusart____stream_usart_putchar       code   0x003c9c    program   0x000008
-     S_boardconfig__Setup       code   0x003ca4    program   0x000006
-S_fraisedevice__fraiseGetIndex       code   0x003caa    program   0x000006
-S_fraisedevice__fraiseGetLen       code   0x003cb0    program   0x000006
-S_fraisedevice__fraiseGetInterruptEnable       code   0x003cb6    program   0x000006
-S_strmgpsim____stream_gpsim_putchar       code   0x003cbc    program   0x000006
- S___eeprom_gptrput1_stub       code   0x003cc2    program   0x000004
- S___eeprom_gptrput2_stub       code   0x003cc6    program   0x000004
- S___eeprom_gptrput4_stub       code   0x003cca    program   0x000004
- S___eeprom_gptrget1_stub       code   0x003cce    program   0x000004
- S___eeprom_gptrget2_stub       code   0x003cd2    program   0x000004
- S___eeprom_gptrget4_stub       code   0x003cd6    program   0x000004
- S___eeprom_gptrget3_stub       code   0x003cda    program   0x000004
- S___eeprom_gptrput3_stub       code   0x003cde    program   0x000004
+            S_main__setup       code   0x0010fc    program   0x000340
+S_analog__analogDeclareEE       code   0x00143c    program   0x000282
+      S_mullong___mullong       code   0x0016be    program   0x000214
+S_fraisedevice__fraiseISR       code   0x0018d2    program   0x000208
+            S_ltoa__ultoa       code   0x001ada    program   0x0001b8
+    S_modulong___modulong       code   0x001c92    program   0x00013a
+    S_divulong___divulong       code   0x001dcc    program   0x000120
+   S_eeparams__EELoadLong       code   0x001eec    program   0x00011a
+S_strmputchar____stream_putchar       code   0x002006    program   0x000118
+S_fraisedevice__fraiseService       code   0x00211e    program   0x000114
+S_analog__analogSelectAdcTouch       code   0x002232    program   0x000114
+S_fraisedevice__fraiseDecodeNextTXPacket       code   0x002346    program   0x000112
+S_fraisedevice__fraiseSendBroadcast       code   0x002458    program   0x000108
+     S_analog__analogInit       code   0x002560    program   0x000106
+S_fraisedevice__fraiseSend       code   0x002666    program   0x0000f6
+      S_analog__analogSet       code   0x00275c    program   0x0000ee
+      S_modsint___modsint       code   0x00284a    program   0x0000dc
+   S_eeparams__EESaveLong       code   0x002926    program   0x0000da
+S_eeparams__EEdeclareLong       code   0x002a00    program   0x0000cc
+S_analog__analogSelectAdc       code   0x002acc    program   0x0000c6
+             S_ltoa__ltoa       code   0x002b92    program   0x0000c6
+         S_core__high_ISR       code   0x002c58    program   0x0000bc
+      S_moduint___moduint       code   0x002d14    program   0x0000ba
+S_fraisedevice__fraiseSendCopy       code   0x002dce    program   0x0000a4
+ S_eeparams__EEdeclareInt       code   0x002e72    program   0x00009c
+ S_crt0iz_rloc___do_cinit       code   0x002f0e    program   0x00009c
+             S_main__loop       code   0x002faa    program   0x000094
+  S_analog__analogScaling       code   0x00303e    program   0x000092
+   S_fraisedevice__Assign       code   0x0030d0    program   0x000084
+          S_core__low_ISR       code   0x003154    program   0x000082
+ S_analog__analogDeselect       code   0x0031d6    program   0x000080
+         S_printf__printf       code   0x003256    program   0x000080
+S_eeparams__EEdeclareChar       code   0x0032d6    program   0x00007e
+S_main__fraiseReceiveChar       code   0x003354    program   0x00007a
+    S_eeparams__EESaveInt       code   0x0033ce    program   0x00007a
+S_fraisedevice__fraisePutChar       code   0x003448    program   0x000078
+S_fraisedevice__fraiseGetAt       code   0x0034c0    program   0x000076
+S_fraisedevice__CompareName       code   0x003536    program   0x000074
+    S_eeparams__EELoadInt       code   0x0035aa    program   0x000068
+  S_fraisedevice__putchar       code   0x003612    program   0x000062
+S_fraisedevice__fraiseInit       code   0x003674    program   0x000062
+             S_core__time       code   0x0036d6    program   0x000054
+S_fraisedevice__fraiseGetChar       code   0x00372a    program   0x000054
+         S_core__coreInit       code   0x00377e    program   0x00004e
+S_analog__analogGetDistance       code   0x0037cc    program   0x00004e
+      S_analog__analogGet       code   0x00381a    program   0x00004e
+   S_eeparams__EESaveChar       code   0x003868    program   0x00004c
+      S_core__eeWriteByte       code   0x0038b4    program   0x000048
+    S_gptrget4___gptrget4       code   0x0038fc    program   0x000040
+S_fraisedevice__fraiseGetTXChar       code   0x00393c    program   0x00003e
+S_eeprom16_gptrput4____eeprom16_gptrput4       code   0x00397a    program   0x00003c
+S_eeprom16_gptrget4____eeprom16_gptrget4       code   0x0039b6    program   0x00003a
+    S_gptrget3___gptrget3       code   0x0039f0    program   0x000036
+S_eeprom16_gptrput3____eeprom16_gptrput3       code   0x003a26    program   0x000034
+S_fraisedevice__fraiseSetID       code   0x003a5a    program   0x000030
+S_eeprom16_gptrget3____eeprom16_gptrget3       code   0x003a8a    program   0x000030
+S_fraisedevice__fraisePeekChar       code   0x003aba    program   0x00002e
+       S_islower__islower       code   0x003ae8    program   0x00002e
+   S_eeparams__EELoadChar       code   0x003b16    program   0x00002c
+S_fraisedevice__fraiseSetInterruptEnable       code   0x003b42    program   0x00002c
+    S_gptrget2___gptrget2       code   0x003b6e    program   0x00002c
+S_eeprom16_gptrput2____eeprom16_gptrput2       code   0x003b9a    program   0x00002c
+  S_crt0iz_rloc___startup       code   0x003bc6    program   0x000028
+S_eeprom16_gptrget2____eeprom16_gptrget2       code   0x003bee    program   0x000026
+S_eeprom16_gptrput1____eeprom16_gptrput1       code   0x003c14    program   0x000024
+    S_gptrget1___gptrget1       code   0x003c38    program   0x000022
+    S_gptrput4___gptrput4       code   0x003c5a    program   0x000022
+                 .idata_i       code   0x003c7c    program   0x00001e
+    S_gptrput3___gptrput3       code   0x003c9a    program   0x00001e
+       S_core__eeReadByte       code   0x003cb8    program   0x00001c
+S_fraisedevice__Serial_Init_Receiver       code   0x003cd4    program   0x00001c
+S_eeprom16_gptrget1____eeprom16_gptrget1       code   0x003cf0    program   0x00001c
+    S_gptrput2___gptrput2       code   0x003d0c    program   0x00001a
+S_boardconfig__Generic26kSetup       code   0x003d26    program   0x000016
+S_fraisedevice__ResetToBld       code   0x003d3c    program   0x000016
+S_analog__analogInitTouch       code   0x003d52    program   0x000016
+    S_gptrput1___gptrput1       code   0x003d68    program   0x000016
+  S_analog__analogSetMode       code   0x003d7e    program   0x000014
+S_eeprom16_write____eeprom16_write       code   0x003d92    program   0x000012
+  S_eeparams__EEwriteMain       code   0x003da4    program   0x000010
+   S_eeparams__EEreadMain       code   0x003db4    program   0x00000e
+                   .cinit       code   0x003dc2    program   0x00000e
+       S_fruit__fruitInit       code   0x003dd0    program   0x00000a
+S_strmusart____stream_usart_putchar       code   0x003dda    program   0x000008
+     S_boardconfig__Setup       code   0x003de2    program   0x000006
+S_fraisedevice__fraiseGetIndex       code   0x003de8    program   0x000006
+S_fraisedevice__fraiseGetLen       code   0x003dee    program   0x000006
+S_fraisedevice__fraiseGetInterruptEnable       code   0x003df4    program   0x000006
+S_strmgpsim____stream_gpsim_putchar       code   0x003dfa    program   0x000006
+ S___eeprom_gptrput1_stub       code   0x003e00    program   0x000004
+ S___eeprom_gptrput2_stub       code   0x003e04    program   0x000004
+ S___eeprom_gptrput4_stub       code   0x003e08    program   0x000004
+ S___eeprom_gptrget1_stub       code   0x003e0c    program   0x000004
+ S___eeprom_gptrget2_stub       code   0x003e10    program   0x000004
+ S___eeprom_gptrget4_stub       code   0x003e14    program   0x000004
+ S___eeprom_gptrget3_stub       code   0x003e18    program   0x000004
+ S___eeprom_gptrput3_stub       code   0x003e1c    program   0x000004
                   .config       code   0x300000    program   0x00000e
                    .idata      idata   0x000a20       data   0x00001d
                .registers      udata   00000000       data   0x00001f
@@ -175,139 +175,139 @@ S_strmgpsim____stream_gpsim_putchar       code   0x003cbc    program   0x000006
                               Program Memory Usage
                                Start         End
                            ---------   ---------
-                            0x003ca4    0x003ca9
-                            0x003be8    0x003bfd
-                            0x003216    0x00328f
-                            0x002e6c    0x002eff
-                            0x00179a    0x00199b
-                            0x003c92    0x003c9b
-                            0x003c76    0x003c83
-                            0x003c66    0x003c75
-                            0x0028c2    0x00298d
-                            0x002d34    0x002dcf
-                            0x003198    0x003215
-                            0x0027e8    0x0028c1
-                            0x003290    0x003309
-                            0x00372a    0x003775
-                            0x001dae    0x001ec7
-                            0x00346c    0x0034d3
-                            0x0039d8    0x003a03
+                            0x003de2    0x003de7
+                            0x003d26    0x003d3b
+                            0x003354    0x0033cd
+                            0x002faa    0x00303d
+                            0x0010fc    0x00143b
+                            0x003dd0    0x003dd9
+                            0x003db4    0x003dc1
+                            0x003da4    0x003db3
+                            0x002a00    0x002acb
+                            0x002e72    0x002f0d
+                            0x0032d6    0x003353
+                            0x002926    0x0029ff
+                            0x0033ce    0x003447
+                            0x003868    0x0038b3
+                            0x001eec    0x002005
+                            0x0035aa    0x003611
+                            0x003b16    0x003b41
                             0x300000    0x30000d
-                            0x003b3e    0x003b5b
+                            0x003c7c    0x003c99
                             0x000008    0x00000b
                             0x000018    0x00001b
                             0x00000c    0x000017
-                            0x003598    0x0035eb
-                            0x003016    0x003097
-                            0x002b1a    0x002bd5
-                            0x003640    0x00368d
-                            0x003b7a    0x003b95
-                            0x003776    0x0037bd
-                            0x0034d4    0x003535
-                            0x001fe0    0x0020f3
-                            0x003bfe    0x003c13
-                            0x002f92    0x003015
-                            0x0033f8    0x00346b
-                            0x002c90    0x002d33
-                            0x003382    0x0033f7
-                            0x003caa    0x003caf
-                            0x003cb0    0x003cb5
-                            0x00397c    0x0039a9
-                            0x0035ec    0x00363f
-                            0x001592    0x001799
-                            0x00231a    0x002421
-                            0x002208    0x002319
-                            0x002528    0x00261d
-                            0x0037fe    0x00383b
-                            0x00330a    0x003381
-                            0x003cb6    0x003cbb
-                            0x003a04    0x003a2f
-                            0x003536    0x003597
-                            0x00391c    0x00394b
-                            0x003b96    0x003bb1
-                            0x0010fc    0x00137d
-                            0x002f00    0x002f91
-                            0x00368e    0x0036db
-                            0x0036dc    0x003729
-                            0x00261e    0x00270b
-                            0x003c40    0x003c53
+                            0x0036d6    0x003729
+                            0x003154    0x0031d5
+                            0x002c58    0x002d13
+                            0x00377e    0x0037cb
+                            0x003cb8    0x003cd3
+                            0x0038b4    0x0038fb
+                            0x003612    0x003673
+                            0x00211e    0x002231
+                            0x003d3c    0x003d51
+                            0x0030d0    0x003153
+                            0x003536    0x0035a9
+                            0x002dce    0x002e71
+                            0x0034c0    0x003535
+                            0x003de8    0x003ded
+                            0x003dee    0x003df3
+                            0x003aba    0x003ae7
+                            0x00372a    0x00377d
+                            0x0018d2    0x001ad9
+                            0x002458    0x00255f
+                            0x002346    0x002457
+                            0x002666    0x00275b
+                            0x00393c    0x003979
+                            0x003448    0x0034bf
+                            0x003df4    0x003df9
+                            0x003b42    0x003b6d
+                            0x003674    0x0036d5
+                            0x003a5a    0x003a89
+                            0x003cd4    0x003cef
+                            0x00143c    0x0016bd
+                            0x00303e    0x0030cf
+                            0x0037cc    0x003819
+                            0x00381a    0x003867
+                            0x00275c    0x002849
+                            0x003d7e    0x003d91
                             0x00081c    0x000ca7
                             0x000ca8    0x0010fb
-                            0x003098    0x003117
-                            0x0020f4    0x002207
-                            0x00298e    0x002a53
-                            0x003c14    0x003c29
-                            0x002422    0x002527
+                            0x0031d6    0x003255
+                            0x002232    0x002345
+                            0x002acc    0x002b91
+                            0x003d52    0x003d67
+                            0x002560    0x002665
                             00000000    0x000003
-                            0x002dd0    0x002e6b
-                            0x003a88    0x003aaf
-                            0x00137e    0x001591
-                            0x003afa    0x003b1b
-                            0x003a30    0x003a5b
-                            0x0037be    0x0037fd
-                            0x00270c    0x0027e7
-                            0x001c8e    0x001dad
-                            0x003c2a    0x003c3f
-                            0x003bce    0x003be7
-                            0x003b1c    0x003b3d
-                            0x002bd6    0x002c8f
-                            0x003118    0x003197
+                            0x002f0e    0x002fa9
+                            0x003bc6    0x003bed
+                            0x0016be    0x0018d1
+                            0x003c38    0x003c59
+                            0x003b6e    0x003b99
+                            0x0038fc    0x00393b
+                            0x00284a    0x002925
+                            0x001dcc    0x001eeb
+                            0x003d68    0x003d7d
+                            0x003d0c    0x003d25
+                            0x003c5a    0x003c7b
+                            0x002d14    0x002dcd
+                            0x003256    0x0032d5
                             0x00001c    0x00081b
-                            0x001ec8    0x001fdf
+                            0x002006    0x00211d
                             0x000004    0x000007
-                            0x003cbc    0x003cc1
-                            0x002a54    0x002b19
-                            0x00199c    0x001b53
-                            0x0039aa    0x0039d7
-                            0x003c9c    0x003ca3
-                            0x003cc2    0x003cc5
-                            0x003cc6    0x003cc9
-                            0x003cca    0x003ccd
-                            0x003cce    0x003cd1
-                            0x003cd2    0x003cd5
-                            0x003cd6    0x003cd9
-                            0x001b54    0x001c8d
-                            0x003bb2    0x003bcd
-                            0x003ab0    0x003ad5
-                            0x003b5c    0x003b79
-                            0x003878    0x0038b1
-                            0x003ad6    0x003af9
-                            0x003a5c    0x003a87
-                            0x0038b2    0x0038e7
-                            0x00383c    0x003877
-                            0x003c54    0x003c65
-                            0x003cda    0x003cdd
-                            0x003cde    0x003ce1
-                            0x0038e8    0x00391b
-                            0x00394c    0x00397b
-                            0x003c84    0x003c91
+                            0x003dfa    0x003dff
+                            0x002b92    0x002c57
+                            0x001ada    0x001c91
+                            0x003ae8    0x003b15
+                            0x003dda    0x003de1
+                            0x003e00    0x003e03
+                            0x003e04    0x003e07
+                            0x003e08    0x003e0b
+                            0x003e0c    0x003e0f
+                            0x003e10    0x003e13
+                            0x003e14    0x003e17
+                            0x001c92    0x001dcb
+                            0x003cf0    0x003d0b
+                            0x003bee    0x003c13
+                            0x003c9a    0x003cb7
+                            0x0039b6    0x0039ef
+                            0x003c14    0x003c37
+                            0x003b9a    0x003bc5
+                            0x0039f0    0x003a25
+                            0x00397a    0x0039b5
+                            0x003d92    0x003da3
+                            0x003e18    0x003e1b
+                            0x003e1c    0x003e1f
+                            0x003a26    0x003a59
+                            0x003a8a    0x003ab9
+                            0x003dc2    0x003dcf
  
-                            7800 program addresses used
+                            7959 program addresses used
  
                               Symbols
                      Name    Address   Location    Storage File
                 ---------  ---------  ---------  --------- ---------
-                   _Setup   0x003ca4    program     extern firmware1-objs/boardconfig.asm
-         _Generic26kSetup   0x003be8    program     extern firmware1-objs/boardconfig.asm
+                   _Setup   0x003de2    program     extern firmware1-objs/boardconfig.asm
+         _Generic26kSetup   0x003d26    program     extern firmware1-objs/boardconfig.asm
                     r0x00   00000000       data     static firmware1-objs/firmware1.asm
                     r0x01   0x000001       data     static firmware1-objs/firmware1.asm
                     r0x02   0x000002       data     static firmware1-objs/firmware1.asm
                     r0x03   0x000003       data     static firmware1-objs/firmware1.asm
                     r0x05   0x000004       data     static firmware1-objs/firmware1.asm
                _mainDelay   0x000433       data     extern firmware1-objs/firmware1.asm
-       _fraiseReceiveChar   0x003216    program     extern firmware1-objs/firmware1.asm
-               _00154_DS_   0x003234    program     static firmware1-objs/firmware1.asm
-               _00165_DS_   0x003238    program     static firmware1-objs/firmware1.asm
-               _00159_DS_   0x003258    program     static firmware1-objs/firmware1.asm
-               _00161_DS_   0x003280    program     static firmware1-objs/firmware1.asm
-               _00167_DS_   0x003286    program     static firmware1-objs/firmware1.asm
-                    _loop   0x002e6c    program     extern firmware1-objs/firmware1.asm
-               _00148_DS_   0x002ec0    program     static firmware1-objs/firmware1.asm
-               _00142_DS_   0x002eee    program     static firmware1-objs/firmware1.asm
-                   _setup   0x00179a    program     extern firmware1-objs/firmware1.asm
-                 ___str_0   0x001996    program     static firmware1-objs/firmware1.asm
-                 ___str_1   0x001998    program     static firmware1-objs/firmware1.asm
-               _fruitInit   0x003c92    program     extern firmware1-objs/fruit/fruit.asm
+       _fraiseReceiveChar   0x003354    program     extern firmware1-objs/firmware1.asm
+               _00172_DS_   0x003372    program     static firmware1-objs/firmware1.asm
+               _00183_DS_   0x003376    program     static firmware1-objs/firmware1.asm
+               _00177_DS_   0x003396    program     static firmware1-objs/firmware1.asm
+               _00179_DS_   0x0033be    program     static firmware1-objs/firmware1.asm
+               _00185_DS_   0x0033c4    program     static firmware1-objs/firmware1.asm
+                    _loop   0x002faa    program     extern firmware1-objs/firmware1.asm
+               _00166_DS_   0x002ffe    program     static firmware1-objs/firmware1.asm
+               _00160_DS_   0x00302c    program     static firmware1-objs/firmware1.asm
+                   _setup   0x0010fc    program     extern firmware1-objs/firmware1.asm
+                 ___str_0   0x001436    program     static firmware1-objs/firmware1.asm
+                 ___str_1   0x001438    program     static firmware1-objs/firmware1.asm
+               _fruitInit   0x003dd0    program     extern firmware1-objs/fruit/fruit.asm
                     r0x00   00000000       data     static firmware1-objs/eeparams/eeparams.asm
                     r0x01   0x000001       data     static firmware1-objs/eeparams/eeparams.asm
                     r0x02   0x000002       data     static firmware1-objs/eeparams/eeparams.asm
@@ -322,37 +322,37 @@ S_strmgpsim____stream_gpsim_putchar       code   0x003cbc    program   0x000006
                     r0x0b   0x00000b       data     static firmware1-objs/eeparams/eeparams.asm
                _eeaddress   0x000a47       data     extern firmware1-objs/eeparams/eeparams.asm
              _eeoperation   0x000437       data     extern firmware1-objs/eeparams/eeparams.asm
-              _EEreadMain   0x003c76    program     extern firmware1-objs/eeparams/eeparams.asm
-             _EEwriteMain   0x003c66    program     extern firmware1-objs/eeparams/eeparams.asm
-           _EEdeclareLong   0x0028c2    program     extern firmware1-objs/eeparams/eeparams.asm
-               _00176_DS_   0x002930    program     static firmware1-objs/eeparams/eeparams.asm
-               _00178_DS_   0x00296c    program     static firmware1-objs/eeparams/eeparams.asm
-            _EEdeclareInt   0x002d34    program     extern firmware1-objs/eeparams/eeparams.asm
-               _00157_DS_   0x002d8a    program     static firmware1-objs/eeparams/eeparams.asm
-               _00159_DS_   0x002db6    program     static firmware1-objs/eeparams/eeparams.asm
-           _EEdeclareChar   0x003198    program     extern firmware1-objs/eeparams/eeparams.asm
-               _00138_DS_   0x0031e2    program     static firmware1-objs/eeparams/eeparams.asm
-               _00140_DS_   0x003200    program     static firmware1-objs/eeparams/eeparams.asm
-              _EESaveLong   0x0027e8    program     extern firmware1-objs/eeparams/eeparams.asm
-               _10197_DS_   0x002830    program     static firmware1-objs/eeparams/eeparams.asm
-               _20198_DS_   0x002850    program     static firmware1-objs/eeparams/eeparams.asm
-               _30199_DS_   0x002872    program     static firmware1-objs/eeparams/eeparams.asm
-               _40200_DS_   0x002894    program     static firmware1-objs/eeparams/eeparams.asm
-               _EESaveInt   0x003290    program     extern firmware1-objs/eeparams/eeparams.asm
-               _50201_DS_   0x0032c4    program     static firmware1-objs/eeparams/eeparams.asm
-               _60202_DS_   0x0032e4    program     static firmware1-objs/eeparams/eeparams.asm
-              _EESaveChar   0x00372a    program     extern firmware1-objs/eeparams/eeparams.asm
-               _70203_DS_   0x003754    program     static firmware1-objs/eeparams/eeparams.asm
-              _EELoadLong   0x001dae    program     extern firmware1-objs/eeparams/eeparams.asm
-               _80204_DS_   0x001dea    program     static firmware1-objs/eeparams/eeparams.asm
-               _90205_DS_   0x001e0c    program     static firmware1-objs/eeparams/eeparams.asm
-              _100206_DS_   0x001e3a    program     static firmware1-objs/eeparams/eeparams.asm
-              _110207_DS_   0x001e76    program     static firmware1-objs/eeparams/eeparams.asm
-               _EELoadInt   0x00346c    program     extern firmware1-objs/eeparams/eeparams.asm
-              _120208_DS_   0x00348c    program     static firmware1-objs/eeparams/eeparams.asm
-              _130209_DS_   0x0034aa    program     static firmware1-objs/eeparams/eeparams.asm
-              _EELoadChar   0x0039d8    program     extern firmware1-objs/eeparams/eeparams.asm
-              _140210_DS_   0x0039f0    program     static firmware1-objs/eeparams/eeparams.asm
+              _EEreadMain   0x003db4    program     extern firmware1-objs/eeparams/eeparams.asm
+             _EEwriteMain   0x003da4    program     extern firmware1-objs/eeparams/eeparams.asm
+           _EEdeclareLong   0x002a00    program     extern firmware1-objs/eeparams/eeparams.asm
+               _00176_DS_   0x002a6e    program     static firmware1-objs/eeparams/eeparams.asm
+               _00178_DS_   0x002aaa    program     static firmware1-objs/eeparams/eeparams.asm
+            _EEdeclareInt   0x002e72    program     extern firmware1-objs/eeparams/eeparams.asm
+               _00157_DS_   0x002ec8    program     static firmware1-objs/eeparams/eeparams.asm
+               _00159_DS_   0x002ef4    program     static firmware1-objs/eeparams/eeparams.asm
+           _EEdeclareChar   0x0032d6    program     extern firmware1-objs/eeparams/eeparams.asm
+               _00138_DS_   0x003320    program     static firmware1-objs/eeparams/eeparams.asm
+               _00140_DS_   0x00333e    program     static firmware1-objs/eeparams/eeparams.asm
+              _EESaveLong   0x002926    program     extern firmware1-objs/eeparams/eeparams.asm
+               _10197_DS_   0x00296e    program     static firmware1-objs/eeparams/eeparams.asm
+               _20198_DS_   0x00298e    program     static firmware1-objs/eeparams/eeparams.asm
+               _30199_DS_   0x0029b0    program     static firmware1-objs/eeparams/eeparams.asm
+               _40200_DS_   0x0029d2    program     static firmware1-objs/eeparams/eeparams.asm
+               _EESaveInt   0x0033ce    program     extern firmware1-objs/eeparams/eeparams.asm
+               _50201_DS_   0x003402    program     static firmware1-objs/eeparams/eeparams.asm
+               _60202_DS_   0x003422    program     static firmware1-objs/eeparams/eeparams.asm
+              _EESaveChar   0x003868    program     extern firmware1-objs/eeparams/eeparams.asm
+               _70203_DS_   0x003892    program     static firmware1-objs/eeparams/eeparams.asm
+              _EELoadLong   0x001eec    program     extern firmware1-objs/eeparams/eeparams.asm
+               _80204_DS_   0x001f28    program     static firmware1-objs/eeparams/eeparams.asm
+               _90205_DS_   0x001f4a    program     static firmware1-objs/eeparams/eeparams.asm
+              _100206_DS_   0x001f78    program     static firmware1-objs/eeparams/eeparams.asm
+              _110207_DS_   0x001fb4    program     static firmware1-objs/eeparams/eeparams.asm
+               _EELoadInt   0x0035aa    program     extern firmware1-objs/eeparams/eeparams.asm
+              _120208_DS_   0x0035ca    program     static firmware1-objs/eeparams/eeparams.asm
+              _130209_DS_   0x0035e8    program     static firmware1-objs/eeparams/eeparams.asm
+              _EELoadChar   0x003b16    program     extern firmware1-objs/eeparams/eeparams.asm
+              _140210_DS_   0x003b2e    program     static firmware1-objs/eeparams/eeparams.asm
                    _TMR0U   0x000a20       data     extern firmware1-objs/core/core.asm
                     r0x00   00000000       data     static firmware1-objs/core/core.asm
                      _Now   0x000f33       data     extern firmware1-objs/core/core.asm
@@ -369,18 +369,18 @@ S_strmgpsim____stream_gpsim_putchar       code   0x003cbc    program   0x000006
          ivec_0x2_low_ISR   0x000018    program     static firmware1-objs/core/core.asm
                     _main   0x00000c    program     extern firmware1-objs/core/core.asm
                _00124_DS_   0x000010    program     static firmware1-objs/core/core.asm
-                    _time   0x003598    program     extern firmware1-objs/core/core.asm
-               _00151_DS_   0x0035c2    program     static firmware1-objs/core/core.asm
-               _00144_DS_   0x0035da    program     static firmware1-objs/core/core.asm
-                 _low_ISR   0x003016    program     extern firmware1-objs/core/core.asm
-                _high_ISR   0x002b1a    program     extern firmware1-objs/core/core.asm
-               _10143_DS_   0x002b7c    program     static firmware1-objs/core/core.asm
-               _00132_DS_   0x002b96    program     static firmware1-objs/core/core.asm
-                _coreInit   0x003640    program     extern firmware1-objs/core/core.asm
-              _eeReadByte   0x003b7a    program     extern firmware1-objs/core/core.asm
-             _eeWriteByte   0x003776    program     extern firmware1-objs/core/core.asm
-               _00105_DS_   0x0037a6    program     static firmware1-objs/core/core.asm
-               _00107_DS_   0x0037ae    program     static firmware1-objs/core/core.asm
+                    _time   0x0036d6    program     extern firmware1-objs/core/core.asm
+               _00151_DS_   0x003700    program     static firmware1-objs/core/core.asm
+               _00144_DS_   0x003718    program     static firmware1-objs/core/core.asm
+                 _low_ISR   0x003154    program     extern firmware1-objs/core/core.asm
+                _high_ISR   0x002c58    program     extern firmware1-objs/core/core.asm
+               _10143_DS_   0x002cba    program     static firmware1-objs/core/core.asm
+               _00132_DS_   0x002cd4    program     static firmware1-objs/core/core.asm
+                _coreInit   0x00377e    program     extern firmware1-objs/core/core.asm
+              _eeReadByte   0x003cb8    program     extern firmware1-objs/core/core.asm
+             _eeWriteByte   0x0038b4    program     extern firmware1-objs/core/core.asm
+               _00105_DS_   0x0038e4    program     static firmware1-objs/core/core.asm
+               _00107_DS_   0x0038ec    program     static firmware1-objs/core/core.asm
                   _FrTXin   0x000a22       data     extern firmware1-objs/fraisedevice/fraisedevice.asm
                  _FrTXout   0x000a23       data     extern firmware1-objs/fraisedevice/fraisedevice.asm
              _FrTXbufFree   0x000a24       data     extern firmware1-objs/fraisedevice/fraisedevice.asm
@@ -416,130 +416,130 @@ _fraiseDecodeNextTXPacket_ischar_1_92   0x000a55       data     static firmware1
              _FrRXout_len   0x000a5a       data     extern firmware1-objs/fraisedevice/fraisedevice.asm
            _FrRXout_first   0x000a5b       data     extern firmware1-objs/fraisedevice/fraisedevice.asm
                    _txbuf   0x000f00       data     extern firmware1-objs/fraisedevice/fraisedevice.asm
-                 _putchar   0x0034d4    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
-               _10806_DS_   0x003504    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00820_DS_   0x00350a    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00810_DS_   0x003528    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-           _fraiseService   0x001fe0    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
-               _00784_DS_   0x002000    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00788_DS_   0x002046    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00789_DS_   0x002048    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00709_DS_   0x00206e    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00716_DS_   0x002092    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00713_DS_   0x00209e    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00799_DS_   0x0020a4    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00726_DS_   0x0020a8    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00728_DS_   0x0020b4    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00730_DS_   0x0020b8    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00801_DS_   0x0020c2    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00736_DS_   0x0020ce    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00739_DS_   0x0020de    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-              _ResetToBld   0x003bfe    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00702_DS_   0x003c0c    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00703_DS_   0x003c0e    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-                  _Assign   0x002f92    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00671_DS_   0x002fc4    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00673_DS_   0x002fde    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00674_DS_   0x002fea    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00679_DS_   0x003008    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-             _CompareName   0x0033f8    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00636_DS_   0x003408    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00628_DS_   0x003442    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00631_DS_   0x003446    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00633_DS_   0x003450    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00638_DS_   0x00345c    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00639_DS_   0x00345e    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-          _fraiseSendCopy   0x002c90    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
-               _00604_DS_   0x002cde    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00603_DS_   0x002d1e    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00607_DS_   0x002d22    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-             _fraiseGetAt   0x003382    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
-          _fraiseGetIndex   0x003caa    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
-            _fraiseGetLen   0x003cb0    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
-          _fraisePeekChar   0x00397c    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
-           _fraiseGetChar   0x0035ec    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
-               _00573_DS_   0x0035fe    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00559_DS_   0x003608    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00560_DS_   0x00360c    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00577_DS_   0x003630    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00563_DS_   0x003634    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00564_DS_   0x003636    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _fraiseISR   0x001592    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
-               _00393_DS_   0x0015be    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00395_DS_   0x0015e0    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00398_DS_   0x0015f6    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00400_DS_   0x001604    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00535_DS_   0x001618    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00402_DS_   0x001620    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00408_DS_   0x00162e    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00404_DS_   0x001640    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00405_DS_   0x001644    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00539_DS_   0x001676    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00407_DS_   0x00167a    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00409_DS_   0x00167c    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00412_DS_   0x001684    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00420_DS_   0x0016ae    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00423_DS_   0x0016bc    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00425_DS_   0x0016c0    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00544_DS_   0x0016d2    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00443_DS_   0x0016f0    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00444_DS_   0x001706    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00446_DS_   0x001708    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00546_DS_   0x001712    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00448_DS_   0x001722    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00451_DS_   0x001768    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00554_DS_   0x00178c    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00457_DS_   0x001790    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-     _fraiseSendBroadcast   0x00231a    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
-               _00296_DS_   0x00237c    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00384_DS_   0x002386    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00303_DS_   0x00238e    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00306_DS_   0x002398    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00309_DS_   0x0023a4    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00313_DS_   0x0023b4    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00318_DS_   0x0023bc    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00315_DS_   0x0023c2    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00385_DS_   0x0023e8    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00320_DS_   0x0023ea    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00321_DS_   0x0023ec    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00324_DS_   0x0023f8    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00327_DS_   0x002400    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-_fraiseDecodeNextTXPacket   0x002208    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00202_DS_   0x002230    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00214_DS_   0x00225e    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00211_DS_   0x00226a    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00281_DS_   0x002272    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00217_DS_   0x002284    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00285_DS_   0x002292    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00222_DS_   0x002294    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00225_DS_   0x002296    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00231_DS_   0x0022a6    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00234_DS_   0x0022d6    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00237_DS_   0x002304    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00238_DS_   0x002308    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-              _fraiseSend   0x002528    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
-               _00192_DS_   0x00259c    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00171_DS_   0x0025a2    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00173_DS_   0x0025ac    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00174_DS_   0x0025ba    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00176_DS_   0x0025e8    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00177_DS_   0x0025f8    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-         _fraiseGetTXChar   0x0037fe    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00158_DS_   0x003814    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00159_DS_   0x003832    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-           _fraisePutChar   0x00330a    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00151_DS_   0x003348    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00152_DS_   0x00334a    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00145_DS_   0x00334c    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00146_DS_   0x003368    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-_fraiseGetInterruptEnable   0x003cb6    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
-_fraiseSetInterruptEnable   0x003a04    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
-               _00134_DS_   0x003a26    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-              _fraiseInit   0x003536    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
-             _fraiseSetID   0x00391c    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
-    _Serial_Init_Receiver   0x003b96    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-               _00105_DS_   0x003b96    program     static firmware1-objs/fraisedevice/fraisedevice.asm
-                 ___str_0   0x003bae    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+                 _putchar   0x003612    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
+               _10806_DS_   0x003642    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00820_DS_   0x003648    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00810_DS_   0x003666    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+           _fraiseService   0x00211e    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
+               _00784_DS_   0x00213e    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00788_DS_   0x002184    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00789_DS_   0x002186    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00709_DS_   0x0021ac    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00716_DS_   0x0021d0    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00713_DS_   0x0021dc    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00799_DS_   0x0021e2    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00726_DS_   0x0021e6    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00728_DS_   0x0021f2    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00730_DS_   0x0021f6    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00801_DS_   0x002200    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00736_DS_   0x00220c    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00739_DS_   0x00221c    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+              _ResetToBld   0x003d3c    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00702_DS_   0x003d4a    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00703_DS_   0x003d4c    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+                  _Assign   0x0030d0    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00671_DS_   0x003102    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00673_DS_   0x00311c    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00674_DS_   0x003128    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00679_DS_   0x003146    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+             _CompareName   0x003536    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00636_DS_   0x003546    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00628_DS_   0x003580    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00631_DS_   0x003584    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00633_DS_   0x00358e    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00638_DS_   0x00359a    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00639_DS_   0x00359c    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+          _fraiseSendCopy   0x002dce    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
+               _00604_DS_   0x002e1c    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00603_DS_   0x002e5c    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00607_DS_   0x002e60    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+             _fraiseGetAt   0x0034c0    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
+          _fraiseGetIndex   0x003de8    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
+            _fraiseGetLen   0x003dee    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
+          _fraisePeekChar   0x003aba    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
+           _fraiseGetChar   0x00372a    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
+               _00573_DS_   0x00373c    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00559_DS_   0x003746    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00560_DS_   0x00374a    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00577_DS_   0x00376e    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00563_DS_   0x003772    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00564_DS_   0x003774    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _fraiseISR   0x0018d2    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
+               _00393_DS_   0x0018fe    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00395_DS_   0x001920    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00398_DS_   0x001936    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00400_DS_   0x001944    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00535_DS_   0x001958    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00402_DS_   0x001960    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00408_DS_   0x00196e    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00404_DS_   0x001980    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00405_DS_   0x001984    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00539_DS_   0x0019b6    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00407_DS_   0x0019ba    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00409_DS_   0x0019bc    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00412_DS_   0x0019c4    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00420_DS_   0x0019ee    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00423_DS_   0x0019fc    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00425_DS_   0x001a00    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00544_DS_   0x001a12    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00443_DS_   0x001a30    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00444_DS_   0x001a46    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00446_DS_   0x001a48    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00546_DS_   0x001a52    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00448_DS_   0x001a62    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00451_DS_   0x001aa8    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00554_DS_   0x001acc    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00457_DS_   0x001ad0    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+     _fraiseSendBroadcast   0x002458    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
+               _00296_DS_   0x0024ba    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00384_DS_   0x0024c4    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00303_DS_   0x0024cc    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00306_DS_   0x0024d6    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00309_DS_   0x0024e2    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00313_DS_   0x0024f2    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00318_DS_   0x0024fa    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00315_DS_   0x002500    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00385_DS_   0x002526    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00320_DS_   0x002528    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00321_DS_   0x00252a    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00324_DS_   0x002536    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00327_DS_   0x00253e    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+_fraiseDecodeNextTXPacket   0x002346    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00202_DS_   0x00236e    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00214_DS_   0x00239c    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00211_DS_   0x0023a8    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00281_DS_   0x0023b0    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00217_DS_   0x0023c2    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00285_DS_   0x0023d0    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00222_DS_   0x0023d2    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00225_DS_   0x0023d4    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00231_DS_   0x0023e4    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00234_DS_   0x002414    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00237_DS_   0x002442    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00238_DS_   0x002446    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+              _fraiseSend   0x002666    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
+               _00192_DS_   0x0026da    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00171_DS_   0x0026e0    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00173_DS_   0x0026ea    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00174_DS_   0x0026f8    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00176_DS_   0x002726    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00177_DS_   0x002736    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+         _fraiseGetTXChar   0x00393c    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00158_DS_   0x003952    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00159_DS_   0x003970    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+           _fraisePutChar   0x003448    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00151_DS_   0x003486    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00152_DS_   0x003488    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00145_DS_   0x00348a    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00146_DS_   0x0034a6    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+_fraiseGetInterruptEnable   0x003df4    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
+_fraiseSetInterruptEnable   0x003b42    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
+               _00134_DS_   0x003b64    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+              _fraiseInit   0x003674    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
+             _fraiseSetID   0x003a5a    program     extern firmware1-objs/fraisedevice/fraisedevice.asm
+    _Serial_Init_Receiver   0x003cd4    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+               _00105_DS_   0x003cd4    program     static firmware1-objs/fraisedevice/fraisedevice.asm
+                 ___str_0   0x003cec    program     static firmware1-objs/fraisedevice/fraisedevice.asm
                  _Scaling   0x000a28       data     static firmware1-objs/analog/analog.asm
                _Threshold   0x000a29       data     static firmware1-objs/analog/analog.asm
                     _Mode   0x000a2b       data     static firmware1-objs/analog/analog.asm
@@ -569,18 +569,18 @@ _fraiseSetInterruptEnable   0x003a04    program     extern firmware1-objs/fraise
                     _Pins   0x000423       data     static firmware1-objs/analog/analog.asm
                   _HWChan   0x000f23       data     static firmware1-objs/analog/analog.asm
                     _Dist   0x0004d3       data     static firmware1-objs/analog/analog.asm
-         _analogDeclareEE   0x0010fc    program     extern firmware1-objs/analog/analog.asm
-           _analogScaling   0x002f00    program     extern firmware1-objs/analog/analog.asm
-               _00416_DS_   0x002f2e    program     static firmware1-objs/analog/analog.asm
-               _00415_DS_   0x002f70    program     static firmware1-objs/analog/analog.asm
-       _analogGetDistance   0x00368e    program     extern firmware1-objs/analog/analog.asm
-               _analogGet   0x0036dc    program     extern firmware1-objs/analog/analog.asm
-               _analogSet   0x00261e    program     extern firmware1-objs/analog/analog.asm
-               _00381_DS_   0x0026c8    program     static firmware1-objs/analog/analog.asm
-               _00398_DS_   0x0026d4    program     static firmware1-objs/analog/analog.asm
-               _00383_DS_   0x0026da    program     static firmware1-objs/analog/analog.asm
-               _00386_DS_   0x0026ee    program     static firmware1-objs/analog/analog.asm
-           _analogSetMode   0x003c40    program     extern firmware1-objs/analog/analog.asm
+         _analogDeclareEE   0x00143c    program     extern firmware1-objs/analog/analog.asm
+           _analogScaling   0x00303e    program     extern firmware1-objs/analog/analog.asm
+               _00416_DS_   0x00306c    program     static firmware1-objs/analog/analog.asm
+               _00415_DS_   0x0030ae    program     static firmware1-objs/analog/analog.asm
+       _analogGetDistance   0x0037cc    program     extern firmware1-objs/analog/analog.asm
+               _analogGet   0x00381a    program     extern firmware1-objs/analog/analog.asm
+               _analogSet   0x00275c    program     extern firmware1-objs/analog/analog.asm
+               _00381_DS_   0x002806    program     static firmware1-objs/analog/analog.asm
+               _00398_DS_   0x002812    program     static firmware1-objs/analog/analog.asm
+               _00383_DS_   0x002818    program     static firmware1-objs/analog/analog.asm
+               _00386_DS_   0x00282c    program     static firmware1-objs/analog/analog.asm
+           _analogSetMode   0x003d7e    program     extern firmware1-objs/analog/analog.asm
               _analogSend   0x00081c    program     extern firmware1-objs/analog/analog.asm
                _00279_DS_   0x000856    program     static firmware1-objs/analog/analog.asm
                _10434_DS_   0x000878    program     static firmware1-objs/analog/analog.asm
@@ -630,34 +630,34 @@ _fraiseSetInterruptEnable   0x003a04    program     extern firmware1-objs/fraise
                _00180_DS_   0x0010c2    program     static firmware1-objs/analog/analog.asm
                _00182_DS_   0x0010ca    program     static firmware1-objs/analog/analog.asm
                _00183_DS_   0x0010ce    program     static firmware1-objs/analog/analog.asm
-          _analogDeselect   0x003098    program     extern firmware1-objs/analog/analog.asm
-               _00160_DS_   0x0030e8    program     static firmware1-objs/analog/analog.asm
-               _00159_DS_   0x0030ee    program     static firmware1-objs/analog/analog.asm
-    _analogSelectAdcTouch   0x0020f4    program     extern firmware1-objs/analog/analog.asm
-               _00151_DS_   0x00217c    program     static firmware1-objs/analog/analog.asm
-               _00150_DS_   0x002182    program     static firmware1-objs/analog/analog.asm
-         _analogSelectAdc   0x00298e    program     extern firmware1-objs/analog/analog.asm
-               _00142_DS_   0x0029ee    program     static firmware1-objs/analog/analog.asm
-               _00141_DS_   0x0029f4    program     static firmware1-objs/analog/analog.asm
-         _analogInitTouch   0x003c14    program     extern firmware1-objs/analog/analog.asm
-              _analogInit   0x002422    program     extern firmware1-objs/analog/analog.asm
-               _00107_DS_   0x002438    program     static firmware1-objs/analog/analog.asm
-               _00109_DS_   0x002458    program     static firmware1-objs/analog/analog.asm
-                 ___str_0   0x00251c    program     static firmware1-objs/analog/analog.asm
+          _analogDeselect   0x0031d6    program     extern firmware1-objs/analog/analog.asm
+               _00160_DS_   0x003226    program     static firmware1-objs/analog/analog.asm
+               _00159_DS_   0x00322c    program     static firmware1-objs/analog/analog.asm
+    _analogSelectAdcTouch   0x002232    program     extern firmware1-objs/analog/analog.asm
+               _00151_DS_   0x0022ba    program     static firmware1-objs/analog/analog.asm
+               _00150_DS_   0x0022c0    program     static firmware1-objs/analog/analog.asm
+         _analogSelectAdc   0x002acc    program     extern firmware1-objs/analog/analog.asm
+               _00142_DS_   0x002b2c    program     static firmware1-objs/analog/analog.asm
+               _00141_DS_   0x002b32    program     static firmware1-objs/analog/analog.asm
+         _analogInitTouch   0x003d52    program     extern firmware1-objs/analog/analog.asm
+              _analogInit   0x002560    program     extern firmware1-objs/analog/analog.asm
+               _00107_DS_   0x002576    program     static firmware1-objs/analog/analog.asm
+               _00109_DS_   0x002596    program     static firmware1-objs/analog/analog.asm
+                 ___str_0   0x00265a    program     static firmware1-objs/analog/analog.asm
                 ___uflags   0x000a3c       data     extern firmware1-objs/crt.asm
                   __entry   00000000    program     extern firmware1-objs/crt.asm
-               __do_cinit   0x002dd0    program     extern firmware1-objs/crt.asm
-                     test   0x002de8    program     static firmware1-objs/crt.asm
-                    done1   0x002dee    program     static firmware1-objs/crt.asm
-                    cont1   0x002df2    program     static firmware1-objs/crt.asm
-                copy_loop   0x002e40    program     static firmware1-objs/crt.asm
-            copy_one_byte   0x002e46    program     static firmware1-objs/crt.asm
-             done_copying   0x002e54    program     static firmware1-objs/crt.asm
-                  do_next   0x002e66    program     static firmware1-objs/crt.asm
-                     done   0x002e6a    program     static firmware1-objs/crt.asm
-                __startup   0x003a88    program     extern firmware1-objs/crt.asm
-               clear_loop   0x003aa0    program     static firmware1-objs/crt.asm
-               _00110_DS_   0x003aae    program     static firmware1-objs/crt.asm
+               __do_cinit   0x002f0e    program     extern firmware1-objs/crt.asm
+                     test   0x002f26    program     static firmware1-objs/crt.asm
+                    done1   0x002f2c    program     static firmware1-objs/crt.asm
+                    cont1   0x002f30    program     static firmware1-objs/crt.asm
+                copy_loop   0x002f7e    program     static firmware1-objs/crt.asm
+            copy_one_byte   0x002f84    program     static firmware1-objs/crt.asm
+             done_copying   0x002f92    program     static firmware1-objs/crt.asm
+                  do_next   0x002fa4    program     static firmware1-objs/crt.asm
+                     done   0x002fa8    program     static firmware1-objs/crt.asm
+                __startup   0x003bc6    program     extern firmware1-objs/crt.asm
+               clear_loop   0x003bde    program     static firmware1-objs/crt.asm
+               _00110_DS_   0x003bec    program     static firmware1-objs/crt.asm
                     r0x00   00000000       data     static mullong.asm
                     r0x01   0x000001       data     static mullong.asm
                     r0x02   0x000002       data     static mullong.asm
@@ -671,15 +671,15 @@ _fraiseSetInterruptEnable   0x003a04    program     extern firmware1-objs/fraise
           __mullong_t_1_2   0x00048a       data     static mullong.asm
          __mullong_t1_1_2   0x00048e       data     static mullong.asm
          __mullong_t2_1_2   0x000a3d       data     static mullong.asm
-                __mullong   0x00137e    program     extern mullong.asm
+                __mullong   0x0016be    program     extern mullong.asm
                    _stack   0x000800       data     extern /home/sdcc-builder/build/sdcc-build/orig/sdcc/device/lib/pic16/libsdcc/stack/stack.S
                _stack_end   0x0008ff       data     extern /home/sdcc-builder/build/sdcc-build/orig/sdcc/device/lib/pic16/libsdcc/stack/stack.S
-               __gptrget1   0x003afa    program     extern gptrget1.asm
-                 _lab_01_   0x003b06    program     static gptrget1.asm
-               __gptrget2   0x003a30    program     extern gptrget2.asm
-                 _lab_01_   0x003a40    program     static gptrget2.asm
-               __gptrget4   0x0037be    program     extern gptrget4.asm
-                 _lab_01_   0x0037d6    program     static gptrget4.asm
+               __gptrget1   0x003c38    program     extern gptrget1.asm
+                 _lab_01_   0x003c44    program     static gptrget1.asm
+               __gptrget2   0x003b6e    program     extern gptrget2.asm
+                 _lab_01_   0x003b7e    program     static gptrget2.asm
+               __gptrget4   0x0038fc    program     extern gptrget4.asm
+                 _lab_01_   0x003914    program     static gptrget4.asm
                     r0x00   00000000       data     static modsint.asm
                     r0x01   0x000001       data     static modsint.asm
                     r0x02   0x000002       data     static modsint.asm
@@ -687,13 +687,13 @@ _fraiseSetInterruptEnable   0x003a04    program     extern firmware1-objs/fraise
                     r0x04   0x000004       data     static modsint.asm
                     r0x05   0x000005       data     static modsint.asm
                     r0x06   0x000006       data     static modsint.asm
-                __modsint   0x00270c    program     extern modsint.asm
-               _00110_DS_   0x002764    program     static modsint.asm
-               _00111_DS_   0x00276c    program     static modsint.asm
-               _00112_DS_   0x002782    program     static modsint.asm
-               _00113_DS_   0x00278a    program     static modsint.asm
-               _00106_DS_   0x0027c0    program     static modsint.asm
-               _00108_DS_   0x0027c6    program     static modsint.asm
+                __modsint   0x00284a    program     extern modsint.asm
+               _00110_DS_   0x0028a2    program     static modsint.asm
+               _00111_DS_   0x0028aa    program     static modsint.asm
+               _00112_DS_   0x0028c0    program     static modsint.asm
+               _00113_DS_   0x0028c8    program     static modsint.asm
+               _00106_DS_   0x0028fe    program     static modsint.asm
+               _00108_DS_   0x002904    program     static modsint.asm
                     r0x00   00000000       data     static divulong.asm
                     r0x01   0x000001       data     static divulong.asm
                     r0x02   0x000002       data     static divulong.asm
@@ -708,16 +708,16 @@ _fraiseSetInterruptEnable   0x003a04    program     extern firmware1-objs/fraise
                     r0x0b   0x00000b       data     static divulong.asm
                     r0x0c   0x00000c       data     static divulong.asm
                     r0x0d   0x00000d       data     static divulong.asm
-               __divulong   0x001c8e    program     extern divulong.asm
-               _00109_DS_   0x001d0a    program     static divulong.asm
-               _00127_DS_   0x001d42    program     static divulong.asm
-               _00110_DS_   0x001d56    program     static divulong.asm
-               __gptrput1   0x003c2a    program     extern gptrput1.asm
-                 _lab_01_   0x003c38    program     static gptrput1.asm
-               __gptrput2   0x003bce    program     extern gptrput2.asm
-                 _lab_01_   0x003be0    program     static gptrput2.asm
-               __gptrput4   0x003b1c    program     extern gptrput4.asm
-                 _lab_01_   0x003b36    program     static gptrput4.asm
+               __divulong   0x001dcc    program     extern divulong.asm
+               _00109_DS_   0x001e48    program     static divulong.asm
+               _00127_DS_   0x001e80    program     static divulong.asm
+               _00110_DS_   0x001e94    program     static divulong.asm
+               __gptrput1   0x003d68    program     extern gptrput1.asm
+                 _lab_01_   0x003d76    program     static gptrput1.asm
+               __gptrput2   0x003d0c    program     extern gptrput2.asm
+                 _lab_01_   0x003d1e    program     static gptrput2.asm
+               __gptrput4   0x003c5a    program     extern gptrput4.asm
+                 _lab_01_   0x003c74    program     static gptrput4.asm
                     r0x00   00000000       data     static moduint.asm
                     r0x01   0x000001       data     static moduint.asm
                     r0x02   0x000002       data     static moduint.asm
@@ -725,19 +725,19 @@ _fraiseSetInterruptEnable   0x003a04    program     extern firmware1-objs/fraise
                     r0x04   0x000004       data     static moduint.asm
                     r0x05   0x000005       data     static moduint.asm
                     r0x06   0x000006       data     static moduint.asm
-                __moduint   0x002bd6    program     extern moduint.asm
-               _00107_DS_   0x002c16    program     static moduint.asm
-               _00136_DS_   0x002c32    program     static moduint.asm
-               _00106_DS_   0x002c3c    program     static moduint.asm
-               _00112_DS_   0x002c44    program     static moduint.asm
-               _00137_DS_   0x002c4e    program     static moduint.asm
-               _00111_DS_   0x002c58    program     static moduint.asm
+                __moduint   0x002d14    program     extern moduint.asm
+               _00107_DS_   0x002d54    program     static moduint.asm
+               _00136_DS_   0x002d70    program     static moduint.asm
+               _00106_DS_   0x002d7a    program     static moduint.asm
+               _00112_DS_   0x002d82    program     static moduint.asm
+               _00137_DS_   0x002d8c    program     static moduint.asm
+               _00111_DS_   0x002d96    program     static moduint.asm
                   _stdout   0x00047d       data     extern streams.asm
                    _stdin   0x000a41       data     extern streams.asm
                     r0x00   00000000       data     static printf.asm
                     r0x01   0x000001       data     static printf.asm
                     r0x02   0x000002       data     static printf.asm
-                  _printf   0x003118    program     extern printf.asm
+                  _printf   0x003256    program     extern printf.asm
                     r0x00   00000000       data     static vfprintf.asm
                     r0x01   0x000001       data     static vfprintf.asm
                     r0x02   0x000002       data     static vfprintf.asm
@@ -848,15 +848,15 @@ _vfprintf_stringbuffer_1_41   0x000a44       data     static vfprintf.asm
                     r0x05   0x000005       data     static strmputchar.asm
                     r0x06   0x000006       data     static strmputchar.asm
                     r0x07   0x000007       data     static strmputchar.asm
-        ___stream_putchar   0x001ec8    program     extern strmputchar.asm
-               _00143_DS_   0x001f5e    program     static strmputchar.asm
-               _00119_DS_   0x001f7a    program     static strmputchar.asm
-               _00114_DS_   0x001f92    program     static strmputchar.asm
-               _00111_DS_   0x001fa0    program     static strmputchar.asm
-               _00108_DS_   0x001fae    program     static strmputchar.asm
-               _00121_DS_   0x001fba    program     static strmputchar.asm
+        ___stream_putchar   0x002006    program     extern strmputchar.asm
+               _00143_DS_   0x00209c    program     static strmputchar.asm
+               _00119_DS_   0x0020b8    program     static strmputchar.asm
+               _00114_DS_   0x0020d0    program     static strmputchar.asm
+               _00111_DS_   0x0020de    program     static strmputchar.asm
+               _00108_DS_   0x0020ec    program     static strmputchar.asm
+               _00121_DS_   0x0020f8    program     static strmputchar.asm
    ___stream_mssp_putchar   0x000004    program     extern strmmssp.asm
-  ___stream_gpsim_putchar   0x003cbc    program     extern strmgpsim.asm
+  ___stream_gpsim_putchar   0x003dfa    program     extern strmgpsim.asm
                     r0x00   00000000       data     static ltoa.asm
                     r0x01   0x000001       data     static ltoa.asm
                     r0x02   0x000002       data     static ltoa.asm
@@ -874,19 +874,19 @@ _vfprintf_stringbuffer_1_41   0x000a44       data     static vfprintf.asm
                     r0x0e   0x00000e       data     static ltoa.asm
                     r0x0f   0x00000f       data     static ltoa.asm
         _ultoa_buffer_1_2   0x000a00       data     static ltoa.asm
-                    _ltoa   0x002a54    program     extern ltoa.asm
-               _00138_DS_   0x002ad4    program     static ltoa.asm
-                   _ultoa   0x00199c    program     extern ltoa.asm
-               _00107_DS_   0x001a14    program     static ltoa.asm
-               _00106_DS_   0x001a56    program     static ltoa.asm
-               _00110_DS_   0x001ac6    program     static ltoa.asm
-               _00132_DS_   0x001b00    program     static ltoa.asm
+                    _ltoa   0x002b92    program     extern ltoa.asm
+               _00138_DS_   0x002c12    program     static ltoa.asm
+                   _ultoa   0x001ada    program     extern ltoa.asm
+               _00107_DS_   0x001b52    program     static ltoa.asm
+               _00106_DS_   0x001b94    program     static ltoa.asm
+               _00110_DS_   0x001c04    program     static ltoa.asm
+               _00132_DS_   0x001c3e    program     static ltoa.asm
                     r0x00   00000000       data     static islower.asm
-                 _islower   0x0039aa    program     extern islower.asm
-               _00106_DS_   0x0039cc    program     static islower.asm
-               _00108_DS_   0x0039ce    program     static islower.asm
-  ___stream_usart_putchar   0x003c9c    program     extern strmusart.asm
-                       @1   0x003c9c    program     static strmusart.asm
+                 _islower   0x003ae8    program     extern islower.asm
+               _00106_DS_   0x003b0a    program     static islower.asm
+               _00108_DS_   0x003b0c    program     static islower.asm
+  ___stream_usart_putchar   0x003dda    program     extern strmusart.asm
+                       @1   0x003dda    program     static strmusart.asm
                   _ANSELA   0x000f38       data     extern libdev18f26k22_a-pic18f26k22.asm
               _ANSELAbits   0x000f38       data     extern libdev18f26k22_a-pic18f26k22.asm
                   _ANSELB   0x000f39       data     extern libdev18f26k22_a-pic18f26k22.asm
@@ -1266,12 +1266,12 @@ _vfprintf_stringbuffer_1_41   0x000a44       data     static vfprintf.asm
                     _TOSL   0x000ffd       data     extern libdev18f26k22_a-pic18f26k22.asm
                     _TOSH   0x000ffe       data     extern libdev18f26k22_a-pic18f26k22.asm
                     _TOSU   0x000fff       data     extern libdev18f26k22_a-pic18f26k22.asm
-       ___eeprom_gptrput1   0x003cc2    program     extern /home/sdcc-builder/build/sdcc-build/orig/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrput1_dispatch.S
-       ___eeprom_gptrput2   0x003cc6    program     extern /home/sdcc-builder/build/sdcc-build/orig/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrput2_dispatch.S
-       ___eeprom_gptrput4   0x003cca    program     extern /home/sdcc-builder/build/sdcc-build/orig/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrput4_dispatch.S
-       ___eeprom_gptrget1   0x003cce    program     extern /home/sdcc-builder/build/sdcc-build/orig/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrget1_dispatch.S
-       ___eeprom_gptrget2   0x003cd2    program     extern /home/sdcc-builder/build/sdcc-build/orig/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrget2_dispatch.S
-       ___eeprom_gptrget4   0x003cd6    program     extern /home/sdcc-builder/build/sdcc-build/orig/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrget4_dispatch.S
+       ___eeprom_gptrput1   0x003e00    program     extern /home/sdcc-builder/build/sdcc-build/orig/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrput1_dispatch.S
+       ___eeprom_gptrput2   0x003e04    program     extern /home/sdcc-builder/build/sdcc-build/orig/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrput2_dispatch.S
+       ___eeprom_gptrput4   0x003e08    program     extern /home/sdcc-builder/build/sdcc-build/orig/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrput4_dispatch.S
+       ___eeprom_gptrget1   0x003e0c    program     extern /home/sdcc-builder/build/sdcc-build/orig/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrget1_dispatch.S
+       ___eeprom_gptrget2   0x003e10    program     extern /home/sdcc-builder/build/sdcc-build/orig/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrget2_dispatch.S
+       ___eeprom_gptrget4   0x003e14    program     extern /home/sdcc-builder/build/sdcc-build/orig/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrget4_dispatch.S
                     r0x00   00000000       data     static modulong.asm
                     r0x01   0x000001       data     static modulong.asm
                     r0x02   0x000002       data     static modulong.asm
@@ -1283,30 +1283,30 @@ _vfprintf_stringbuffer_1_41   0x000a44       data     static vfprintf.asm
                     r0x08   0x000008       data     static modulong.asm
                     r0x09   0x000009       data     static modulong.asm
                     r0x0a   0x00000a       data     static modulong.asm
-               __modulong   0x001b54    program     extern modulong.asm
-               _00122_DS_   0x001bce    program     static modulong.asm
-               _00109_DS_   0x001bd0    program     static modulong.asm
-               _00141_DS_   0x001bfc    program     static modulong.asm
-               _00108_DS_   0x001c0a    program     static modulong.asm
-               _00114_DS_   0x001c12    program     static modulong.asm
-               _00142_DS_   0x001c28    program     static modulong.asm
-               _00113_DS_   0x001c3a    program     static modulong.asm
-               _00117_DS_   0x001c5c    program     static modulong.asm
-     ___eeprom16_gptrget1   0x003bb2    program     extern eeprom16_gptrget1.asm
-     ___eeprom16_gptrget2   0x003ab0    program     extern eeprom16_gptrget2.asm
-               __gptrput3   0x003b5c    program     extern gptrput3.asm
-                 _lab_01_   0x003b72    program     static gptrput3.asm
-     ___eeprom16_gptrget4   0x003878    program     extern eeprom16_gptrget4.asm
-     ___eeprom16_gptrput1   0x003ad6    program     extern eeprom16_gptrput1.asm
-     ___eeprom16_gptrput2   0x003a5c    program     extern eeprom16_gptrput2.asm
-               __gptrget3   0x0038b2    program     extern gptrget3.asm
-                 _lab_01_   0x0038c6    program     static gptrget3.asm
-     ___eeprom16_gptrput4   0x00383c    program     extern eeprom16_gptrput4.asm
-        ___eeprom16_write   0x003c54    program     extern eeprom16_write.asm
-           wait_till_done   0x003c5e    program     static eeprom16_write.asm
-       ___eeprom_gptrget3   0x003cda    program     extern /home/sdcc-builder/build/sdcc-build/orig/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrget3_dispatch.S
-       ___eeprom_gptrput3   0x003cde    program     extern /home/sdcc-builder/build/sdcc-build/orig/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrput3_dispatch.S
-     ___eeprom16_gptrput3   0x0038e8    program     extern eeprom16_gptrput3.asm
-     ___eeprom16_gptrget3   0x00394c    program     extern eeprom16_gptrget3.asm
-                   _cinit   0x003c84    program     extern  
+               __modulong   0x001c92    program     extern modulong.asm
+               _00122_DS_   0x001d0c    program     static modulong.asm
+               _00109_DS_   0x001d0e    program     static modulong.asm
+               _00141_DS_   0x001d3a    program     static modulong.asm
+               _00108_DS_   0x001d48    program     static modulong.asm
+               _00114_DS_   0x001d50    program     static modulong.asm
+               _00142_DS_   0x001d66    program     static modulong.asm
+               _00113_DS_   0x001d78    program     static modulong.asm
+               _00117_DS_   0x001d9a    program     static modulong.asm
+     ___eeprom16_gptrget1   0x003cf0    program     extern eeprom16_gptrget1.asm
+     ___eeprom16_gptrget2   0x003bee    program     extern eeprom16_gptrget2.asm
+               __gptrput3   0x003c9a    program     extern gptrput3.asm
+                 _lab_01_   0x003cb0    program     static gptrput3.asm
+     ___eeprom16_gptrget4   0x0039b6    program     extern eeprom16_gptrget4.asm
+     ___eeprom16_gptrput1   0x003c14    program     extern eeprom16_gptrput1.asm
+     ___eeprom16_gptrput2   0x003b9a    program     extern eeprom16_gptrput2.asm
+               __gptrget3   0x0039f0    program     extern gptrget3.asm
+                 _lab_01_   0x003a04    program     static gptrget3.asm
+     ___eeprom16_gptrput4   0x00397a    program     extern eeprom16_gptrput4.asm
+        ___eeprom16_write   0x003d92    program     extern eeprom16_write.asm
+           wait_till_done   0x003d9c    program     static eeprom16_write.asm
+       ___eeprom_gptrget3   0x003e18    program     extern /home/sdcc-builder/build/sdcc-build/orig/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrget3_dispatch.S
+       ___eeprom_gptrput3   0x003e1c    program     extern /home/sdcc-builder/build/sdcc-build/orig/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrput3_dispatch.S
+     ___eeprom16_gptrput3   0x003a26    program     extern eeprom16_gptrput3.asm
+     ___eeprom16_gptrget3   0x003a8a    program     extern eeprom16_gptrget3.asm
+                   _cinit   0x003dc2    program     extern  
  

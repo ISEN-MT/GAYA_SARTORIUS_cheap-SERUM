@@ -1,0 +1,3614 @@
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;--------------------------------------------------------
+                      00002 ; File Created by SDCC : free open source ANSI-C Compiler
+                      00003 ; Version 3.6.5 #9830 (MINGW32)
+                      00004 ;--------------------------------------------------------
+                      00005 ; PIC16 port for the Microchip 16-bit core micros
+                      00006 ;--------------------------------------------------------
+                      00007         list    p=18f26k22
+                      00008         radix   dec
+                      00009 
+                      00010 
+                      00011 ;--------------------------------------------------------
+                      00012 ; public variables in this module
+                      00013 ;--------------------------------------------------------
+  0000                00014         global  _analogInit
+  0000                00015         global  _analogInitTouch
+  0000                00016         global  _analogSelectAdc
+  0000                00017         global  _analogSelectAdcTouch
+  0000                00018         global  _analogDeselect
+  0000                00019         global  _analogService
+  0000                00020         global  _analogSend
+  0000                00021         global  _analogSetMode
+  0000                00022         global  _analogSet
+  0000                00023         global  _analogGet
+  0000                00024         global  _analogGetDistance
+  0000                00025         global  _analogScaling
+  0000                00026         global  _analogDeclareEE
+                      00027 
+                      00028 ;--------------------------------------------------------
+                      00029 ; extern variables in this module
+                      00030 ;--------------------------------------------------------
+  0000                00031         extern  _ANSELAbits
+  0000                00032         extern  _ANSELBbits
+  0000                00033         extern  _ANSELCbits
+  0000                00034         extern  _PMD2bits
+  0000                00035         extern  _PMD1bits
+  0000                00036         extern  _PMD0bits
+  0000                00037         extern  _DACCON1bits
+  0000                00038         extern  _VREFCON2bits
+  0000                00039         extern  _DACCON0bits
+  0000                00040         extern  _VREFCON1bits
+  0000                00041         extern  _FVRCONbits
+  0000                00042         extern  _VREFCON0bits
+  0000                00043         extern  _CTMUICONbits
+  0000                00044         extern  _CTMUICONHbits
+  0000                00045         extern  _CTMUCON1bits
+  0000                00046         extern  _CTMUCONLbits
+  0000                00047         extern  _CTMUCON0bits
+  0000                00048         extern  _CTMUCONHbits
+  0000                00049         extern  _SRCON1bits
+  0000                00050         extern  _SRCON0bits
+  0000                00051         extern  _CCPTMRS1bits
+  0000                00052         extern  _CCPTMRS0bits
+  0000                00053         extern  _T6CONbits
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00054         extern  _T5GCONbits
+  0000                00055         extern  _T5CONbits
+  0000                00056         extern  _T4CONbits
+  0000                00057         extern  _CCP5CONbits
+  0000                00058         extern  _CCP4CONbits
+  0000                00059         extern  _PSTR3CONbits
+  0000                00060         extern  _CCP3ASbits
+  0000                00061         extern  _ECCP3ASbits
+  0000                00062         extern  _PWM3CONbits
+  0000                00063         extern  _CCP3CONbits
+  0000                00064         extern  _SLRCONbits
+  0000                00065         extern  _WPUBbits
+  0000                00066         extern  _IOCBbits
+  0000                00067         extern  _PSTR2CONbits
+  0000                00068         extern  _CCP2ASbits
+  0000                00069         extern  _ECCP2ASbits
+  0000                00070         extern  _PWM2CONbits
+  0000                00071         extern  _CCP2CONbits
+  0000                00072         extern  _SSP2CON3bits
+  0000                00073         extern  _SSP2MSKbits
+  0000                00074         extern  _SSP2CON2bits
+  0000                00075         extern  _SSP2CON1bits
+  0000                00076         extern  _SSP2STATbits
+  0000                00077         extern  _BAUD2CONbits
+  0000                00078         extern  _BAUDCON2bits
+  0000                00079         extern  _RC2STAbits
+  0000                00080         extern  _RCSTA2bits
+  0000                00081         extern  _TX2STAbits
+  0000                00082         extern  _TXSTA2bits
+  0000                00083         extern  _CM12CONbits
+  0000                00084         extern  _CM2CON1bits
+  0000                00085         extern  _CM2CONbits
+  0000                00086         extern  _CM2CON0bits
+  0000                00087         extern  _CM1CONbits
+  0000                00088         extern  _CM1CON0bits
+  0000                00089         extern  _PIE4bits
+  0000                00090         extern  _PIR4bits
+  0000                00091         extern  _IPR4bits
+  0000                00092         extern  _PIE5bits
+  0000                00093         extern  _PIR5bits
+  0000                00094         extern  _IPR5bits
+  0000                00095         extern  _PORTAbits
+  0000                00096         extern  _PORTBbits
+  0000                00097         extern  _PORTCbits
+  0000                00098         extern  _PORTEbits
+  0000                00099         extern  _LATAbits
+  0000                00100         extern  _LATBbits
+  0000                00101         extern  _LATCbits
+  0000                00102         extern  _DDRAbits
+  0000                00103         extern  _TRISAbits
+  0000                00104         extern  _DDRBbits
+  0000                00105         extern  _TRISBbits
+  0000                00106         extern  _DDRCbits
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00107         extern  _TRISCbits
+  0000                00108         extern  _TRISEbits
+  0000                00109         extern  _OSCTUNEbits
+  0000                00110         extern  _HLVDCONbits
+  0000                00111         extern  _LVDCONbits
+  0000                00112         extern  _PIE1bits
+  0000                00113         extern  _PIR1bits
+  0000                00114         extern  _IPR1bits
+  0000                00115         extern  _PIE2bits
+  0000                00116         extern  _PIR2bits
+  0000                00117         extern  _IPR2bits
+  0000                00118         extern  _PIE3bits
+  0000                00119         extern  _PIR3bits
+  0000                00120         extern  _IPR3bits
+  0000                00121         extern  _EECON1bits
+  0000                00122         extern  _EEADRbits
+  0000                00123         extern  _EEADRHbits
+  0000                00124         extern  _RC1STAbits
+  0000                00125         extern  _RCSTAbits
+  0000                00126         extern  _RCSTA1bits
+  0000                00127         extern  _TX1STAbits
+  0000                00128         extern  _TXSTAbits
+  0000                00129         extern  _TXSTA1bits
+  0000                00130         extern  _T3CONbits
+  0000                00131         extern  _T3GCONbits
+  0000                00132         extern  _ECCP1ASbits
+  0000                00133         extern  _ECCPASbits
+  0000                00134         extern  _PWM1CONbits
+  0000                00135         extern  _PWMCONbits
+  0000                00136         extern  _BAUD1CONbits
+  0000                00137         extern  _BAUDCONbits
+  0000                00138         extern  _BAUDCON1bits
+  0000                00139         extern  _BAUDCTLbits
+  0000                00140         extern  _PSTR1CONbits
+  0000                00141         extern  _PSTRCONbits
+  0000                00142         extern  _T2CONbits
+  0000                00143         extern  _CCP1CONbits
+  0000                00144         extern  _ADCON2bits
+  0000                00145         extern  _ADCON1bits
+  0000                00146         extern  _ADCON0bits
+  0000                00147         extern  _SSP1CON2bits
+  0000                00148         extern  _SSPCON2bits
+  0000                00149         extern  _SSP1CON1bits
+  0000                00150         extern  _SSPCON1bits
+  0000                00151         extern  _SSP1STATbits
+  0000                00152         extern  _SSPSTATbits
+  0000                00153         extern  _SSP1MSKbits
+  0000                00154         extern  _SSPMSKbits
+  0000                00155         extern  _SSP1CON3bits
+  0000                00156         extern  _SSPCON3bits
+  0000                00157         extern  _T1GCONbits
+  0000                00158         extern  _T1CONbits
+  0000                00159         extern  _RCONbits
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00160         extern  _WDTCONbits
+  0000                00161         extern  _OSCCON2bits
+  0000                00162         extern  _OSCCONbits
+  0000                00163         extern  _T0CONbits
+  0000                00164         extern  _STATUSbits
+  0000                00165         extern  _INTCON3bits
+  0000                00166         extern  _INTCON2bits
+  0000                00167         extern  _INTCONbits
+  0000                00168         extern  _STKPTRbits
+  0000                00169         extern  _stdin
+  0000                00170         extern  _stdout
+  0000                00171         extern  _Now
+  0000                00172         extern  _PORTZ
+  0000                00173         extern  _PORTZbits
+  0000                00174         extern  _LATZ
+  0000                00175         extern  _LATZbits
+  0000                00176         extern  _TRICZ
+  0000                00177         extern  _TRISZbits
+  0000                00178         extern  _ANSELZ
+  0000                00179         extern  _ANSELZbits
+  0000                00180         extern  _ANSELA
+  0000                00181         extern  _ANSELB
+  0000                00182         extern  _ANSELC
+  0000                00183         extern  _PMD2
+  0000                00184         extern  _PMD1
+  0000                00185         extern  _PMD0
+  0000                00186         extern  _DACCON1
+  0000                00187         extern  _VREFCON2
+  0000                00188         extern  _DACCON0
+  0000                00189         extern  _VREFCON1
+  0000                00190         extern  _FVRCON
+  0000                00191         extern  _VREFCON0
+  0000                00192         extern  _CTMUICON
+  0000                00193         extern  _CTMUICONH
+  0000                00194         extern  _CTMUCON1
+  0000                00195         extern  _CTMUCONL
+  0000                00196         extern  _CTMUCON0
+  0000                00197         extern  _CTMUCONH
+  0000                00198         extern  _SRCON1
+  0000                00199         extern  _SRCON0
+  0000                00200         extern  _CCPTMRS1
+  0000                00201         extern  _CCPTMRS0
+  0000                00202         extern  _T6CON
+  0000                00203         extern  _PR6
+  0000                00204         extern  _TMR6
+  0000                00205         extern  _T5GCON
+  0000                00206         extern  _T5CON
+  0000                00207         extern  _TMR5
+  0000                00208         extern  _TMR5L
+  0000                00209         extern  _TMR5H
+  0000                00210         extern  _T4CON
+  0000                00211         extern  _PR4
+  0000                00212         extern  _TMR4
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00213         extern  _CCP5CON
+  0000                00214         extern  _CCPR5
+  0000                00215         extern  _CCPR5L
+  0000                00216         extern  _CCPR5H
+  0000                00217         extern  _CCP4CON
+  0000                00218         extern  _CCPR4
+  0000                00219         extern  _CCPR4L
+  0000                00220         extern  _CCPR4H
+  0000                00221         extern  _PSTR3CON
+  0000                00222         extern  _CCP3AS
+  0000                00223         extern  _ECCP3AS
+  0000                00224         extern  _PWM3CON
+  0000                00225         extern  _CCP3CON
+  0000                00226         extern  _CCPR3
+  0000                00227         extern  _CCPR3L
+  0000                00228         extern  _CCPR3H
+  0000                00229         extern  _SLRCON
+  0000                00230         extern  _WPUB
+  0000                00231         extern  _IOCB
+  0000                00232         extern  _PSTR2CON
+  0000                00233         extern  _CCP2AS
+  0000                00234         extern  _ECCP2AS
+  0000                00235         extern  _PWM2CON
+  0000                00236         extern  _CCP2CON
+  0000                00237         extern  _CCPR2
+  0000                00238         extern  _CCPR2L
+  0000                00239         extern  _CCPR2H
+  0000                00240         extern  _SSP2CON3
+  0000                00241         extern  _SSP2MSK
+  0000                00242         extern  _SSP2CON2
+  0000                00243         extern  _SSP2CON1
+  0000                00244         extern  _SSP2STAT
+  0000                00245         extern  _SSP2ADD
+  0000                00246         extern  _SSP2BUF
+  0000                00247         extern  _BAUD2CON
+  0000                00248         extern  _BAUDCON2
+  0000                00249         extern  _RC2STA
+  0000                00250         extern  _RCSTA2
+  0000                00251         extern  _TX2STA
+  0000                00252         extern  _TXSTA2
+  0000                00253         extern  _TX2REG
+  0000                00254         extern  _TXREG2
+  0000                00255         extern  _RC2REG
+  0000                00256         extern  _RCREG2
+  0000                00257         extern  _SP2BRG
+  0000                00258         extern  _SPBRG2
+  0000                00259         extern  _SP2BRGH
+  0000                00260         extern  _SPBRGH2
+  0000                00261         extern  _CM12CON
+  0000                00262         extern  _CM2CON1
+  0000                00263         extern  _CM2CON
+  0000                00264         extern  _CM2CON0
+  0000                00265         extern  _CM1CON
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00266         extern  _CM1CON0
+  0000                00267         extern  _PIE4
+  0000                00268         extern  _PIR4
+  0000                00269         extern  _IPR4
+  0000                00270         extern  _PIE5
+  0000                00271         extern  _PIR5
+  0000                00272         extern  _IPR5
+  0000                00273         extern  _PORTA
+  0000                00274         extern  _PORTB
+  0000                00275         extern  _PORTC
+  0000                00276         extern  _PORTE
+  0000                00277         extern  _LATA
+  0000                00278         extern  _LATB
+  0000                00279         extern  _LATC
+  0000                00280         extern  _DDRA
+  0000                00281         extern  _TRISA
+  0000                00282         extern  _DDRB
+  0000                00283         extern  _TRISB
+  0000                00284         extern  _DDRC
+  0000                00285         extern  _TRISC
+  0000                00286         extern  _TRISE
+  0000                00287         extern  _OSCTUNE
+  0000                00288         extern  _HLVDCON
+  0000                00289         extern  _LVDCON
+  0000                00290         extern  _PIE1
+  0000                00291         extern  _PIR1
+  0000                00292         extern  _IPR1
+  0000                00293         extern  _PIE2
+  0000                00294         extern  _PIR2
+  0000                00295         extern  _IPR2
+  0000                00296         extern  _PIE3
+  0000                00297         extern  _PIR3
+  0000                00298         extern  _IPR3
+  0000                00299         extern  _EECON1
+  0000                00300         extern  _EECON2
+  0000                00301         extern  _EEDATA
+  0000                00302         extern  _EEADR
+  0000                00303         extern  _EEADRH
+  0000                00304         extern  _RC1STA
+  0000                00305         extern  _RCSTA
+  0000                00306         extern  _RCSTA1
+  0000                00307         extern  _TX1STA
+  0000                00308         extern  _TXSTA
+  0000                00309         extern  _TXSTA1
+  0000                00310         extern  _TX1REG
+  0000                00311         extern  _TXREG
+  0000                00312         extern  _TXREG1
+  0000                00313         extern  _RC1REG
+  0000                00314         extern  _RCREG
+  0000                00315         extern  _RCREG1
+  0000                00316         extern  _SP1BRG
+  0000                00317         extern  _SPBRG
+  0000                00318         extern  _SPBRG1
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00319         extern  _SP1BRGH
+  0000                00320         extern  _SPBRGH
+  0000                00321         extern  _SPBRGH1
+  0000                00322         extern  _T3CON
+  0000                00323         extern  _TMR3
+  0000                00324         extern  _TMR3L
+  0000                00325         extern  _TMR3H
+  0000                00326         extern  _T3GCON
+  0000                00327         extern  _ECCP1AS
+  0000                00328         extern  _ECCPAS
+  0000                00329         extern  _PWM1CON
+  0000                00330         extern  _PWMCON
+  0000                00331         extern  _BAUD1CON
+  0000                00332         extern  _BAUDCON
+  0000                00333         extern  _BAUDCON1
+  0000                00334         extern  _BAUDCTL
+  0000                00335         extern  _PSTR1CON
+  0000                00336         extern  _PSTRCON
+  0000                00337         extern  _T2CON
+  0000                00338         extern  _PR2
+  0000                00339         extern  _TMR2
+  0000                00340         extern  _CCP1CON
+  0000                00341         extern  _CCPR1
+  0000                00342         extern  _CCPR1L
+  0000                00343         extern  _CCPR1H
+  0000                00344         extern  _ADCON2
+  0000                00345         extern  _ADCON1
+  0000                00346         extern  _ADCON0
+  0000                00347         extern  _ADRES
+  0000                00348         extern  _ADRESL
+  0000                00349         extern  _ADRESH
+  0000                00350         extern  _SSP1CON2
+  0000                00351         extern  _SSPCON2
+  0000                00352         extern  _SSP1CON1
+  0000                00353         extern  _SSPCON1
+  0000                00354         extern  _SSP1STAT
+  0000                00355         extern  _SSPSTAT
+  0000                00356         extern  _SSP1ADD
+  0000                00357         extern  _SSPADD
+  0000                00358         extern  _SSP1BUF
+  0000                00359         extern  _SSPBUF
+  0000                00360         extern  _SSP1MSK
+  0000                00361         extern  _SSPMSK
+  0000                00362         extern  _SSP1CON3
+  0000                00363         extern  _SSPCON3
+  0000                00364         extern  _T1GCON
+  0000                00365         extern  _T1CON
+  0000                00366         extern  _TMR1
+  0000                00367         extern  _TMR1L
+  0000                00368         extern  _TMR1H
+  0000                00369         extern  _RCON
+  0000                00370         extern  _WDTCON
+  0000                00371         extern  _OSCCON2
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00372         extern  _OSCCON
+  0000                00373         extern  _T0CON
+  0000                00374         extern  _TMR0
+  0000                00375         extern  _TMR0L
+  0000                00376         extern  _TMR0H
+  0000                00377         extern  _STATUS
+  0000                00378         extern  _FSR2L
+  0000                00379         extern  _FSR2H
+  0000                00380         extern  _PLUSW2
+  0000                00381         extern  _PREINC2
+  0000                00382         extern  _POSTDEC2
+  0000                00383         extern  _POSTINC2
+  0000                00384         extern  _INDF2
+  0000                00385         extern  _BSR
+  0000                00386         extern  _FSR1L
+  0000                00387         extern  _FSR1H
+  0000                00388         extern  _PLUSW1
+  0000                00389         extern  _PREINC1
+  0000                00390         extern  _POSTDEC1
+  0000                00391         extern  _POSTINC1
+  0000                00392         extern  _INDF1
+  0000                00393         extern  _WREG
+  0000                00394         extern  _FSR0L
+  0000                00395         extern  _FSR0H
+  0000                00396         extern  _PLUSW0
+  0000                00397         extern  _PREINC0
+  0000                00398         extern  _POSTDEC0
+  0000                00399         extern  _POSTINC0
+  0000                00400         extern  _INDF0
+  0000                00401         extern  _INTCON3
+  0000                00402         extern  _INTCON2
+  0000                00403         extern  _INTCON
+  0000                00404         extern  _PROD
+  0000                00405         extern  _PRODL
+  0000                00406         extern  _PRODH
+  0000                00407         extern  _TABLAT
+  0000                00408         extern  _TBLPTR
+  0000                00409         extern  _TBLPTRL
+  0000                00410         extern  _TBLPTRH
+  0000                00411         extern  _TBLPTRU
+  0000                00412         extern  _PC
+  0000                00413         extern  _PCL
+  0000                00414         extern  _PCLATH
+  0000                00415         extern  _PCLATU
+  0000                00416         extern  _STKPTR
+  0000                00417         extern  _TOS
+  0000                00418         extern  _TOSL
+  0000                00419         extern  _TOSH
+  0000                00420         extern  _TOSU
+  0000                00421         extern  _printf
+  0000                00422         extern  _fraiseSend
+  0000                00423         extern  _EEdeclareInt
+  0000                00424         extern  _FSLP_analog_preconf
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00425         extern  __mullong
+  0000                00426         extern  __divulong
+                      00427 
+                      00428 ;--------------------------------------------------------
+                      00429 ;       Equates to used internal registers
+                      00430 ;--------------------------------------------------------
+  00000FD8            00431 STATUS  equ     0xfd8
+  00000FF2            00432 INTCON  equ     0xff2
+  00000FE8            00433 WREG    equ     0xfe8
+  00000FE9            00434 FSR0L   equ     0xfe9
+  00000FEA            00435 FSR0H   equ     0xfea
+  00000FE1            00436 FSR1L   equ     0xfe1
+  00000FD9            00437 FSR2L   equ     0xfd9
+  00000FEF            00438 INDF0   equ     0xfef
+  00000FEE            00439 POSTINC0        equ     0xfee
+  00000FE6            00440 POSTINC1        equ     0xfe6
+  00000FE5            00441 POSTDEC1        equ     0xfe5
+  00000FE4            00442 PREINC1 equ     0xfe4
+  00000FDB            00443 PLUSW2  equ     0xfdb
+  00000FF3            00444 PRODL   equ     0xff3
+  00000FF4            00445 PRODH   equ     0xff4
+                      00446 
+                      00447 
+                      00448         idata
+000000 00             00449 _Scaling        db      0x00
+000001 0A 00          00450 _Threshold      db      0x0a, 0x00
+000003 02             00451 _Mode   db      0x02
+000004 00             00452 _analogService_chan_1_98        db      0x00
+000005 00             00453 _analogService_conv_1_98        db      0x00
+000006 00             00454 _analogSend_chan_1_105  db      0x00
+000007 42 00 00 00 00 00455 _analogSend_buf_1_105   db      0x42, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+       00 00 00 00 00 
+       00 00          
+000013 00             00456         db      0x00
+                      00457 
+                      00458 
+                      00459 ; Internal registers
+                      00460 .registers      udata_ovr       0x0000
+000000                00461 r0x00   res     1
+000001                00462 r0x01   res     1
+000002                00463 r0x02   res     1
+000003                00464 r0x03   res     1
+000004                00465 r0x04   res     1
+000005                00466 r0x05   res     1
+000006                00467 r0x06   res     1
+000007                00468 r0x07   res     1
+000008                00469 r0x08   res     1
+000009                00470 r0x09   res     1
+00000A                00471 r0x0a   res     1
+00000B                00472 r0x0b   res     1
+00000C                00473 r0x0c   res     1
+                      00474 
+                      00475 udata_analog_0  udata
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 10
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000000                00476 _Selected       res     2
+                      00477 
+                      00478 udata_analog_1  udata
+000000                00479 _Value  res     32
+                      00480 
+                      00481 udata_analog_2  udata
+000000                00482 _inValue        res     32
+                      00483 
+                      00484 udata_analog_3  udata
+000000                00485 _oldValue       res     32
+                      00486 
+                      00487 udata_analog_4  udata
+000000                00488 _Min    res     32
+                      00489 
+                      00490 udata_analog_5  udata
+000000                00491 _Max    res     32
+                      00492 
+                      00493 udata_analog_6  udata
+000000                00494 _Pins   res     16
+                      00495 
+                      00496 udata_analog_7  udata
+000000                00497 _HWChan res     16
+                      00498 
+                      00499 udata_analog_8  udata
+000000                00500 _Dist   res     32
+                      00501 
+                      00502 ;--------------------------------------------------------
+                      00503 ; global & static initialisations
+                      00504 ;--------------------------------------------------------
+                      00505 ; I code from now on!
+                      00506 ; ; Starting pCode block
+                      00507 S_analog__analogDeclareEE       code
+000000                00508 _analogDeclareEE:
+                      00509 ;       .line   276; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       EEDECLARE(0);
+000000 0E80           00510         MOVLW   0x80
+                      00511 ; #     MOVWF   r0x02
+                      00512 ; #     MOVF    r0x02, W
+000002 6EE5           00513         MOVWF   POSTDEC1
+000004 0E??           00514         MOVLW   HIGH(_Max)
+000006 6EE5           00515         MOVWF   POSTDEC1
+000008 0E??           00516         MOVLW   LOW(_Max)
+00000A 6EE5           00517         MOVWF   POSTDEC1
+00000C EC?? F0??      00518         CALL    _EEdeclareInt
+000010 0E03           00519         MOVLW   0x03
+000012 26E1           00520         ADDWF   FSR1L, F
+000014 0E80           00521         MOVLW   0x80
+                      00522 ; #     MOVWF   r0x02
+                      00523 ; #     MOVF    r0x02, W
+000016 6EE5           00524         MOVWF   POSTDEC1
+000018 0E??           00525         MOVLW   HIGH(_Min)
+00001A 6EE5           00526         MOVWF   POSTDEC1
+00001C 0E??           00527         MOVLW   LOW(_Min)
+00001E 6EE5           00528         MOVWF   POSTDEC1
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 11
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000020 EC?? F0??      00529         CALL    _EEdeclareInt
+000024 0E03           00530         MOVLW   0x03
+000026 26E1           00531         ADDWF   FSR1L, F
+                      00532 ;       .line   277; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       EEDECLARE(1);
+000028 0E80           00533         MOVLW   0x80
+                      00534 ; #     MOVWF   r0x02
+                      00535 ; #     MOVF    r0x02, W
+00002A 6EE5           00536         MOVWF   POSTDEC1
+00002C 0E??           00537         MOVLW   HIGH(_Max + 2)
+00002E 6EE5           00538         MOVWF   POSTDEC1
+000030 0E??           00539         MOVLW   LOW(_Max + 2)
+000032 6EE5           00540         MOVWF   POSTDEC1
+000034 EC?? F0??      00541         CALL    _EEdeclareInt
+000038 0E03           00542         MOVLW   0x03
+00003A 26E1           00543         ADDWF   FSR1L, F
+00003C 0E80           00544         MOVLW   0x80
+                      00545 ; #     MOVWF   r0x02
+                      00546 ; #     MOVF    r0x02, W
+00003E 6EE5           00547         MOVWF   POSTDEC1
+000040 0E??           00548         MOVLW   HIGH(_Min + 2)
+000042 6EE5           00549         MOVWF   POSTDEC1
+000044 0E??           00550         MOVLW   LOW(_Min + 2)
+000046 6EE5           00551         MOVWF   POSTDEC1
+000048 EC?? F0??      00552         CALL    _EEdeclareInt
+00004C 0E03           00553         MOVLW   0x03
+00004E 26E1           00554         ADDWF   FSR1L, F
+                      00555 ;       .line   278; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       EEDECLARE(2);
+000050 0E80           00556         MOVLW   0x80
+                      00557 ; #     MOVWF   r0x02
+                      00558 ; #     MOVF    r0x02, W
+000052 6EE5           00559         MOVWF   POSTDEC1
+000054 0E??           00560         MOVLW   HIGH(_Max + 4)
+000056 6EE5           00561         MOVWF   POSTDEC1
+000058 0E??           00562         MOVLW   LOW(_Max + 4)
+00005A 6EE5           00563         MOVWF   POSTDEC1
+00005C EC?? F0??      00564         CALL    _EEdeclareInt
+000060 0E03           00565         MOVLW   0x03
+000062 26E1           00566         ADDWF   FSR1L, F
+000064 0E80           00567         MOVLW   0x80
+                      00568 ; #     MOVWF   r0x02
+                      00569 ; #     MOVF    r0x02, W
+000066 6EE5           00570         MOVWF   POSTDEC1
+000068 0E??           00571         MOVLW   HIGH(_Min + 4)
+00006A 6EE5           00572         MOVWF   POSTDEC1
+00006C 0E??           00573         MOVLW   LOW(_Min + 4)
+00006E 6EE5           00574         MOVWF   POSTDEC1
+000070 EC?? F0??      00575         CALL    _EEdeclareInt
+000074 0E03           00576         MOVLW   0x03
+000076 26E1           00577         ADDWF   FSR1L, F
+                      00578 ;       .line   279; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       EEDECLARE(3);
+000078 0E80           00579         MOVLW   0x80
+                      00580 ; #     MOVWF   r0x02
+                      00581 ; #     MOVF    r0x02, W
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 12
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00007A 6EE5           00582         MOVWF   POSTDEC1
+00007C 0E??           00583         MOVLW   HIGH(_Max + 6)
+00007E 6EE5           00584         MOVWF   POSTDEC1
+000080 0E??           00585         MOVLW   LOW(_Max + 6)
+000082 6EE5           00586         MOVWF   POSTDEC1
+000084 EC?? F0??      00587         CALL    _EEdeclareInt
+000088 0E03           00588         MOVLW   0x03
+00008A 26E1           00589         ADDWF   FSR1L, F
+00008C 0E80           00590         MOVLW   0x80
+                      00591 ; #     MOVWF   r0x02
+                      00592 ; #     MOVF    r0x02, W
+00008E 6EE5           00593         MOVWF   POSTDEC1
+000090 0E??           00594         MOVLW   HIGH(_Min + 6)
+000092 6EE5           00595         MOVWF   POSTDEC1
+000094 0E??           00596         MOVLW   LOW(_Min + 6)
+000096 6EE5           00597         MOVWF   POSTDEC1
+000098 EC?? F0??      00598         CALL    _EEdeclareInt
+00009C 0E03           00599         MOVLW   0x03
+00009E 26E1           00600         ADDWF   FSR1L, F
+                      00601 ;       .line   282; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       EEDECLARE(4);
+0000A0 0E80           00602         MOVLW   0x80
+                      00603 ; #     MOVWF   r0x02
+                      00604 ; #     MOVF    r0x02, W
+0000A2 6EE5           00605         MOVWF   POSTDEC1
+0000A4 0E??           00606         MOVLW   HIGH(_Max + 8)
+0000A6 6EE5           00607         MOVWF   POSTDEC1
+0000A8 0E??           00608         MOVLW   LOW(_Max + 8)
+0000AA 6EE5           00609         MOVWF   POSTDEC1
+0000AC EC?? F0??      00610         CALL    _EEdeclareInt
+0000B0 0E03           00611         MOVLW   0x03
+0000B2 26E1           00612         ADDWF   FSR1L, F
+0000B4 0E80           00613         MOVLW   0x80
+                      00614 ; #     MOVWF   r0x02
+                      00615 ; #     MOVF    r0x02, W
+0000B6 6EE5           00616         MOVWF   POSTDEC1
+0000B8 0E??           00617         MOVLW   HIGH(_Min + 8)
+0000BA 6EE5           00618         MOVWF   POSTDEC1
+0000BC 0E??           00619         MOVLW   LOW(_Min + 8)
+0000BE 6EE5           00620         MOVWF   POSTDEC1
+0000C0 EC?? F0??      00621         CALL    _EEdeclareInt
+0000C4 0E03           00622         MOVLW   0x03
+0000C6 26E1           00623         ADDWF   FSR1L, F
+                      00624 ;       .line   283; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       EEDECLARE(5);
+0000C8 0E80           00625         MOVLW   0x80
+                      00626 ; #     MOVWF   r0x02
+                      00627 ; #     MOVF    r0x02, W
+0000CA 6EE5           00628         MOVWF   POSTDEC1
+0000CC 0E??           00629         MOVLW   HIGH(_Max + 10)
+0000CE 6EE5           00630         MOVWF   POSTDEC1
+0000D0 0E??           00631         MOVLW   LOW(_Max + 10)
+0000D2 6EE5           00632         MOVWF   POSTDEC1
+0000D4 EC?? F0??      00633         CALL    _EEdeclareInt
+0000D8 0E03           00634         MOVLW   0x03
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 13
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0000DA 26E1           00635         ADDWF   FSR1L, F
+0000DC 0E80           00636         MOVLW   0x80
+                      00637 ; #     MOVWF   r0x02
+                      00638 ; #     MOVF    r0x02, W
+0000DE 6EE5           00639         MOVWF   POSTDEC1
+0000E0 0E??           00640         MOVLW   HIGH(_Min + 10)
+0000E2 6EE5           00641         MOVWF   POSTDEC1
+0000E4 0E??           00642         MOVLW   LOW(_Min + 10)
+0000E6 6EE5           00643         MOVWF   POSTDEC1
+0000E8 EC?? F0??      00644         CALL    _EEdeclareInt
+0000EC 0E03           00645         MOVLW   0x03
+0000EE 26E1           00646         ADDWF   FSR1L, F
+                      00647 ;       .line   284; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       EEDECLARE(6);
+0000F0 0E80           00648         MOVLW   0x80
+                      00649 ; #     MOVWF   r0x02
+                      00650 ; #     MOVF    r0x02, W
+0000F2 6EE5           00651         MOVWF   POSTDEC1
+0000F4 0E??           00652         MOVLW   HIGH(_Max + 12)
+0000F6 6EE5           00653         MOVWF   POSTDEC1
+0000F8 0E??           00654         MOVLW   LOW(_Max + 12)
+0000FA 6EE5           00655         MOVWF   POSTDEC1
+0000FC EC?? F0??      00656         CALL    _EEdeclareInt
+000100 0E03           00657         MOVLW   0x03
+000102 26E1           00658         ADDWF   FSR1L, F
+000104 0E80           00659         MOVLW   0x80
+                      00660 ; #     MOVWF   r0x02
+                      00661 ; #     MOVF    r0x02, W
+000106 6EE5           00662         MOVWF   POSTDEC1
+000108 0E??           00663         MOVLW   HIGH(_Min + 12)
+00010A 6EE5           00664         MOVWF   POSTDEC1
+00010C 0E??           00665         MOVLW   LOW(_Min + 12)
+00010E 6EE5           00666         MOVWF   POSTDEC1
+000110 EC?? F0??      00667         CALL    _EEdeclareInt
+000114 0E03           00668         MOVLW   0x03
+000116 26E1           00669         ADDWF   FSR1L, F
+                      00670 ;       .line   285; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       EEDECLARE(7);
+000118 0E80           00671         MOVLW   0x80
+                      00672 ; #     MOVWF   r0x02
+                      00673 ; #     MOVF    r0x02, W
+00011A 6EE5           00674         MOVWF   POSTDEC1
+00011C 0E??           00675         MOVLW   HIGH(_Max + 14)
+00011E 6EE5           00676         MOVWF   POSTDEC1
+000120 0E??           00677         MOVLW   LOW(_Max + 14)
+000122 6EE5           00678         MOVWF   POSTDEC1
+000124 EC?? F0??      00679         CALL    _EEdeclareInt
+000128 0E03           00680         MOVLW   0x03
+00012A 26E1           00681         ADDWF   FSR1L, F
+00012C 0E80           00682         MOVLW   0x80
+                      00683 ; #     MOVWF   r0x02
+                      00684 ; #     MOVF    r0x02, W
+00012E 6EE5           00685         MOVWF   POSTDEC1
+000130 0E??           00686         MOVLW   HIGH(_Min + 14)
+000132 6EE5           00687         MOVWF   POSTDEC1
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 14
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000134 0E??           00688         MOVLW   LOW(_Min + 14)
+000136 6EE5           00689         MOVWF   POSTDEC1
+000138 EC?? F0??      00690         CALL    _EEdeclareInt
+00013C 0E03           00691         MOVLW   0x03
+00013E 26E1           00692         ADDWF   FSR1L, F
+                      00693 ;       .line   288; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       EEDECLARE(8);
+000140 0E80           00694         MOVLW   0x80
+                      00695 ; #     MOVWF   r0x02
+                      00696 ; #     MOVF    r0x02, W
+000142 6EE5           00697         MOVWF   POSTDEC1
+000144 0E??           00698         MOVLW   HIGH(_Max + 16)
+000146 6EE5           00699         MOVWF   POSTDEC1
+000148 0E??           00700         MOVLW   LOW(_Max + 16)
+00014A 6EE5           00701         MOVWF   POSTDEC1
+00014C EC?? F0??      00702         CALL    _EEdeclareInt
+000150 0E03           00703         MOVLW   0x03
+000152 26E1           00704         ADDWF   FSR1L, F
+000154 0E80           00705         MOVLW   0x80
+                      00706 ; #     MOVWF   r0x02
+                      00707 ; #     MOVF    r0x02, W
+000156 6EE5           00708         MOVWF   POSTDEC1
+000158 0E??           00709         MOVLW   HIGH(_Min + 16)
+00015A 6EE5           00710         MOVWF   POSTDEC1
+00015C 0E??           00711         MOVLW   LOW(_Min + 16)
+00015E 6EE5           00712         MOVWF   POSTDEC1
+000160 EC?? F0??      00713         CALL    _EEdeclareInt
+000164 0E03           00714         MOVLW   0x03
+000166 26E1           00715         ADDWF   FSR1L, F
+                      00716 ;       .line   289; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       EEDECLARE(9);
+000168 0E80           00717         MOVLW   0x80
+                      00718 ; #     MOVWF   r0x02
+                      00719 ; #     MOVF    r0x02, W
+00016A 6EE5           00720         MOVWF   POSTDEC1
+00016C 0E??           00721         MOVLW   HIGH(_Max + 18)
+00016E 6EE5           00722         MOVWF   POSTDEC1
+000170 0E??           00723         MOVLW   LOW(_Max + 18)
+000172 6EE5           00724         MOVWF   POSTDEC1
+000174 EC?? F0??      00725         CALL    _EEdeclareInt
+000178 0E03           00726         MOVLW   0x03
+00017A 26E1           00727         ADDWF   FSR1L, F
+00017C 0E80           00728         MOVLW   0x80
+                      00729 ; #     MOVWF   r0x02
+                      00730 ; #     MOVF    r0x02, W
+00017E 6EE5           00731         MOVWF   POSTDEC1
+000180 0E??           00732         MOVLW   HIGH(_Min + 18)
+000182 6EE5           00733         MOVWF   POSTDEC1
+000184 0E??           00734         MOVLW   LOW(_Min + 18)
+000186 6EE5           00735         MOVWF   POSTDEC1
+000188 EC?? F0??      00736         CALL    _EEdeclareInt
+00018C 0E03           00737         MOVLW   0x03
+00018E 26E1           00738         ADDWF   FSR1L, F
+                      00739 ;       .line   290; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       EEDECLARE(10);
+000190 0E80           00740         MOVLW   0x80
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 15
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00741 ; #     MOVWF   r0x02
+                      00742 ; #     MOVF    r0x02, W
+000192 6EE5           00743         MOVWF   POSTDEC1
+000194 0E??           00744         MOVLW   HIGH(_Max + 20)
+000196 6EE5           00745         MOVWF   POSTDEC1
+000198 0E??           00746         MOVLW   LOW(_Max + 20)
+00019A 6EE5           00747         MOVWF   POSTDEC1
+00019C EC?? F0??      00748         CALL    _EEdeclareInt
+0001A0 0E03           00749         MOVLW   0x03
+0001A2 26E1           00750         ADDWF   FSR1L, F
+0001A4 0E80           00751         MOVLW   0x80
+                      00752 ; #     MOVWF   r0x02
+                      00753 ; #     MOVF    r0x02, W
+0001A6 6EE5           00754         MOVWF   POSTDEC1
+0001A8 0E??           00755         MOVLW   HIGH(_Min + 20)
+0001AA 6EE5           00756         MOVWF   POSTDEC1
+0001AC 0E??           00757         MOVLW   LOW(_Min + 20)
+0001AE 6EE5           00758         MOVWF   POSTDEC1
+0001B0 EC?? F0??      00759         CALL    _EEdeclareInt
+0001B4 0E03           00760         MOVLW   0x03
+0001B6 26E1           00761         ADDWF   FSR1L, F
+                      00762 ;       .line   291; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       EEDECLARE(11);
+0001B8 0E80           00763         MOVLW   0x80
+                      00764 ; #     MOVWF   r0x02
+                      00765 ; #     MOVF    r0x02, W
+0001BA 6EE5           00766         MOVWF   POSTDEC1
+0001BC 0E??           00767         MOVLW   HIGH(_Max + 22)
+0001BE 6EE5           00768         MOVWF   POSTDEC1
+0001C0 0E??           00769         MOVLW   LOW(_Max + 22)
+0001C2 6EE5           00770         MOVWF   POSTDEC1
+0001C4 EC?? F0??      00771         CALL    _EEdeclareInt
+0001C8 0E03           00772         MOVLW   0x03
+0001CA 26E1           00773         ADDWF   FSR1L, F
+0001CC 0E80           00774         MOVLW   0x80
+                      00775 ; #     MOVWF   r0x02
+                      00776 ; #     MOVF    r0x02, W
+0001CE 6EE5           00777         MOVWF   POSTDEC1
+0001D0 0E??           00778         MOVLW   HIGH(_Min + 22)
+0001D2 6EE5           00779         MOVWF   POSTDEC1
+0001D4 0E??           00780         MOVLW   LOW(_Min + 22)
+0001D6 6EE5           00781         MOVWF   POSTDEC1
+0001D8 EC?? F0??      00782         CALL    _EEdeclareInt
+0001DC 0E03           00783         MOVLW   0x03
+0001DE 26E1           00784         ADDWF   FSR1L, F
+                      00785 ;       .line   294; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       EEDECLARE(12);
+0001E0 0E80           00786         MOVLW   0x80
+                      00787 ; #     MOVWF   r0x02
+                      00788 ; #     MOVF    r0x02, W
+0001E2 6EE5           00789         MOVWF   POSTDEC1
+0001E4 0E??           00790         MOVLW   HIGH(_Max + 24)
+0001E6 6EE5           00791         MOVWF   POSTDEC1
+0001E8 0E??           00792         MOVLW   LOW(_Max + 24)
+0001EA 6EE5           00793         MOVWF   POSTDEC1
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 16
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0001EC EC?? F0??      00794         CALL    _EEdeclareInt
+0001F0 0E03           00795         MOVLW   0x03
+0001F2 26E1           00796         ADDWF   FSR1L, F
+0001F4 0E80           00797         MOVLW   0x80
+                      00798 ; #     MOVWF   r0x02
+                      00799 ; #     MOVF    r0x02, W
+0001F6 6EE5           00800         MOVWF   POSTDEC1
+0001F8 0E??           00801         MOVLW   HIGH(_Min + 24)
+0001FA 6EE5           00802         MOVWF   POSTDEC1
+0001FC 0E??           00803         MOVLW   LOW(_Min + 24)
+0001FE 6EE5           00804         MOVWF   POSTDEC1
+000200 EC?? F0??      00805         CALL    _EEdeclareInt
+000204 0E03           00806         MOVLW   0x03
+000206 26E1           00807         ADDWF   FSR1L, F
+                      00808 ;       .line   295; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       EEDECLARE(13);
+000208 0E80           00809         MOVLW   0x80
+                      00810 ; #     MOVWF   r0x02
+                      00811 ; #     MOVF    r0x02, W
+00020A 6EE5           00812         MOVWF   POSTDEC1
+00020C 0E??           00813         MOVLW   HIGH(_Max + 26)
+00020E 6EE5           00814         MOVWF   POSTDEC1
+000210 0E??           00815         MOVLW   LOW(_Max + 26)
+000212 6EE5           00816         MOVWF   POSTDEC1
+000214 EC?? F0??      00817         CALL    _EEdeclareInt
+000218 0E03           00818         MOVLW   0x03
+00021A 26E1           00819         ADDWF   FSR1L, F
+00021C 0E80           00820         MOVLW   0x80
+                      00821 ; #     MOVWF   r0x02
+                      00822 ; #     MOVF    r0x02, W
+00021E 6EE5           00823         MOVWF   POSTDEC1
+000220 0E??           00824         MOVLW   HIGH(_Min + 26)
+000222 6EE5           00825         MOVWF   POSTDEC1
+000224 0E??           00826         MOVLW   LOW(_Min + 26)
+000226 6EE5           00827         MOVWF   POSTDEC1
+000228 EC?? F0??      00828         CALL    _EEdeclareInt
+00022C 0E03           00829         MOVLW   0x03
+00022E 26E1           00830         ADDWF   FSR1L, F
+                      00831 ;       .line   296; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       EEDECLARE(14);
+000230 0E80           00832         MOVLW   0x80
+                      00833 ; #     MOVWF   r0x02
+                      00834 ; #     MOVF    r0x02, W
+000232 6EE5           00835         MOVWF   POSTDEC1
+000234 0E??           00836         MOVLW   HIGH(_Max + 28)
+000236 6EE5           00837         MOVWF   POSTDEC1
+000238 0E??           00838         MOVLW   LOW(_Max + 28)
+00023A 6EE5           00839         MOVWF   POSTDEC1
+00023C EC?? F0??      00840         CALL    _EEdeclareInt
+000240 0E03           00841         MOVLW   0x03
+000242 26E1           00842         ADDWF   FSR1L, F
+000244 0E80           00843         MOVLW   0x80
+                      00844 ; #     MOVWF   r0x02
+                      00845 ; #     MOVF    r0x02, W
+000246 6EE5           00846         MOVWF   POSTDEC1
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 17
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000248 0E??           00847         MOVLW   HIGH(_Min + 28)
+00024A 6EE5           00848         MOVWF   POSTDEC1
+00024C 0E??           00849         MOVLW   LOW(_Min + 28)
+00024E 6EE5           00850         MOVWF   POSTDEC1
+000250 EC?? F0??      00851         CALL    _EEdeclareInt
+000254 0E03           00852         MOVLW   0x03
+000256 26E1           00853         ADDWF   FSR1L, F
+                      00854 ;       .line   297; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       EEDECLARE(15);
+000258 0E80           00855         MOVLW   0x80
+                      00856 ; #     MOVWF   r0x02
+                      00857 ; #     MOVF    r0x02, W
+00025A 6EE5           00858         MOVWF   POSTDEC1
+00025C 0E??           00859         MOVLW   HIGH(_Max + 30)
+00025E 6EE5           00860         MOVWF   POSTDEC1
+000260 0E??           00861         MOVLW   LOW(_Max + 30)
+000262 6EE5           00862         MOVWF   POSTDEC1
+000264 EC?? F0??      00863         CALL    _EEdeclareInt
+000268 0E03           00864         MOVLW   0x03
+00026A 26E1           00865         ADDWF   FSR1L, F
+00026C 0E80           00866         MOVLW   0x80
+                      00867 ; #     MOVWF   r0x02
+                      00868 ; #     MOVF    r0x02, W
+00026E 6EE5           00869         MOVWF   POSTDEC1
+000270 0E??           00870         MOVLW   HIGH(_Min + 30)
+000272 6EE5           00871         MOVWF   POSTDEC1
+000274 0E??           00872         MOVLW   LOW(_Min + 30)
+000276 6EE5           00873         MOVWF   POSTDEC1
+000278 EC?? F0??      00874         CALL    _EEdeclareInt
+00027C 0E03           00875         MOVLW   0x03
+00027E 26E1           00876         ADDWF   FSR1L, F
+000280 0012           00877         RETURN  
+                      00878 
+                      00879 ; ; Starting pCode block
+                      00880 S_analog__analogScaling code
+000000                00881 _analogScaling:
+                      00882 ;       .line   255; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       void analogScali
+                            ng(unsigned char scaling) // when scaling, min and max are updated each sample
+000000 CFD9 FFE5      00883         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      00884         MOVFF   FSR1L, FSR2L
+000008 C??? F???      00885         MOVFF   r0x00, POSTDEC1
+00000C C??? F???      00886         MOVFF   r0x01, POSTDEC1
+000010 C??? F???      00887         MOVFF   r0x02, POSTDEC1
+000014 C??? F???      00888         MOVFF   r0x03, POSTDEC1
+000018 C??? F???      00889         MOVFF   r0x04, POSTDEC1
+00001C C??? F???      00890         MOVFF   r0x05, POSTDEC1
+000020 0E02           00891         MOVLW   0x02
+000022 CFDB F000      00892         MOVFF   PLUSW2, r0x00
+                      00893 ;       .line   259; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(scaling==1) {
+000026 50??           00894         MOVF    r0x00, W
+000028 0A01           00895         XORLW   0x01
+00002A E1??           00896         BNZ     _00415_DS_
+                      00897 ;       .line   260; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       for(i=0;i<ANALOG
+                            _MAX_CHANNELS;i++) {
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 18
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00002C 6A??           00898         CLRF    r0x01
+                      00899 ; ;multiply lit val:0x02 by variable r0x01 and store in r0x02
+00002E                00900 _00416_DS_:
+                      00901 ;       .line   261; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       Min[i]=0x7FFF;
+00002E 50??           00902         MOVF    r0x01, W
+000030 0D02           00903         MULLW   0x02
+000032 50F4           00904         MOVF    PRODH, W
+000034 6E??           00905         MOVWF   r0x03
+000036 CFF3 F000      00906         MOVFF   PRODL, r0x02
+00003A 0E??           00907         MOVLW   LOW(_Min)
+00003C 24??           00908         ADDWF   r0x02, W
+00003E 6E??           00909         MOVWF   r0x04
+000040 0E??           00910         MOVLW   HIGH(_Min)
+000042 20??           00911         ADDWFC  r0x03, W
+000044 6E??           00912         MOVWF   r0x05
+000046 C??? F???      00913         MOVFF   r0x04, FSR0L
+00004A C??? F???      00914         MOVFF   r0x05, FSR0H
+00004E 68EE           00915         SETF    POSTINC0
+000050 0E7F           00916         MOVLW   0x7f
+000052 6EEF           00917         MOVWF   INDF0
+                      00918 ;       .line   262; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       Max[i]=0;
+000054 0E??           00919         MOVLW   LOW(_Max)
+000056 26??           00920         ADDWF   r0x02, F
+000058 0E??           00921         MOVLW   HIGH(_Max)
+00005A 22??           00922         ADDWFC  r0x03, F
+00005C C??? F???      00923         MOVFF   r0x02, FSR0L
+000060 C??? F???      00924         MOVFF   r0x03, FSR0H
+000064 6AEE           00925         CLRF    POSTINC0
+000066 6AEF           00926         CLRF    INDF0
+                      00927 ;       .line   260; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       for(i=0;i<ANALOG
+                            _MAX_CHANNELS;i++) {
+000068 2A??           00928         INCF    r0x01, F
+00006A 0E10           00929         MOVLW   0x10
+00006C 5C??           00930         SUBWF   r0x01, W
+00006E E3??           00931         BNC     _00416_DS_
+000070                00932 _00415_DS_:
+                      00933 ;       .line   266; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       Scaling=scaling;
+000070 C??? F???      00934         MOVFF   r0x00, _Scaling
+000074 CFE4 F000      00935         MOVFF   PREINC1, r0x05
+000078 CFE4 F000      00936         MOVFF   PREINC1, r0x04
+00007C CFE4 F000      00937         MOVFF   PREINC1, r0x03
+000080 CFE4 F000      00938         MOVFF   PREINC1, r0x02
+000084 CFE4 F000      00939         MOVFF   PREINC1, r0x01
+000088 CFE4 F000      00940         MOVFF   PREINC1, r0x00
+00008C CFE4 FFD9      00941         MOVFF   PREINC1, FSR2L
+000090 0012           00942         RETURN  
+                      00943 
+                      00944 ; ; Starting pCode block
+                      00945 S_analog__analogGetDistance     code
+000000                00946 _analogGetDistance:
+                      00947 ;       .line   250; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       int analogGetDis
+                            tance(unsigned char chan)
+000000 CFD9 FFE5      00948         MOVFF   FSR2L, POSTDEC1
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 19
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000004 CFE1 FFD9      00949         MOVFF   FSR1L, FSR2L
+000008 C??? F???      00950         MOVFF   r0x00, POSTDEC1
+00000C C??? F???      00951         MOVFF   r0x01, POSTDEC1
+000010 0E02           00952         MOVLW   0x02
+000012 CFDB F000      00953         MOVFF   PLUSW2, r0x00
+                      00954 ; ;multiply lit val:0x02 by variable r0x00 and store in r0x00
+                      00955 ;       .line   252; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       return Dist[chan
+                            ];
+000016 50??           00956         MOVF    r0x00, W
+000018 0D02           00957         MULLW   0x02
+00001A 50F4           00958         MOVF    PRODH, W
+00001C 6E??           00959         MOVWF   r0x01
+00001E CFF3 F000      00960         MOVFF   PRODL, r0x00
+000022 0E??           00961         MOVLW   LOW(_Dist)
+000024 26??           00962         ADDWF   r0x00, F
+000026 0E??           00963         MOVLW   HIGH(_Dist)
+000028 22??           00964         ADDWFC  r0x01, F
+00002A C??? F???      00965         MOVFF   r0x00, FSR0L
+00002E C??? F???      00966         MOVFF   r0x01, FSR0H
+000032 CFEE F000      00967         MOVFF   POSTINC0, r0x00
+000036 CFEF F000      00968         MOVFF   INDF0, r0x01
+00003A C??? F???      00969         MOVFF   r0x01, PRODL
+00003E 50??           00970         MOVF    r0x00, W
+000040 CFE4 F000      00971         MOVFF   PREINC1, r0x01
+000044 CFE4 F000      00972         MOVFF   PREINC1, r0x00
+000048 CFE4 FFD9      00973         MOVFF   PREINC1, FSR2L
+00004C 0012           00974         RETURN  
+                      00975 
+                      00976 ; ; Starting pCode block
+                      00977 S_analog__analogGet     code
+000000                00978 _analogGet:
+                      00979 ;       .line   245; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       int analogGet(un
+                            signed char chan)
+000000 CFD9 FFE5      00980         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      00981         MOVFF   FSR1L, FSR2L
+000008 C??? F???      00982         MOVFF   r0x00, POSTDEC1
+00000C C??? F???      00983         MOVFF   r0x01, POSTDEC1
+000010 0E02           00984         MOVLW   0x02
+000012 CFDB F000      00985         MOVFF   PLUSW2, r0x00
+                      00986 ; ;multiply lit val:0x02 by variable r0x00 and store in r0x00
+                      00987 ;       .line   247; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       return Value[cha
+                            n];
+000016 50??           00988         MOVF    r0x00, W
+000018 0D02           00989         MULLW   0x02
+00001A 50F4           00990         MOVF    PRODH, W
+00001C 6E??           00991         MOVWF   r0x01
+00001E CFF3 F000      00992         MOVFF   PRODL, r0x00
+000022 0E??           00993         MOVLW   LOW(_Value)
+000024 26??           00994         ADDWF   r0x00, F
+000026 0E??           00995         MOVLW   HIGH(_Value)
+000028 22??           00996         ADDWFC  r0x01, F
+00002A C??? F???      00997         MOVFF   r0x00, FSR0L
+00002E C??? F???      00998         MOVFF   r0x01, FSR0H
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 20
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000032 CFEE F000      00999         MOVFF   POSTINC0, r0x00
+000036 CFEF F000      01000         MOVFF   INDF0, r0x01
+00003A C??? F???      01001         MOVFF   r0x01, PRODL
+00003E 50??           01002         MOVF    r0x00, W
+000040 CFE4 F000      01003         MOVFF   PREINC1, r0x01
+000044 CFE4 F000      01004         MOVFF   PREINC1, r0x00
+000048 CFE4 FFD9      01005         MOVFF   PREINC1, FSR2L
+00004C 0012           01006         RETURN  
+                      01007 
+                      01008 ; ; Starting pCode block
+                      01009 S_analog__analogSet     code
+000000                01010 _analogSet:
+                      01011 ;       .line   233; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       void analogSet(u
+                            nsigned char chan, int val)
+000000 CFD9 FFE5      01012         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      01013         MOVFF   FSR1L, FSR2L
+000008 C??? F???      01014         MOVFF   r0x00, POSTDEC1
+00000C C??? F???      01015         MOVFF   r0x01, POSTDEC1
+000010 C??? F???      01016         MOVFF   r0x02, POSTDEC1
+000014 C??? F???      01017         MOVFF   r0x03, POSTDEC1
+000018 C??? F???      01018         MOVFF   r0x04, POSTDEC1
+00001C C??? F???      01019         MOVFF   r0x05, POSTDEC1
+000020 0E02           01020         MOVLW   0x02
+000022 CFDB F000      01021         MOVFF   PLUSW2, r0x00
+000026 0E03           01022         MOVLW   0x03
+000028 CFDB F000      01023         MOVFF   PLUSW2, r0x01
+00002C 0E04           01024         MOVLW   0x04
+00002E CFDB F000      01025         MOVFF   PLUSW2, r0x02
+                      01026 ; ;multiply lit val:0x02 by variable r0x00 and store in r0x00
+                      01027 ;       .line   237; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       inValue[chan] = 
+                            val;
+000032 50??           01028         MOVF    r0x00, W
+000034 0D02           01029         MULLW   0x02
+000036 50F4           01030         MOVF    PRODH, W
+000038 6E??           01031         MOVWF   r0x03
+00003A CFF3 F000      01032         MOVFF   PRODL, r0x00
+00003E 0E??           01033         MOVLW   LOW(_inValue)
+000040 24??           01034         ADDWF   r0x00, W
+000042 6E??           01035         MOVWF   r0x04
+000044 0E??           01036         MOVLW   HIGH(_inValue)
+000046 20??           01037         ADDWFC  r0x03, W
+000048 6E??           01038         MOVWF   r0x05
+00004A C??? F???      01039         MOVFF   r0x04, FSR0L
+00004E C??? F???      01040         MOVFF   r0x05, FSR0H
+000052 C??? F???      01041         MOVFF   r0x01, POSTINC0
+000056 C??? F???      01042         MOVFF   r0x02, INDF0
+                      01043 ;       .line   238; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       d = oldValue[cha
+                            n] - val;
+00005A 0E??           01044         MOVLW   LOW(_oldValue)
+00005C 24??           01045         ADDWF   r0x00, W
+00005E 6E??           01046         MOVWF   r0x04
+000060 0E??           01047         MOVLW   HIGH(_oldValue)
+000062 20??           01048         ADDWFC  r0x03, W
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 21
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000064 6E??           01049         MOVWF   r0x05
+000066 C??? F???      01050         MOVFF   r0x04, FSR0L
+00006A C??? F???      01051         MOVFF   r0x05, FSR0H
+00006E CFEE F000      01052         MOVFF   POSTINC0, r0x04
+000072 CFEF F000      01053         MOVFF   INDF0, r0x05
+000076 50??           01054         MOVF    r0x01, W
+000078 5C??           01055         SUBWF   r0x04, W
+00007A 6E??           01056         MOVWF   r0x01
+00007C 50??           01057         MOVF    r0x02, W
+00007E 58??           01058         SUBWFB  r0x05, W
+000080 6E??           01059         MOVWF   r0x02
+                      01060 ;       .line   239; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       Dist[chan] = d;
+000082 0E??           01061         MOVLW   LOW(_Dist)
+000084 26??           01062         ADDWF   r0x00, F
+000086 0E??           01063         MOVLW   HIGH(_Dist)
+000088 22??           01064         ADDWFC  r0x03, F
+00008A C??? F???      01065         MOVFF   r0x00, FSR0L
+00008E C??? F???      01066         MOVFF   r0x03, FSR0H
+000092 C??? F???      01067         MOVFF   r0x01, POSTINC0
+000096 C??? F???      01068         MOVFF   r0x02, INDF0
+                      01069 ;       .line   240; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(d < 0) d = -d
+                            ;
+00009A 80D8           01070         BSF     STATUS, 0
+00009C AE??           01071         BTFSS   r0x02, 7
+00009E 90D8           01072         BCF     STATUS, 0
+0000A0 E3??           01073         BNC     _00381_DS_
+0000A2 1E??           01074         COMF    r0x02, F
+0000A4 6C??           01075         NEGF    r0x01
+0000A6 B4D8           01076         BTFSC   STATUS, 2
+0000A8 2A??           01077         INCF    r0x02, F
+0000AA                01078 _00381_DS_:
+                      01079 ;       .line   241; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(d < 3) d = 0;
+0000AA 50??           01080         MOVF    r0x02, W
+0000AC 0F80           01081         ADDLW   0x80
+0000AE 0F80           01082         ADDLW   0x80
+0000B0 E1??           01083         BNZ     _00398_DS_
+0000B2 0E03           01084         MOVLW   0x03
+0000B4 5C??           01085         SUBWF   r0x01, W
+0000B6                01086 _00398_DS_:
+0000B6 E2??           01087         BC      _00383_DS_
+0000B8 6A??           01088         CLRF    r0x01
+0000BA 6A??           01089         CLRF    r0x02
+0000BC                01090 _00383_DS_:
+                      01091 ;       .line   242; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(d == 0) Dist[
+                            chan] = 0;
+0000BC 50??           01092         MOVF    r0x01, W
+0000BE 10??           01093         IORWF   r0x02, W
+0000C0 E1??           01094         BNZ     _00386_DS_
+0000C2 C??? F???      01095         MOVFF   r0x00, FSR0L
+0000C6 C??? F???      01096         MOVFF   r0x03, FSR0H
+0000CA 0E00           01097         MOVLW   0x00
+0000CC 6AEE           01098         CLRF    POSTINC0
+0000CE 6AEF           01099         CLRF    INDF0
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 22
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0000D0                01100 _00386_DS_:
+0000D0 CFE4 F000      01101         MOVFF   PREINC1, r0x05
+0000D4 CFE4 F000      01102         MOVFF   PREINC1, r0x04
+0000D8 CFE4 F000      01103         MOVFF   PREINC1, r0x03
+0000DC CFE4 F000      01104         MOVFF   PREINC1, r0x02
+0000E0 CFE4 F000      01105         MOVFF   PREINC1, r0x01
+0000E4 CFE4 F000      01106         MOVFF   PREINC1, r0x00
+0000E8 CFE4 FFD9      01107         MOVFF   PREINC1, FSR2L
+0000EC 0012           01108         RETURN  
+                      01109 
+                      01110 ; ; Starting pCode block
+                      01111 S_analog__analogSetMode code
+000000                01112 _analogSetMode:
+                      01113 ;       .line   228; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       void analogSetMo
+                            de(unsigned char mode) // scale : bit0 = scale_on ; bit1 = num_on(=text_off) ; bit2 = cross_inval
+000000 CFD9 FFE5      01114         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      01115         MOVFF   FSR1L, FSR2L
+000008 0E02           01116         MOVLW   0x02
+00000A CFDB F000      01117         MOVFF   PLUSW2, _Mode
+                      01118 ;       .line   230; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       Mode = mode;
+00000E CFE4 FFD9      01119         MOVFF   PREINC1, FSR2L
+000012 0012           01120         RETURN  
+                      01121 
+                      01122 ; ; Starting pCode block
+                      01123 S_analog__analogSend    code
+000000                01124 _analogSend:
+                      01125 ;       .line   165; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       char analogSend(
+                            )
+000000 C??? F???      01126         MOVFF   r0x00, POSTDEC1
+000004 C??? F???      01127         MOVFF   r0x01, POSTDEC1
+000008 C??? F???      01128         MOVFF   r0x02, POSTDEC1
+00000C C??? F???      01129         MOVFF   r0x03, POSTDEC1
+000010 C??? F???      01130         MOVFF   r0x04, POSTDEC1
+000014 C??? F???      01131         MOVFF   r0x05, POSTDEC1
+000018 C??? F???      01132         MOVFF   r0x06, POSTDEC1
+00001C C??? F???      01133         MOVFF   r0x07, POSTDEC1
+000020 C??? F???      01134         MOVFF   r0x08, POSTDEC1
+000024 C??? F???      01135         MOVFF   r0x09, POSTDEC1
+000028 C??? F???      01136         MOVFF   r0x0a, POSTDEC1
+00002C C??? F???      01137         MOVFF   r0x0b, POSTDEC1
+000030 C??? F???      01138         MOVFF   r0x0c, POSTDEC1
+                      01139 ;       .line   168; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       unsigned char lo
+                            op = 0, count = 0, len = 0;
+000034 6A??           01140         CLRF    r0x00
+                      01141 ;       .line   172; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       while((count < 4
+                            ) && (loop++ < ANALOG_MAX_CHANNELS)){
+000036 6A??           01142         CLRF    r0x01
+000038 6A??           01143         CLRF    r0x02
+00003A                01144 _00279_DS_:
+00003A 0E04           01145         MOVLW   0x04
+00003C 5C??           01146         SUBWF   r0x02, W
+00003E B0D8           01147         BTFSC   STATUS, 0
+000040 D???           01148         BRA     _00307_DS_
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 23
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000042 C??? F???      01149         MOVFF   r0x01, r0x03
+000046 2A??           01150         INCF    r0x01, F
+000048 0E10           01151         MOVLW   0x10
+00004A 5C??           01152         SUBWF   r0x03, W
+00004C B0D8           01153         BTFSC   STATUS, 0
+00004E D???           01154         BRA     _00307_DS_
+000050 ????           01155         BANKSEL _analogSend_chan_1_105
+                      01156 ;       .line   173; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       chan++;
+000052 2B??           01157         INCF    _analogSend_chan_1_105, F, B
+                      01158 ;       .line   174; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(chan >= ANALO
+                            G_MAX_CHANNELS) {
+000054 0E10           01159         MOVLW   0x10
+                      01160 ; #     SUBWF   _analogSend_chan_1_105, W, B
+                      01161 ; #     BTFSS   STATUS, 0
+                      01162 ; #     GOTO    _00245_DS_
+                      01163 ; #     CLRF    _analogSend_chan_1_105, B
+                      01164 ; #     SWAPF   _analogSend_chan_1_105, W, B
+                      01165 ; removed redundant BANKSEL
+                      01166 ;       .line   175; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       chan = 0;
+000056 5D??           01167         SUBWF   _analogSend_chan_1_105, W, B
+                      01168 ;       .line   177; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(! isSelected(
+                            chan)) continue;
+000058 E3??           01169         BNC     _10434_DS_
+                      01170 ; removed redundant BANKSEL
+00005A 6B??           01171         CLRF    _analogSend_chan_1_105, B
+00005C                01172 _10434_DS_:
+00005C ????           01173         BANKSEL _analogSend_chan_1_105
+00005E 39??           01174         SWAPF   _analogSend_chan_1_105, W, B
+000060 44E8           01175         RLNCF   WREG, W
+000062 0B1F           01176         ANDLW   0x1f
+000064 6E??           01177         MOVWF   r0x03
+000066 6A??           01178         CLRF    r0x04
+000068 0E??           01179         MOVLW   LOW(_Selected)
+00006A 26??           01180         ADDWF   r0x03, F
+00006C 0E??           01181         MOVLW   HIGH(_Selected)
+00006E 22??           01182         ADDWFC  r0x04, F
+000070 C??? F???      01183         MOVFF   r0x03, FSR0L
+000074 C??? F???      01184         MOVFF   r0x04, FSR0H
+000078 CFEF F000      01185         MOVFF   INDF0, r0x03
+00007C 0E07           01186         MOVLW   0x07
+                      01187 ; removed redundant BANKSEL
+00007E 15??           01188         ANDWF   _analogSend_chan_1_105, W, B
+000080 6E??           01189         MOVWF   r0x04
+000082 0E01           01190         MOVLW   0x01
+000084 6E??           01191         MOVWF   r0x05
+000086 0E00           01192         MOVLW   0x00
+000088 6E??           01193         MOVWF   r0x06
+00008A 50??           01194         MOVF    r0x04, W
+00008C E0??           01195         BZ      _00352_DS_
+00008E 6CE8           01196         NEGF    WREG
+000090 90D8           01197         BCF     STATUS, 0
+000092                01198 _00353_DS_:
+000092 36??           01199         RLCF    r0x05, F
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 24
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000094 36??           01200         RLCF    r0x06, F
+000096 0F01           01201         ADDLW   0x01
+000098 E3??           01202         BNC     _00353_DS_
+00009A                01203 _00352_DS_:
+00009A 6A??           01204         CLRF    r0x07
+00009C 50??           01205         MOVF    r0x03, W
+00009E 16??           01206         ANDWF   r0x05, F
+0000A0 50??           01207         MOVF    r0x07, W
+0000A2 16??           01208         ANDWF   r0x06, F
+0000A4 50??           01209         MOVF    r0x05, W
+0000A6 10??           01210         IORWF   r0x06, W
+0000A8 80D8           01211         BSF     STATUS, 0
+0000AA 66E8           01212         TSTFSZ  WREG
+0000AC 90D8           01213         BCF     STATUS, 0
+0000AE 6A??           01214         CLRF    r0x05
+0000B0 36??           01215         RLCF    r0x05, F
+0000B2 50??           01216         MOVF    r0x05, W
+0000B4 A4D8           01217         BTFSS   STATUS, 2
+0000B6 D???           01218         BRA     _00279_DS_
+                      01219 ; ;multiply lit val:0x02 by variable _analogSend_chan_1_105 and store in r0x03
+0000B8 ????           01220         BANKSEL _analogSend_chan_1_105
+                      01221 ;       .line   179; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       v = Value[chan];
+0000BA 51??           01222         MOVF    _analogSend_chan_1_105, W, B
+0000BC 0D02           01223         MULLW   0x02
+0000BE 50F4           01224         MOVF    PRODH, W
+0000C0 6E??           01225         MOVWF   r0x04
+0000C2 CFF3 F000      01226         MOVFF   PRODL, r0x03
+0000C6 0E??           01227         MOVLW   LOW(_Value)
+0000C8 24??           01228         ADDWF   r0x03, W
+0000CA 6E??           01229         MOVWF   r0x05
+0000CC 0E??           01230         MOVLW   HIGH(_Value)
+0000CE 20??           01231         ADDWFC  r0x04, W
+0000D0 6E??           01232         MOVWF   r0x06
+0000D2 C??? F???      01233         MOVFF   r0x05, FSR0L
+0000D6 C??? F???      01234         MOVFF   r0x06, FSR0H
+0000DA CFEE F000      01235         MOVFF   POSTINC0, r0x05
+0000DE CFEF F000      01236         MOVFF   INDF0, r0x06
+0000E2 ????           01237         BANKSEL _Mode
+                      01238 ;       .line   180; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(Mode & AMODE_
+                            SCALE) { // scale :
+0000E4 A1??           01239         BTFSS   _Mode, 0, B
+0000E6 D???           01240         BRA     _00260_DS_
+                      01241 ;       .line   181; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(v < Min[chan]
+                            ) v = 0;
+0000E8 0E??           01242         MOVLW   LOW(_Min)
+0000EA 24??           01243         ADDWF   r0x03, W
+0000EC 6E??           01244         MOVWF   r0x07
+0000EE 0E??           01245         MOVLW   HIGH(_Min)
+0000F0 20??           01246         ADDWFC  r0x04, W
+0000F2 6E??           01247         MOVWF   r0x08
+0000F4 C??? F???      01248         MOVFF   r0x07, FSR0L
+0000F8 C??? F???      01249         MOVFF   r0x08, FSR0H
+0000FC CFEE F000      01250         MOVFF   POSTINC0, r0x07
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 25
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000100 CFEF F000      01251         MOVFF   INDF0, r0x08
+000104 50??           01252         MOVF    r0x06, W
+000106 0F80           01253         ADDLW   0x80
+000108 6EF3           01254         MOVWF   PRODL
+00010A 50??           01255         MOVF    r0x08, W
+00010C 0F80           01256         ADDLW   0x80
+00010E 5CF3           01257         SUBWF   PRODL, W
+000110 E1??           01258         BNZ     _00356_DS_
+000112 50??           01259         MOVF    r0x07, W
+000114 5C??           01260         SUBWF   r0x05, W
+000116                01261 _00356_DS_:
+000116 E2??           01262         BC      _00252_DS_
+000118 6A??           01263         CLRF    r0x05
+00011A 6A??           01264         CLRF    r0x06
+00011C D???           01265         BRA     _00253_DS_
+00011E                01266 _00252_DS_:
+                      01267 ;       .line   182; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       else if(v > Max[
+                            chan]) v = ANALOG_SCALED_MAX;
+00011E 0E??           01268         MOVLW   LOW(_Max)
+000120 26??           01269         ADDWF   r0x03, F
+000122 0E??           01270         MOVLW   HIGH(_Max)
+000124 22??           01271         ADDWFC  r0x04, F
+000126 C??? F???      01272         MOVFF   r0x03, FSR0L
+00012A C??? F???      01273         MOVFF   r0x04, FSR0H
+00012E CFEE F000      01274         MOVFF   POSTINC0, r0x03
+000132 CFEF F000      01275         MOVFF   INDF0, r0x04
+000136 50??           01276         MOVF    r0x04, W
+000138 0F80           01277         ADDLW   0x80
+00013A 6EF3           01278         MOVWF   PRODL
+00013C 50??           01279         MOVF    r0x06, W
+00013E 0F80           01280         ADDLW   0x80
+000140 5CF3           01281         SUBWF   PRODL, W
+000142 E1??           01282         BNZ     _00357_DS_
+000144 50??           01283         MOVF    r0x05, W
+000146 5C??           01284         SUBWF   r0x03, W
+000148                01285 _00357_DS_:
+000148 E2??           01286         BC      _00249_DS_
+00014A 68??           01287         SETF    r0x05
+00014C 0E3F           01288         MOVLW   0x3f
+00014E 6E??           01289         MOVWF   r0x06
+000150 D???           01290         BRA     _00253_DS_
+000152                01291 _00249_DS_:
+                      01292 ;       .line   184; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       ((ANALOG_SCALED_
+                            MAX+1UL) * (v - Min[chan])) / 
+000152 50??           01293         MOVF    r0x07, W
+000154 5C??           01294         SUBWF   r0x05, W
+000156 6E??           01295         MOVWF   r0x09
+000158 50??           01296         MOVF    r0x08, W
+00015A 58??           01297         SUBWFB  r0x06, W
+00015C 6E??           01298         MOVWF   r0x0a
+00015E 6AE8           01299         CLRF    WREG
+000160 BE??           01300         BTFSC   r0x0a, 7
+000162 0EFF           01301         MOVLW   0xff
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 26
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000164 6E??           01302         MOVWF   r0x0b
+                      01303 ; #     MOVWF   r0x0c
+                      01304 ; #     MOVF    r0x0c, W
+                      01305 ;       .line   185; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       (Max[chan] - Min
+                            [chan]) );
+000166 6EE5           01306         MOVWF   POSTDEC1
+000168 50??           01307         MOVF    r0x0b, W
+00016A 6EE5           01308         MOVWF   POSTDEC1
+00016C 50??           01309         MOVF    r0x0a, W
+00016E 6EE5           01310         MOVWF   POSTDEC1
+000170 50??           01311         MOVF    r0x09, W
+000172 6EE5           01312         MOVWF   POSTDEC1
+000174 6AE5           01313         CLRF    POSTDEC1
+000176 6AE5           01314         CLRF    POSTDEC1
+000178 0E40           01315         MOVLW   0x40
+00017A 6EE5           01316         MOVWF   POSTDEC1
+00017C 0E00           01317         MOVLW   0x00
+00017E 6AE5           01318         CLRF    POSTDEC1
+000180 EC?? F0??      01319         CALL    __mullong
+000184 6E??           01320         MOVWF   r0x09
+000186 CFF3 F000      01321         MOVFF   PRODL, r0x0a
+00018A CFF4 F000      01322         MOVFF   PRODH, r0x0b
+00018E CFE9 F000      01323         MOVFF   FSR0L, r0x0c
+000192 0E08           01324         MOVLW   0x08
+000194 26E1           01325         ADDWF   FSR1L, F
+000196 50??           01326         MOVF    r0x07, W
+000198 5C??           01327         SUBWF   r0x03, W
+00019A 6E??           01328         MOVWF   r0x07
+00019C 50??           01329         MOVF    r0x08, W
+00019E 58??           01330         SUBWFB  r0x04, W
+0001A0 6E??           01331         MOVWF   r0x08
+0001A2 6AE8           01332         CLRF    WREG
+0001A4 BE??           01333         BTFSC   r0x08, 7
+0001A6 0EFF           01334         MOVLW   0xff
+0001A8 6E??           01335         MOVWF   r0x03
+                      01336 ; #     MOVWF   r0x04
+                      01337 ; #     MOVF    r0x04, W
+0001AA 6EE5           01338         MOVWF   POSTDEC1
+0001AC 50??           01339         MOVF    r0x03, W
+0001AE 6EE5           01340         MOVWF   POSTDEC1
+0001B0 50??           01341         MOVF    r0x08, W
+0001B2 6EE5           01342         MOVWF   POSTDEC1
+0001B4 50??           01343         MOVF    r0x07, W
+0001B6 6EE5           01344         MOVWF   POSTDEC1
+0001B8 50??           01345         MOVF    r0x0c, W
+0001BA 6EE5           01346         MOVWF   POSTDEC1
+0001BC 50??           01347         MOVF    r0x0b, W
+0001BE 6EE5           01348         MOVWF   POSTDEC1
+0001C0 50??           01349         MOVF    r0x0a, W
+0001C2 6EE5           01350         MOVWF   POSTDEC1
+0001C4 50??           01351         MOVF    r0x09, W
+0001C6 6EE5           01352         MOVWF   POSTDEC1
+0001C8 EC?? F0??      01353         CALL    __divulong
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 27
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0001CC 6E??           01354         MOVWF   r0x03
+0001CE CFF3 F000      01355         MOVFF   PRODL, r0x04
+0001D2 0E08           01356         MOVLW   0x08
+0001D4 26E1           01357         ADDWF   FSR1L, F
+0001D6 50??           01358         MOVF    r0x03, W
+0001D8 6E??           01359         MOVWF   r0x05
+0001DA 50??           01360         MOVF    r0x04, W
+0001DC 6E??           01361         MOVWF   r0x06
+0001DE                01362 _00253_DS_:
+0001DE ????           01363         BANKSEL (_Threshold + 1)
+                      01364 ;       .line   187; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(v <= Threshol
+                            d ) v = 0;
+0001E0 51??           01365         MOVF    (_Threshold + 1), W, B
+0001E2 0F80           01366         ADDLW   0x80
+0001E4 6EF3           01367         MOVWF   PRODL
+0001E6 50??           01368         MOVF    r0x06, W
+0001E8 0F80           01369         ADDLW   0x80
+0001EA 5CF3           01370         SUBWF   PRODL, W
+0001EC E1??           01371         BNZ     _00358_DS_
+0001EE 50??           01372         MOVF    r0x05, W
+                      01373 ; removed redundant BANKSEL
+0001F0 5D??           01374         SUBWF   _Threshold, W, B
+0001F2                01375 _00358_DS_:
+0001F2 E3??           01376         BNC     _00257_DS_
+0001F4 6A??           01377         CLRF    r0x05
+0001F6 6A??           01378         CLRF    r0x06
+0001F8 D???           01379         BRA     _00260_DS_
+0001FA                01380 _00257_DS_:
+0001FA ????           01381         BANKSEL _Threshold
+                      01382 ;       .line   188; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       else if(v >= (AN
+                            ALOG_SCALED_MAX - Threshold)) 
+0001FC 51??           01383         MOVF    _Threshold, W, B
+0001FE 08FF           01384         SUBLW   0xff
+000200 6E??           01385         MOVWF   r0x03
+000202 0E3F           01386         MOVLW   0x3f
+                      01387 ; removed redundant BANKSEL
+000204 55??           01388         SUBFWB  (_Threshold + 1), W, B
+000206 6E??           01389         MOVWF   r0x04
+000208 50??           01390         MOVF    r0x06, W
+00020A 0F80           01391         ADDLW   0x80
+00020C 6EF3           01392         MOVWF   PRODL
+00020E 50??           01393         MOVF    r0x04, W
+000210 0F80           01394         ADDLW   0x80
+000212 5CF3           01395         SUBWF   PRODL, W
+000214 E1??           01396         BNZ     _00359_DS_
+000216 50??           01397         MOVF    r0x03, W
+000218 5C??           01398         SUBWF   r0x05, W
+00021A                01399 _00359_DS_:
+00021A E3??           01400         BNC     _00260_DS_
+                      01401 ;       .line   189; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       v = ANALOG_SCALE
+                            D_MAX;
+00021C 68??           01402         SETF    r0x05
+00021E 0E3F           01403         MOVLW   0x3f
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 28
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000220 6E??           01404         MOVWF   r0x06
+                      01405 ; ;multiply lit val:0x02 by variable _analogSend_chan_1_105 and store in r0x03
+000222                01406 _00260_DS_:
+000222 ????           01407         BANKSEL _analogSend_chan_1_105
+                      01408 ;       .line   191; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       d = v - oldValue
+                            [chan];
+000224 51??           01409         MOVF    _analogSend_chan_1_105, W, B
+000226 0D02           01410         MULLW   0x02
+000228 50F4           01411         MOVF    PRODH, W
+00022A 6E??           01412         MOVWF   r0x04
+00022C CFF3 F000      01413         MOVFF   PRODL, r0x03
+000230 0E??           01414         MOVLW   LOW(_oldValue)
+000232 26??           01415         ADDWF   r0x03, F
+000234 0E??           01416         MOVLW   HIGH(_oldValue)
+000236 22??           01417         ADDWFC  r0x04, F
+000238 C??? F???      01418         MOVFF   r0x03, FSR0L
+00023C C??? F???      01419         MOVFF   r0x04, FSR0H
+000240 CFEE F000      01420         MOVFF   POSTINC0, r0x03
+000244 CFEF F000      01421         MOVFF   INDF0, r0x04
+000248 50??           01422         MOVF    r0x03, W
+00024A 5C??           01423         SUBWF   r0x05, W
+00024C 6E??           01424         MOVWF   r0x03
+00024E 50??           01425         MOVF    r0x04, W
+000250 58??           01426         SUBWFB  r0x06, W
+000252 6E??           01427         MOVWF   r0x04
+                      01428 ;       .line   192; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(d < 0) d = -d
+                            ;
+000254 80D8           01429         BSF     STATUS, 0
+000256 AE??           01430         BTFSS   r0x04, 7
+000258 90D8           01431         BCF     STATUS, 0
+00025A E3??           01432         BNC     _00262_DS_
+00025C 1E??           01433         COMF    r0x04, F
+00025E 6C??           01434         NEGF    r0x03
+000260 B4D8           01435         BTFSC   STATUS, 2
+000262 2A??           01436         INCF    r0x04, F
+000264                01437 _00262_DS_:
+                      01438 ;       .line   194; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       count++;
+000264 2A??           01439         INCF    r0x02, F
+000266 ????           01440         BANKSEL (_Threshold + 1)
+                      01441 ;       .line   196; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(d <= Threshol
+                            d) continue;
+000268 51??           01442         MOVF    (_Threshold + 1), W, B
+00026A 0F80           01443         ADDLW   0x80
+00026C 6EF3           01444         MOVWF   PRODL
+00026E 50??           01445         MOVF    r0x04, W
+000270 0F80           01446         ADDLW   0x80
+000272 5CF3           01447         SUBWF   PRODL, W
+000274 E1??           01448         BNZ     _00361_DS_
+000276 50??           01449         MOVF    r0x03, W
+                      01450 ; removed redundant BANKSEL
+000278 5D??           01451         SUBWF   _Threshold, W, B
+00027A                01452 _00361_DS_:
+00027A B0D8           01453         BTFSC   STATUS, 0
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 29
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00027C D???           01454         BRA     _00279_DS_
+                      01455 ; ;multiply lit val:0x02 by variable _analogSend_chan_1_105 and store in r0x07
+00027E ????           01456         BANKSEL _analogSend_chan_1_105
+                      01457 ;       .line   198; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       oldValue[chan] =
+                             v;
+000280 51??           01458         MOVF    _analogSend_chan_1_105, W, B
+000282 0D02           01459         MULLW   0x02
+000284 50F4           01460         MOVF    PRODH, W
+000286 6E??           01461         MOVWF   r0x08
+000288 CFF3 F000      01462         MOVFF   PRODL, r0x07
+00028C 0E??           01463         MOVLW   LOW(_oldValue)
+00028E 26??           01464         ADDWF   r0x07, F
+000290 0E??           01465         MOVLW   HIGH(_oldValue)
+000292 22??           01466         ADDWFC  r0x08, F
+000294 C??? F???      01467         MOVFF   r0x07, FSR0L
+000298 C??? F???      01468         MOVFF   r0x08, FSR0H
+00029C C??? F???      01469         MOVFF   r0x05, POSTINC0
+0002A0 C??? F???      01470         MOVFF   r0x06, INDF0
+0002A4 ????           01471         BANKSEL _Mode
+                      01472 ;       .line   200; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(Mode & AMODE_
+                            CROSS) {
+0002A6 A5??           01473         BTFSS   _Mode, 2, B
+0002A8 D???           01474         BRA     _00272_DS_
+                      01475 ; ;multiply lit val:0x02 by variable _analogSend_chan_1_105 and store in r0x07
+0002AA ????           01476         BANKSEL _analogSend_chan_1_105
+                      01477 ;       .line   201; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(Dist[chan] !=
+                             0) {
+0002AC 51??           01478         MOVF    _analogSend_chan_1_105, W, B
+0002AE 0D02           01479         MULLW   0x02
+0002B0 50F4           01480         MOVF    PRODH, W
+0002B2 6E??           01481         MOVWF   r0x08
+0002B4 CFF3 F000      01482         MOVFF   PRODL, r0x07
+0002B8 0E??           01483         MOVLW   LOW(_Dist)
+0002BA 24??           01484         ADDWF   r0x07, W
+0002BC 6E??           01485         MOVWF   r0x09
+0002BE 0E??           01486         MOVLW   HIGH(_Dist)
+0002C0 20??           01487         ADDWFC  r0x08, W
+0002C2 6E??           01488         MOVWF   r0x0a
+0002C4 C??? F???      01489         MOVFF   r0x09, FSR0L
+0002C8 C??? F???      01490         MOVFF   r0x0a, FSR0H
+0002CC CFEE F000      01491         MOVFF   POSTINC0, r0x0b
+0002D0 CFEF F000      01492         MOVFF   INDF0, r0x0c
+0002D4 50??           01493         MOVF    r0x0b, W
+0002D6 10??           01494         IORWF   r0x0c, W
+0002D8 B4D8           01495         BTFSC   STATUS, 2
+0002DA D???           01496         BRA     _00272_DS_
+                      01497 ;       .line   202; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       d = v - inValue[
+                            chan];
+0002DC 0E??           01498         MOVLW   LOW(_inValue)
+0002DE 26??           01499         ADDWF   r0x07, F
+0002E0 0E??           01500         MOVLW   HIGH(_inValue)
+0002E2 22??           01501         ADDWFC  r0x08, F
+0002E4 C??? F???      01502         MOVFF   r0x07, FSR0L
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 30
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0002E8 C??? F???      01503         MOVFF   r0x08, FSR0H
+0002EC CFEE F000      01504         MOVFF   POSTINC0, r0x07
+0002F0 CFEF F000      01505         MOVFF   INDF0, r0x08
+0002F4 50??           01506         MOVF    r0x07, W
+0002F6 5C??           01507         SUBWF   r0x05, W
+0002F8 6E??           01508         MOVWF   r0x03
+0002FA 50??           01509         MOVF    r0x08, W
+0002FC 58??           01510         SUBWFB  r0x06, W
+                      01511 ; #     MOVWF   r0x04
+                      01512 ; #     MOVF    r0x03, W
+                      01513 ; #     IORWF   r0x04, W
+                      01514 ;       .line   203; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if((d != 0) && (
+                            (d > 0) == (Dist[chan] > 0))) { 
+0002FE 6E??           01515         MOVWF   r0x04
+000300 10??           01516         IORWF   r0x03, W
+000302 E0??           01517         BZ      _00266_DS_
+000304 50??           01518         MOVF    r0x04, W
+000306 0F80           01519         ADDLW   0x80
+000308 0F80           01520         ADDLW   0x80
+00030A E1??           01521         BNZ     _00364_DS_
+00030C 0E01           01522         MOVLW   0x01
+00030E 5C??           01523         SUBWF   r0x03, W
+000310                01524 _00364_DS_:
+000310 6A??           01525         CLRF    r0x07
+000312 36??           01526         RLCF    r0x07, F
+000314 50??           01527         MOVF    r0x0c, W
+000316 0F80           01528         ADDLW   0x80
+000318 0F80           01529         ADDLW   0x80
+00031A E1??           01530         BNZ     _00366_DS_
+00031C 0E01           01531         MOVLW   0x01
+00031E 5C??           01532         SUBWF   r0x0b, W
+000320                01533 _00366_DS_:
+000320 6A??           01534         CLRF    r0x0b
+000322 36??           01535         RLCF    r0x0b, F
+000324 50??           01536         MOVF    r0x07, W
+000326 18??           01537         XORWF   r0x0b, W
+000328 E1??           01538         BNZ     _00266_DS_
+                      01539 ;       .line   204; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       Dist[chan] = d;
+00032A C??? F???      01540         MOVFF   r0x09, FSR0L
+00032E C??? F???      01541         MOVFF   r0x0a, FSR0H
+000332 C??? F???      01542         MOVFF   r0x03, POSTINC0
+000336 C??? F???      01543         MOVFF   r0x04, INDF0
+                      01544 ;       .line   205; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       continue; 
+00033A D???           01545         BRA     _00279_DS_
+                      01546 ; ;multiply lit val:0x02 by variable _analogSend_chan_1_105 and store in r0x03
+00033C                01547 _00266_DS_:
+00033C ????           01548         BANKSEL _analogSend_chan_1_105
+                      01549 ;       .line   207; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       else Dist[chan] 
+                            = 0;
+00033E 51??           01550         MOVF    _analogSend_chan_1_105, W, B
+000340 0D02           01551         MULLW   0x02
+000342 50F4           01552         MOVF    PRODH, W
+000344 6E??           01553         MOVWF   r0x04
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 31
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000346 CFF3 F000      01554         MOVFF   PRODL, r0x03
+00034A 0E??           01555         MOVLW   LOW(_Dist)
+00034C 26??           01556         ADDWF   r0x03, F
+00034E 0E??           01557         MOVLW   HIGH(_Dist)
+000350 22??           01558         ADDWFC  r0x04, F
+000352 C??? F???      01559         MOVFF   r0x03, FSR0L
+000356 C??? F???      01560         MOVFF   r0x04, FSR0H
+00035A 6AEE           01561         CLRF    POSTINC0
+00035C 6AEF           01562         CLRF    INDF0
+00035E                01563 _00272_DS_:
+00035E ????           01564         BANKSEL _Mode
+                      01565 ;       .line   211; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(Mode & AMODE_
+                            NUM) {
+000360 A3??           01566         BTFSS   _Mode, 1, B
+000362 D???           01567         BRA     _00276_DS_
+                      01568 ;       .line   212; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if( !len ) buf[l
+                            en++] = 'B';
+000364 50??           01569         MOVF    r0x00, W
+000366 E1??           01570         BNZ     _00274_DS_
+000368 C??? F???      01571         MOVFF   r0x00, r0x03
+00036C 2A??           01572         INCF    r0x00, F
+00036E 6A??           01573         CLRF    r0x04
+000370 0E??           01574         MOVLW   LOW(_analogSend_buf_1_105)
+000372 26??           01575         ADDWF   r0x03, F
+000374 0E??           01576         MOVLW   HIGH(_analogSend_buf_1_105)
+000376 22??           01577         ADDWFC  r0x04, F
+000378 C??? F???      01578         MOVFF   r0x03, FSR0L
+00037C C??? F???      01579         MOVFF   r0x04, FSR0H
+000380 0E42           01580         MOVLW   0x42
+000382 6EEF           01581         MOVWF   INDF0
+000384                01582 _00274_DS_:
+                      01583 ;       .line   213; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       buf[len++] = cha
+                            n + 100;
+000384 C??? F???      01584         MOVFF   r0x00, r0x03
+000388 2A??           01585         INCF    r0x00, F
+00038A 6A??           01586         CLRF    r0x04
+00038C 0E??           01587         MOVLW   LOW(_analogSend_buf_1_105)
+00038E 26??           01588         ADDWF   r0x03, F
+000390 0E??           01589         MOVLW   HIGH(_analogSend_buf_1_105)
+000392 22??           01590         ADDWFC  r0x04, F
+000394 0E64           01591         MOVLW   0x64
+000396 ????           01592         BANKSEL _analogSend_chan_1_105
+000398 25??           01593         ADDWF   _analogSend_chan_1_105, W, B
+00039A 6E??           01594         MOVWF   r0x07
+00039C C??? F???      01595         MOVFF   r0x03, FSR0L
+0003A0 C??? F???      01596         MOVFF   r0x04, FSR0H
+0003A4 C??? F???      01597         MOVFF   r0x07, INDF0
+                      01598 ;       .line   214; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       buf[len++] = v >
+                            > 8;
+0003A8 C??? F???      01599         MOVFF   r0x00, r0x03
+0003AC 2A??           01600         INCF    r0x00, F
+0003AE 6A??           01601         CLRF    r0x04
+0003B0 0E??           01602         MOVLW   LOW(_analogSend_buf_1_105)
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 32
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0003B2 26??           01603         ADDWF   r0x03, F
+0003B4 0E??           01604         MOVLW   HIGH(_analogSend_buf_1_105)
+0003B6 22??           01605         ADDWFC  r0x04, F
+0003B8 50??           01606         MOVF    r0x06, W
+0003BA 6E??           01607         MOVWF   r0x07
+0003BC C??? F???      01608         MOVFF   r0x03, FSR0L
+0003C0 C??? F???      01609         MOVFF   r0x04, FSR0H
+0003C4 C??? F???      01610         MOVFF   r0x07, INDF0
+                      01611 ;       .line   215; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       buf[len++] = v &
+                             255;
+0003C8 C??? F???      01612         MOVFF   r0x00, r0x03
+0003CC 2A??           01613         INCF    r0x00, F
+0003CE 6A??           01614         CLRF    r0x04
+0003D0 0E??           01615         MOVLW   LOW(_analogSend_buf_1_105)
+0003D2 26??           01616         ADDWF   r0x03, F
+0003D4 0E??           01617         MOVLW   HIGH(_analogSend_buf_1_105)
+0003D6 22??           01618         ADDWFC  r0x04, F
+0003D8 50??           01619         MOVF    r0x05, W
+0003DA 6E??           01620         MOVWF   r0x07
+0003DC C??? F???      01621         MOVFF   r0x03, FSR0L
+0003E0 C??? F???      01622         MOVFF   r0x04, FSR0H
+0003E4 C??? F???      01623         MOVFF   r0x07, INDF0
+0003E8 D???           01624         BRA     _00279_DS_
+0003EA                01625 _00276_DS_:
+                      01626 ;       .line   217; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       else printf("C A
+                             %d %d\n",chan,v);
+0003EA C??? F???      01627         MOVFF   _analogSend_chan_1_105, r0x03
+0003EE 50??           01628         MOVF    r0x06, W
+0003F0 6EE5           01629         MOVWF   POSTDEC1
+0003F2 50??           01630         MOVF    r0x05, W
+0003F4 6EE5           01631         MOVWF   POSTDEC1
+0003F6 6AE5           01632         CLRF    POSTDEC1
+0003F8 50??           01633         MOVF    r0x03, W
+0003FA 6EE5           01634         MOVWF   POSTDEC1
+0003FC 0E??           01635         MOVLW   UPPER(___str_0)
+0003FE 6EE5           01636         MOVWF   POSTDEC1
+000400 0E??           01637         MOVLW   HIGH(___str_0)
+000402 6EE5           01638         MOVWF   POSTDEC1
+000404 0E??           01639         MOVLW   LOW(___str_0)
+000406 6EE5           01640         MOVWF   POSTDEC1
+000408 EC?? F0??      01641         CALL    _printf
+00040C 0E07           01642         MOVLW   0x07
+00040E 26E1           01643         ADDWF   FSR1L, F
+000410 D???           01644         BRA     _00279_DS_
+000412                01645 _00307_DS_:
+000412 C??? F???      01646         MOVFF   r0x02, r0x01
+                      01647 ;       .line   220; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if((len != 0) &&
+                             (Mode & AMODE_NUM)) {
+000416 50??           01648         MOVF    r0x00, W
+000418 E0??           01649         BZ      _00283_DS_
+00041A ????           01650         BANKSEL _Mode
+00041C A3??           01651         BTFSS   _Mode, 1, B
+00041E D???           01652         BRA     _00283_DS_
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 33
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      01653 ;       .line   221; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       buf[len++] = '\n
+                            ';
+000420 C??? F???      01654         MOVFF   r0x00, r0x02
+000424 2A??           01655         INCF    r0x00, F
+000426 6A??           01656         CLRF    r0x03
+000428 0E??           01657         MOVLW   LOW(_analogSend_buf_1_105)
+00042A 26??           01658         ADDWF   r0x02, F
+00042C 0E??           01659         MOVLW   HIGH(_analogSend_buf_1_105)
+00042E 22??           01660         ADDWFC  r0x03, F
+000430 C??? F???      01661         MOVFF   r0x02, FSR0L
+000434 C??? F???      01662         MOVFF   r0x03, FSR0H
+000438 0E0A           01663         MOVLW   0x0a
+00043A 6EEF           01664         MOVWF   INDF0
+                      01665 ;       .line   222; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       fraiseSend(buf,l
+                            en);
+00043C 50??           01666         MOVF    r0x00, W
+00043E 6EE5           01667         MOVWF   POSTDEC1
+000440 0E80           01668         MOVLW   0x80
+000442 6EE5           01669         MOVWF   POSTDEC1
+000444 0E??           01670         MOVLW   HIGH(_analogSend_buf_1_105)
+000446 6EE5           01671         MOVWF   POSTDEC1
+000448 0E??           01672         MOVLW   LOW(_analogSend_buf_1_105)
+00044A 6EE5           01673         MOVWF   POSTDEC1
+00044C EC?? F0??      01674         CALL    _fraiseSend
+000450 0E04           01675         MOVLW   0x04
+000452 26E1           01676         ADDWF   FSR1L, F
+000454                01677 _00283_DS_:
+                      01678 ;       .line   225; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       return count;   
+                                    
+000454 50??           01679         MOVF    r0x01, W
+000456 CFE4 F000      01680         MOVFF   PREINC1, r0x0c
+00045A CFE4 F000      01681         MOVFF   PREINC1, r0x0b
+00045E CFE4 F000      01682         MOVFF   PREINC1, r0x0a
+000462 CFE4 F000      01683         MOVFF   PREINC1, r0x09
+000466 CFE4 F000      01684         MOVFF   PREINC1, r0x08
+00046A CFE4 F000      01685         MOVFF   PREINC1, r0x07
+00046E CFE4 F000      01686         MOVFF   PREINC1, r0x06
+000472 CFE4 F000      01687         MOVFF   PREINC1, r0x05
+000476 CFE4 F000      01688         MOVFF   PREINC1, r0x04
+00047A CFE4 F000      01689         MOVFF   PREINC1, r0x03
+00047E CFE4 F000      01690         MOVFF   PREINC1, r0x02
+000482 CFE4 F000      01691         MOVFF   PREINC1, r0x01
+000486 CFE4 F000      01692         MOVFF   PREINC1, r0x00
+00048A 0012           01693         RETURN  
+                      01694 
+                      01695 ; ; Starting pCode block
+                      01696 S_analog__analogService code
+000000                01697 _analogService:
+                      01698 ;       .line   107; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       unsigned char an
+                            alogService(void)
+000000 C??? F???      01699         MOVFF   r0x00, POSTDEC1
+000004 C??? F???      01700         MOVFF   r0x01, POSTDEC1
+000008 C??? F???      01701         MOVFF   r0x02, POSTDEC1
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 34
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00000C C??? F???      01702         MOVFF   r0x03, POSTDEC1
+000010 C??? F???      01703         MOVFF   r0x04, POSTDEC1
+000014 C??? F???      01704         MOVFF   r0x05, POSTDEC1
+000018 C??? F???      01705         MOVFF   r0x06, POSTDEC1
+00001C C??? F???      01706         MOVFF   r0x07, POSTDEC1
+000020 C??? F???      01707         MOVFF   r0x08, POSTDEC1
+000024 C??? F???      01708         MOVFF   r0x09, POSTDEC1
+000028 C??? F???      01709         MOVFF   r0x0a, POSTDEC1
+                      01710 ;       .line   113; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(ADCON0bits.GO
+                            ) return chan;
+00002C A2??           01711         BTFSS   _ADCON0bits, 1
+00002E D???           01712         BRA     _00166_DS_
+000030 ????           01713         BANKSEL _analogService_chan_1_98
+000032 51??           01714         MOVF    _analogService_chan_1_98, W, B
+000034 EF?? F0??      01715         GOTO    _00183_DS_
+000038                01716 _00166_DS_:
+000038 ????           01717         BANKSEL _analogService_conv_1_98
+                      01718 ;       .line   115; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(conv) {
+00003A 51??           01719         MOVF    _analogService_conv_1_98, W, B
+00003C B4D8           01720         BTFSC   STATUS, 2
+00003E D???           01721         BRA     _00176_DS_
+                      01722 ; ;multiply lit val:0x02 by variable _analogService_chan_1_98 and store in r0x00
+000040 ????           01723         BANKSEL _analogService_chan_1_98
+                      01724 ;       .line   116; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       v = Value[chan];
+000042 51??           01725         MOVF    _analogService_chan_1_98, W, B
+000044 0D02           01726         MULLW   0x02
+000046 50F4           01727         MOVF    PRODH, W
+000048 6E??           01728         MOVWF   r0x01
+00004A CFF3 F000      01729         MOVFF   PRODL, r0x00
+00004E 0E??           01730         MOVLW   LOW(_Value)
+000050 26??           01731         ADDWF   r0x00, F
+000052 0E??           01732         MOVLW   HIGH(_Value)
+000054 22??           01733         ADDWFC  r0x01, F
+000056 C??? F???      01734         MOVFF   r0x00, FSR0L
+00005A C??? F???      01735         MOVFF   r0x01, FSR0H
+00005E CFEE F000      01736         MOVFF   POSTINC0, r0x00
+000062 CFEF F000      01737         MOVFF   INDF0, r0x01
+                      01738 ;       .line   118; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       pin = Pins[chan]
+                            ;
+000066 0E??           01739         MOVLW   LOW(_Pins)
+                      01740 ; removed redundant BANKSEL
+000068 25??           01741         ADDWF   _analogService_chan_1_98, W, B
+00006A 6E??           01742         MOVWF   r0x02
+00006C 6A??           01743         CLRF    r0x03
+00006E 0E??           01744         MOVLW   HIGH(_Pins)
+000070 22??           01745         ADDWFC  r0x03, F
+000072 C??? F???      01746         MOVFF   r0x02, FSR0L
+000076 C??? F???      01747         MOVFF   r0x03, FSR0H
+00007A CFEF F000      01748         MOVFF   INDF0, r0x02
+                      01749 ;       .line   119; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(pin != 255) {
+00007E 50??           01750         MOVF    r0x02, W
+000080 0AFF           01751         XORLW   0xff
+000082 E1??           01752         BNZ     _00213_DS_
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 35
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000084 D???           01753         BRA     _00168_DS_
+000086                01754 _00213_DS_:
+                      01755 ;       .line   120; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       bitclr(*(&TRISA+
+                            (pin>>4)),pin&7);
+000086 38??           01756         SWAPF   r0x02, W
+000088 0B0F           01757         ANDLW   0x0f
+00008A 6E??           01758         MOVWF   r0x03
+00008C 0E??           01759         MOVLW   LOW(_TRISA)
+00008E 24??           01760         ADDWF   r0x03, W
+000090 6E??           01761         MOVWF   r0x04
+000092 6A??           01762         CLRF    r0x05
+000094 0E??           01763         MOVLW   HIGH(_TRISA)
+000096 22??           01764         ADDWFC  r0x05, F
+000098 6A??           01765         CLRF    r0x06
+00009A 0E??           01766         MOVLW   LOW(_TRISA)
+00009C 26??           01767         ADDWF   r0x03, F
+00009E 0E??           01768         MOVLW   HIGH(_TRISA)
+0000A0 22??           01769         ADDWFC  r0x06, F
+0000A2 C??? F???      01770         MOVFF   r0x03, FSR0L
+0000A6 C??? F???      01771         MOVFF   r0x06, FSR0H
+0000AA CFEF F000      01772         MOVFF   INDF0, r0x03
+0000AE 0E07           01773         MOVLW   0x07
+0000B0 14??           01774         ANDWF   r0x02, W
+0000B2 6E??           01775         MOVWF   r0x06
+0000B4 0E01           01776         MOVLW   0x01
+0000B6 6E??           01777         MOVWF   r0x07
+0000B8 50??           01778         MOVF    r0x06, W
+0000BA E0??           01779         BZ      _00215_DS_
+0000BC 6CE8           01780         NEGF    WREG
+0000BE 90D8           01781         BCF     STATUS, 0
+0000C0                01782 _00216_DS_:
+0000C0 36??           01783         RLCF    r0x07, F
+0000C2 0F01           01784         ADDLW   0x01
+0000C4 E3??           01785         BNC     _00216_DS_
+0000C6                01786 _00215_DS_:
+0000C6 1C??           01787         COMF    r0x07, W
+                      01788 ; #     MOVWF   r0x06
+                      01789 ; #     MOVF    r0x06, W
+0000C8 6E??           01790         MOVWF   r0x06
+0000CA 16??           01791         ANDWF   r0x03, F
+0000CC C??? F???      01792         MOVFF   r0x04, FSR0L
+0000D0 C??? F???      01793         MOVFF   r0x05, FSR0H
+0000D4 C??? F???      01794         MOVFF   r0x03, INDF0
+                      01795 ;       .line   121; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       bitclr(*(&LATA+(
+                            pin>>4)),pin&7);
+0000D8 38??           01796         SWAPF   r0x02, W
+0000DA 0B0F           01797         ANDLW   0x0f
+0000DC 6E??           01798         MOVWF   r0x03
+0000DE 0E??           01799         MOVLW   LOW(_LATA)
+0000E0 24??           01800         ADDWF   r0x03, W
+0000E2 6E??           01801         MOVWF   r0x04
+0000E4 6A??           01802         CLRF    r0x05
+0000E6 0E??           01803         MOVLW   HIGH(_LATA)
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 36
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0000E8 22??           01804         ADDWFC  r0x05, F
+0000EA 6A??           01805         CLRF    r0x06
+0000EC 0E??           01806         MOVLW   LOW(_LATA)
+0000EE 26??           01807         ADDWF   r0x03, F
+0000F0 0E??           01808         MOVLW   HIGH(_LATA)
+0000F2 22??           01809         ADDWFC  r0x06, F
+0000F4 C??? F???      01810         MOVFF   r0x03, FSR0L
+0000F8 C??? F???      01811         MOVFF   r0x06, FSR0H
+0000FC CFEF F000      01812         MOVFF   INDF0, r0x03
+000100 0E07           01813         MOVLW   0x07
+000102 14??           01814         ANDWF   r0x02, W
+000104 6E??           01815         MOVWF   r0x06
+000106 0E01           01816         MOVLW   0x01
+000108 6E??           01817         MOVWF   r0x07
+00010A 50??           01818         MOVF    r0x06, W
+00010C E0??           01819         BZ      _00219_DS_
+00010E 6CE8           01820         NEGF    WREG
+000110 90D8           01821         BCF     STATUS, 0
+000112                01822 _00220_DS_:
+000112 36??           01823         RLCF    r0x07, F
+000114 0F01           01824         ADDLW   0x01
+000116 E3??           01825         BNC     _00220_DS_
+000118                01826 _00219_DS_:
+000118 1C??           01827         COMF    r0x07, W
+                      01828 ; #     MOVWF   r0x06
+                      01829 ; #     MOVF    r0x06, W
+00011A 6E??           01830         MOVWF   r0x06
+00011C 16??           01831         ANDWF   r0x03, F
+00011E C??? F???      01832         MOVFF   r0x04, FSR0L
+000122 C??? F???      01833         MOVFF   r0x05, FSR0H
+000126 C??? F???      01834         MOVFF   r0x03, INDF0
+                      01835 ; ;multiply lit val:0x02 by variable _analogService_chan_1_98 and store in r0x03
+00012A                01836 _00168_DS_:
+00012A ????           01837         BANKSEL _analogService_chan_1_98
+                      01838 ;       .line   123; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       Value[chan] = v 
+                            - (v>>ANALOG_FILTER) + ADRESL+(ADRESH<<8); 
+00012C 51??           01839         MOVF    _analogService_chan_1_98, W, B
+00012E 0D02           01840         MULLW   0x02
+000130 50F4           01841         MOVF    PRODH, W
+000132 6E??           01842         MOVWF   r0x04
+000134 CFF3 F000      01843         MOVFF   PRODL, r0x03
+000138 0E??           01844         MOVLW   LOW(_Value)
+00013A 26??           01845         ADDWF   r0x03, F
+00013C 0E??           01846         MOVLW   HIGH(_Value)
+00013E 22??           01847         ADDWFC  r0x04, F
+000140 34??           01848         RLCF    r0x01, W
+000142 30??           01849         RRCF    r0x01, W
+000144 6E??           01850         MOVWF   r0x06
+000146 30??           01851         RRCF    r0x00, W
+000148 6E??           01852         MOVWF   r0x05
+00014A 34??           01853         RLCF    r0x06, W
+00014C 32??           01854         RRCF    r0x06, F
+00014E 32??           01855         RRCF    r0x05, F
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 37
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000150 34??           01856         RLCF    r0x06, W
+000152 32??           01857         RRCF    r0x06, F
+000154 32??           01858         RRCF    r0x05, F
+000156 50??           01859         MOVF    r0x05, W
+000158 5C??           01860         SUBWF   r0x00, W
+00015A 6E??           01861         MOVWF   r0x05
+00015C 50??           01862         MOVF    r0x06, W
+00015E 58??           01863         SUBWFB  r0x01, W
+000160 6E??           01864         MOVWF   r0x06
+000162 C??? F???      01865         MOVFF   _ADRESL, r0x07
+000166 6A??           01866         CLRF    r0x08
+000168 50??           01867         MOVF    r0x07, W
+00016A 26??           01868         ADDWF   r0x05, F
+00016C 50??           01869         MOVF    r0x08, W
+00016E 22??           01870         ADDWFC  r0x06, F
+000170 C??? F???      01871         MOVFF   _ADRESH, r0x07
+000174 6A??           01872         CLRF    r0x08
+000176 50??           01873         MOVF    r0x07, W
+000178 6E??           01874         MOVWF   r0x0a
+00017A 6A??           01875         CLRF    r0x09
+00017C 50??           01876         MOVF    r0x09, W
+00017E 26??           01877         ADDWF   r0x05, F
+000180 50??           01878         MOVF    r0x0a, W
+000182 22??           01879         ADDWFC  r0x06, F
+000184 C??? F???      01880         MOVFF   r0x03, FSR0L
+000188 C??? F???      01881         MOVFF   r0x04, FSR0H
+00018C C??? F???      01882         MOVFF   r0x05, POSTINC0
+000190 C??? F???      01883         MOVFF   r0x06, INDF0
+000194 ????           01884         BANKSEL _Scaling
+                      01885 ;       .line   124; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(Scaling == 1)
+                             {
+000196 51??           01886         MOVF    _Scaling, W, B
+000198 0A01           01887         XORLW   0x01
+00019A E0??           01888         BZ      _00223_DS_
+00019C D???           01889         BRA     _00174_DS_
+                      01890 ; ;multiply lit val:0x02 by variable _analogService_chan_1_98 and store in r0x03
+00019E                01891 _00223_DS_:
+00019E ????           01892         BANKSEL _analogService_chan_1_98
+                      01893 ;       .line   125; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       v = Value[chan];
+0001A0 51??           01894         MOVF    _analogService_chan_1_98, W, B
+0001A2 0D02           01895         MULLW   0x02
+0001A4 50F4           01896         MOVF    PRODH, W
+0001A6 6E??           01897         MOVWF   r0x04
+0001A8 CFF3 F000      01898         MOVFF   PRODL, r0x03
+0001AC 0E??           01899         MOVLW   LOW(_Value)
+0001AE 24??           01900         ADDWF   r0x03, W
+0001B0 6E??           01901         MOVWF   r0x05
+0001B2 0E??           01902         MOVLW   HIGH(_Value)
+0001B4 20??           01903         ADDWFC  r0x04, W
+0001B6 6E??           01904         MOVWF   r0x06
+0001B8 C??? F???      01905         MOVFF   r0x05, FSR0L
+0001BC C??? F???      01906         MOVFF   r0x06, FSR0H
+0001C0 CFEE F000      01907         MOVFF   POSTINC0, r0x00
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 38
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0001C4 CFEF F000      01908         MOVFF   INDF0, r0x01
+                      01909 ;       .line   126; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(v < (Min[chan
+                            ]-MINMAX_MARGIN)) Min[chan] = v+MINMAX_MARGIN;
+0001C8 0E??           01910         MOVLW   LOW(_Min)
+0001CA 26??           01911         ADDWF   r0x03, F
+0001CC 0E??           01912         MOVLW   HIGH(_Min)
+0001CE 22??           01913         ADDWFC  r0x04, F
+0001D0 C??? F???      01914         MOVFF   r0x03, FSR0L
+0001D4 C??? F???      01915         MOVFF   r0x04, FSR0H
+0001D8 CFEE F000      01916         MOVFF   POSTINC0, r0x05
+0001DC CFEF F000      01917         MOVFF   INDF0, r0x06
+0001E0 0E9C           01918         MOVLW   0x9c
+0001E2 26??           01919         ADDWF   r0x05, F
+0001E4 A0D8           01920         BTFSS   STATUS, 0
+0001E6 06??           01921         DECF    r0x06, F
+0001E8 50??           01922         MOVF    r0x01, W
+0001EA 0F80           01923         ADDLW   0x80
+0001EC 6EF3           01924         MOVWF   PRODL
+0001EE 50??           01925         MOVF    r0x06, W
+0001F0 0F80           01926         ADDLW   0x80
+0001F2 5CF3           01927         SUBWF   PRODL, W
+0001F4 E1??           01928         BNZ     _00224_DS_
+0001F6 50??           01929         MOVF    r0x05, W
+0001F8 5C??           01930         SUBWF   r0x00, W
+0001FA                01931 _00224_DS_:
+0001FA E2??           01932         BC      _00170_DS_
+0001FC 50??           01933         MOVF    r0x00, W
+0001FE 0F64           01934         ADDLW   0x64
+000200 6E??           01935         MOVWF   r0x05
+000202 0E00           01936         MOVLW   0x00
+000204 20??           01937         ADDWFC  r0x01, W
+000206 6E??           01938         MOVWF   r0x06
+000208 C??? F???      01939         MOVFF   r0x03, FSR0L
+00020C C??? F???      01940         MOVFF   r0x04, FSR0H
+000210 C??? F???      01941         MOVFF   r0x05, POSTINC0
+000214 C??? F???      01942         MOVFF   r0x06, INDF0
+                      01943 ; ;multiply lit val:0x02 by variable _analogService_chan_1_98 and store in r0x03
+000218                01944 _00170_DS_:
+000218 ????           01945         BANKSEL _analogService_chan_1_98
+                      01946 ;       .line   127; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(v > (Max[chan
+                            ]+MINMAX_MARGIN)) Max[chan] = v-MINMAX_MARGIN;
+00021A 51??           01947         MOVF    _analogService_chan_1_98, W, B
+00021C 0D02           01948         MULLW   0x02
+00021E 50F4           01949         MOVF    PRODH, W
+000220 6E??           01950         MOVWF   r0x04
+000222 CFF3 F000      01951         MOVFF   PRODL, r0x03
+000226 0E??           01952         MOVLW   LOW(_Max)
+000228 26??           01953         ADDWF   r0x03, F
+00022A 0E??           01954         MOVLW   HIGH(_Max)
+00022C 22??           01955         ADDWFC  r0x04, F
+00022E C??? F???      01956         MOVFF   r0x03, FSR0L
+000232 C??? F???      01957         MOVFF   r0x04, FSR0H
+000236 CFEE F000      01958         MOVFF   POSTINC0, r0x05
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 39
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00023A CFEF F000      01959         MOVFF   INDF0, r0x06
+00023E 0E64           01960         MOVLW   0x64
+000240 26??           01961         ADDWF   r0x05, F
+000242 B0D8           01962         BTFSC   STATUS, 0
+000244 2A??           01963         INCF    r0x06, F
+000246 50??           01964         MOVF    r0x06, W
+000248 0F80           01965         ADDLW   0x80
+00024A 6EF3           01966         MOVWF   PRODL
+00024C 50??           01967         MOVF    r0x01, W
+00024E 0F80           01968         ADDLW   0x80
+000250 5CF3           01969         SUBWF   PRODL, W
+000252 E1??           01970         BNZ     _00225_DS_
+000254 50??           01971         MOVF    r0x00, W
+000256 5C??           01972         SUBWF   r0x05, W
+000258                01973 _00225_DS_:
+000258 E2??           01974         BC      _00174_DS_
+00025A 0E9C           01975         MOVLW   0x9c
+00025C 26??           01976         ADDWF   r0x00, F
+00025E A0D8           01977         BTFSS   STATUS, 0
+000260 06??           01978         DECF    r0x01, F
+000262 C??? F???      01979         MOVFF   r0x03, FSR0L
+000266 C??? F???      01980         MOVFF   r0x04, FSR0H
+00026A C??? F???      01981         MOVFF   r0x00, POSTINC0
+00026E C??? F???      01982         MOVFF   r0x01, INDF0
+000272                01983 _00174_DS_:
+000272 ????           01984         BANKSEL _analogService_conv_1_98
+                      01985 ;       .line   129; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       conv=0;
+000274 6B??           01986         CLRF    _analogService_conv_1_98, B
+000276                01987 _00176_DS_:
+000276 ????           01988         BANKSEL _analogService_chan_1_98
+                      01989 ;       .line   132; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       chan++;
+000278 2B??           01990         INCF    _analogService_chan_1_98, F, B
+                      01991 ;       .line   133; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(chan >= ANALO
+                            G_MAX_CHANNELS) chan = 0;
+00027A 0E10           01992         MOVLW   0x10
+                      01993 ; #     SUBWF   _analogService_chan_1_98, W, B
+                      01994 ; #     BTFSS   STATUS, 0
+                      01995 ; #     GOTO    _00178_DS_
+                      01996 ; #     CLRF    _analogService_chan_1_98, B
+                      01997 ; #     SWAPF   _analogService_chan_1_98, W, B
+                      01998 ; removed redundant BANKSEL
+                      01999 ;       .line   135; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(isSelected(ch
+                            an))    {
+00027C 5D??           02000         SUBWF   _analogService_chan_1_98, W, B
+00027E E3??           02001         BNC     _20435_DS_
+                      02002 ; removed redundant BANKSEL
+000280 6B??           02003         CLRF    _analogService_chan_1_98, B
+000282                02004 _20435_DS_:
+000282 ????           02005         BANKSEL _analogService_chan_1_98
+000284 39??           02006         SWAPF   _analogService_chan_1_98, W, B
+000286 44E8           02007         RLNCF   WREG, W
+000288 0B1F           02008         ANDLW   0x1f
+00028A 6E??           02009         MOVWF   r0x00
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 40
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00028C 6A??           02010         CLRF    r0x01
+00028E 0E??           02011         MOVLW   LOW(_Selected)
+000290 26??           02012         ADDWF   r0x00, F
+000292 0E??           02013         MOVLW   HIGH(_Selected)
+000294 22??           02014         ADDWFC  r0x01, F
+000296 C??? F???      02015         MOVFF   r0x00, FSR0L
+00029A C??? F???      02016         MOVFF   r0x01, FSR0H
+00029E CFEF F000      02017         MOVFF   INDF0, r0x00
+0002A2 0E07           02018         MOVLW   0x07
+                      02019 ; removed redundant BANKSEL
+0002A4 15??           02020         ANDWF   _analogService_chan_1_98, W, B
+0002A6 6E??           02021         MOVWF   r0x01
+0002A8 0E01           02022         MOVLW   0x01
+0002AA 6E??           02023         MOVWF   r0x03
+0002AC 0E00           02024         MOVLW   0x00
+0002AE 6E??           02025         MOVWF   r0x04
+0002B0 50??           02026         MOVF    r0x01, W
+0002B2 E0??           02027         BZ      _00228_DS_
+0002B4 6CE8           02028         NEGF    WREG
+0002B6 90D8           02029         BCF     STATUS, 0
+0002B8                02030 _00229_DS_:
+0002B8 36??           02031         RLCF    r0x03, F
+0002BA 36??           02032         RLCF    r0x04, F
+0002BC 0F01           02033         ADDLW   0x01
+0002BE E3??           02034         BNC     _00229_DS_
+0002C0                02035 _00228_DS_:
+0002C0 6A??           02036         CLRF    r0x05
+0002C2 50??           02037         MOVF    r0x00, W
+0002C4 16??           02038         ANDWF   r0x03, F
+0002C6 50??           02039         MOVF    r0x05, W
+0002C8 16??           02040         ANDWF   r0x04, F
+0002CA 50??           02041         MOVF    r0x03, W
+0002CC 10??           02042         IORWF   r0x04, W
+0002CE 80D8           02043         BSF     STATUS, 0
+0002D0 66E8           02044         TSTFSZ  WREG
+0002D2 90D8           02045         BCF     STATUS, 0
+0002D4 6A??           02046         CLRF    r0x03
+0002D6 36??           02047         RLCF    r0x03, F
+0002D8 50??           02048         MOVF    r0x03, W
+0002DA A4D8           02049         BTFSS   STATUS, 2
+0002DC D???           02050         BRA     _00182_DS_
+                      02051 ;       .line   136; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       ADCON0=(HWChan[c
+                            han] << 2) + 1;
+0002DE 0E??           02052         MOVLW   LOW(_HWChan)
+0002E0 ????           02053         BANKSEL _analogService_chan_1_98
+0002E2 25??           02054         ADDWF   _analogService_chan_1_98, W, B
+0002E4 6E??           02055         MOVWF   r0x00
+0002E6 6A??           02056         CLRF    r0x01
+0002E8 0E??           02057         MOVLW   HIGH(_HWChan)
+0002EA 22??           02058         ADDWFC  r0x01, F
+0002EC C??? F???      02059         MOVFF   r0x00, FSR0L
+0002F0 C??? F???      02060         MOVFF   r0x01, FSR0H
+0002F4 CFEF F000      02061         MOVFF   INDF0, r0x00
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 41
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0002F8 44??           02062         RLNCF   r0x00, W
+0002FA 44E8           02063         RLNCF   WREG, W
+0002FC 0BFC           02064         ANDLW   0xfc
+0002FE 6E??           02065         MOVWF   r0x01
+000300 28??           02066         INCF    r0x01, W
+000302 6E??           02067         MOVWF   _ADCON0
+                      02068 ; removed redundant BANKSEL
+                      02069 ;       .line   138; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       ANALOG_CHANNEL_P
+                            RECONF(chan);
+000304 51??           02070         MOVF    _analogService_chan_1_98, W, B
+000306 6EE5           02071         MOVWF   POSTDEC1
+000308 EC?? F0??      02072         CALL    _FSLP_analog_preconf
+00030C 52E6           02073         MOVF    POSTINC1, F
+                      02074 ;       .line   140; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       pin = Pins[chan]
+                            ;
+00030E 0E??           02075         MOVLW   LOW(_Pins)
+000310 ????           02076         BANKSEL _analogService_chan_1_98
+000312 25??           02077         ADDWF   _analogService_chan_1_98, W, B
+000314 6E??           02078         MOVWF   r0x00
+000316 6A??           02079         CLRF    r0x01
+000318 0E??           02080         MOVLW   HIGH(_Pins)
+00031A 22??           02081         ADDWFC  r0x01, F
+00031C C??? F???      02082         MOVFF   r0x00, FSR0L
+000320 C??? F???      02083         MOVFF   r0x01, FSR0H
+000324 CFEF F000      02084         MOVFF   INDF0, r0x02
+                      02085 ;       .line   141; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       if(pin != 255) {
+000328 50??           02086         MOVF    r0x02, W
+00032A 0AFF           02087         XORLW   0xff
+00032C E1??           02088         BNZ     _00232_DS_
+00032E D???           02089         BRA     _00180_DS_
+000330                02090 _00232_DS_:
+                      02091 ;       .line   142; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       bitset(*(&TRISA+
+                            (pin>>4)),pin&7);// set channel to digital input
+000330 38??           02092         SWAPF   r0x02, W
+000332 0B0F           02093         ANDLW   0x0f
+000334 6E??           02094         MOVWF   r0x00
+000336 0E??           02095         MOVLW   LOW(_TRISA)
+000338 24??           02096         ADDWF   r0x00, W
+00033A 6E??           02097         MOVWF   r0x01
+00033C 6A??           02098         CLRF    r0x03
+00033E 0E??           02099         MOVLW   HIGH(_TRISA)
+000340 22??           02100         ADDWFC  r0x03, F
+000342 6A??           02101         CLRF    r0x04
+000344 0E??           02102         MOVLW   LOW(_TRISA)
+000346 26??           02103         ADDWF   r0x00, F
+000348 0E??           02104         MOVLW   HIGH(_TRISA)
+00034A 22??           02105         ADDWFC  r0x04, F
+00034C C??? F???      02106         MOVFF   r0x00, FSR0L
+000350 C??? F???      02107         MOVFF   r0x04, FSR0H
+000354 CFEF F000      02108         MOVFF   INDF0, r0x00
+000358 0E07           02109         MOVLW   0x07
+00035A 14??           02110         ANDWF   r0x02, W
+00035C 6E??           02111         MOVWF   r0x04
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 42
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00035E 0E01           02112         MOVLW   0x01
+000360 6E??           02113         MOVWF   r0x05
+000362 50??           02114         MOVF    r0x04, W
+000364 E0??           02115         BZ      _00234_DS_
+000366 6CE8           02116         NEGF    WREG
+000368 90D8           02117         BCF     STATUS, 0
+00036A                02118 _00235_DS_:
+00036A 36??           02119         RLCF    r0x05, F
+00036C 0F01           02120         ADDLW   0x01
+00036E E3??           02121         BNC     _00235_DS_
+000370                02122 _00234_DS_:
+000370 50??           02123         MOVF    r0x05, W
+000372 12??           02124         IORWF   r0x00, F
+000374 C??? F???      02125         MOVFF   r0x01, FSR0L
+000378 C??? F???      02126         MOVFF   r0x03, FSR0H
+00037C C??? F???      02127         MOVFF   r0x00, INDF0
+                      02128 ;       .line   143; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       bitset(*(__data 
+                            unsigned char*)((int)&ANSELA + (pin>>4)),pin&7);// set channel to analog input
+000380 0E??           02129         MOVLW   LOW(_ANSELA)
+000382 6E??           02130         MOVWF   r0x00
+000384 0E??           02131         MOVLW   HIGH(_ANSELA)
+000386 6E??           02132         MOVWF   r0x01
+000388 38??           02133         SWAPF   r0x02, W
+00038A 0B0F           02134         ANDLW   0x0f
+00038C 6E??           02135         MOVWF   r0x03
+00038E 6A??           02136         CLRF    r0x04
+000390 50??           02137         MOVF    r0x03, W
+000392 26??           02138         ADDWF   r0x00, F
+000394 50??           02139         MOVF    r0x04, W
+000396 22??           02140         ADDWFC  r0x01, F
+000398 0E??           02141         MOVLW   LOW(_ANSELA)
+00039A 6E??           02142         MOVWF   r0x05
+00039C 0E??           02143         MOVLW   HIGH(_ANSELA)
+00039E 6E??           02144         MOVWF   r0x06
+0003A0 50??           02145         MOVF    r0x05, W
+0003A2 26??           02146         ADDWF   r0x03, F
+0003A4 50??           02147         MOVF    r0x06, W
+0003A6 22??           02148         ADDWFC  r0x04, F
+0003A8 C??? F???      02149         MOVFF   r0x03, FSR0L
+0003AC C??? F???      02150         MOVFF   r0x04, FSR0H
+0003B0 CFEF F000      02151         MOVFF   INDF0, r0x03
+0003B4 0E07           02152         MOVLW   0x07
+0003B6 16??           02153         ANDWF   r0x02, F
+0003B8 0E01           02154         MOVLW   0x01
+0003BA 6E??           02155         MOVWF   r0x04
+0003BC 50??           02156         MOVF    r0x02, W
+0003BE E0??           02157         BZ      _00238_DS_
+0003C0 6CE8           02158         NEGF    WREG
+0003C2 90D8           02159         BCF     STATUS, 0
+0003C4                02160 _00239_DS_:
+0003C4 36??           02161         RLCF    r0x04, F
+0003C6 0F01           02162         ADDLW   0x01
+0003C8 E3??           02163         BNC     _00239_DS_
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 43
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0003CA                02164 _00238_DS_:
+0003CA 50??           02165         MOVF    r0x04, W
+0003CC 12??           02166         IORWF   r0x03, F
+0003CE C??? F???      02167         MOVFF   r0x00, FSR0L
+0003D2 C??? F???      02168         MOVFF   r0x01, FSR0H
+0003D6 C??? F???      02169         MOVFF   r0x03, INDF0
+0003DA ????           02170         BANKSEL _CTMUCONHbits
+                      02171 ;       .line   144; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       CTMUCONHbits.IDI
+                            SSEN = 1;               // Drain any charge on the A/D circuit
+0003DC 83??           02172         BSF     _CTMUCONHbits, 1, B
+0003DE 0000           02173         nop     
+0003E0 0000           02174         nop     
+                      02175 ;       .line   146; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       CTMUCONHbits.IDI
+                            SSEN =  0;              // Stop discharge of A/D circuit
+0003E2 93??           02176         BCF     _CTMUCONHbits, 1, B
+0003E4 ????           02177         BANKSEL _CTMUCONLbits
+                      02178 ;       .line   147; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       CTMUCONLbits.EDG
+                            2STAT = 0;              // Make sure edge2 is 0
+0003E6 93??           02179         BCF     _CTMUCONLbits, 1, B
+                      02180 ;       .line   156; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       }               
+                                    
+0003E8 C??? F???      02181         MOVFF   r0x0b, POSTDEC1
+0003EC CFF2 F000      02182         MOVFF   INTCON, r0x0b
+0003F0 9EF2           02183         BCF     INTCON, 7
+                      02184 ; removed redundant BANKSEL
+                      02185 ;       .line   149; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       CTMUCONLbits.EDG
+                            1STAT = 1;      // Set edge1 - Start Charge
+0003F2 81??           02186         BSF     _CTMUCONLbits, 0, B
+0003F4 0000           02187         nop     
+0003F6 0000           02188         nop     
+0003F8 0000           02189         nop     
+0003FA 0000           02190         nop     
+0003FC 0000           02191         nop     
+0003FE 0000           02192         nop     
+000400 0000           02193         nop     
+000402 0000           02194         nop     
+000404 0000           02195         nop     
+000406 0000           02196         nop     
+000408 0000           02197         nop     
+00040A 0000           02198         nop     
+00040C 0000           02199         nop     
+00040E 0000           02200         nop     
+000410 0000           02201         nop     
+000412 0000           02202         nop     
+000414 0000           02203         nop     
+000416 0000           02204         nop     
+000418 0000           02205         nop     
+00041A 0000           02206         nop     
+                      02207 ;       .line   155; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       CTMUCONLbits.EDG
+                            1STAT = 0;      //Clear edge1 - Stop Charge
+00041C 91??           02208         BCF     _CTMUCONLbits, 0, B
+00041E BE??           02209         BTFSC   r0x0b, 7
+000420 8EF2           02210         BSF     INTCON, 7
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 44
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000422 CFE4 F000      02211         MOVFF   PREINC1, r0x0b
+000426                02212 _00180_DS_:
+                      02213 ;       .line   158; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       ADCON0bits.GO = 
+                            1;
+000426 82??           02214         BSF     _ADCON0bits, 1
+                      02215 ;       .line   159; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       conv = 1;
+000428 0E01           02216         MOVLW   0x01
+00042A ????           02217         BANKSEL _analogService_conv_1_98
+00042C 6F??           02218         MOVWF   _analogService_conv_1_98, B
+00042E                02219 _00182_DS_:
+00042E ????           02220         BANKSEL _analogService_chan_1_98
+                      02221 ;       .line   162; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       return chan;
+000430 51??           02222         MOVF    _analogService_chan_1_98, W, B
+000432                02223 _00183_DS_:
+000432 CFE4 F000      02224         MOVFF   PREINC1, r0x0a
+000436 CFE4 F000      02225         MOVFF   PREINC1, r0x09
+00043A CFE4 F000      02226         MOVFF   PREINC1, r0x08
+00043E CFE4 F000      02227         MOVFF   PREINC1, r0x07
+000442 CFE4 F000      02228         MOVFF   PREINC1, r0x06
+000446 CFE4 F000      02229         MOVFF   PREINC1, r0x05
+00044A CFE4 F000      02230         MOVFF   PREINC1, r0x04
+00044E CFE4 F000      02231         MOVFF   PREINC1, r0x03
+000452 CFE4 F000      02232         MOVFF   PREINC1, r0x02
+000456 CFE4 F000      02233         MOVFF   PREINC1, r0x01
+00045A CFE4 F000      02234         MOVFF   PREINC1, r0x00
+00045E 0012           02235         RETURN  
+                      02236 
+                      02237 ; ; Starting pCode block
+                      02238 S_analog__analogDeselect        code
+000000                02239 _analogDeselect:
+                      02240 ;       .line   98; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        void analogDesel
+                            ect(unsigned char chan)
+000000 CFD9 FFE5      02241         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      02242         MOVFF   FSR1L, FSR2L
+000008 C??? F???      02243         MOVFF   r0x00, POSTDEC1
+00000C C??? F???      02244         MOVFF   r0x01, POSTDEC1
+000010 C??? F???      02245         MOVFF   r0x02, POSTDEC1
+000014 C??? F???      02246         MOVFF   r0x03, POSTDEC1
+000018 C??? F???      02247         MOVFF   r0x04, POSTDEC1
+00001C 0E02           02248         MOVLW   0x02
+00001E CFDB F000      02249         MOVFF   PLUSW2, r0x00
+                      02250 ;       .line   100; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c       bitclr(Selected[
+                            chan>>3],chan&7);
+000022 38??           02251         SWAPF   r0x00, W
+000024 44E8           02252         RLNCF   WREG, W
+000026 0B1F           02253         ANDLW   0x1f
+000028 6E??           02254         MOVWF   r0x01
+00002A 6A??           02255         CLRF    r0x02
+00002C 0E??           02256         MOVLW   LOW(_Selected)
+00002E 26??           02257         ADDWF   r0x01, F
+000030 0E??           02258         MOVLW   HIGH(_Selected)
+000032 22??           02259         ADDWFC  r0x02, F
+000034 C??? F???      02260         MOVFF   r0x01, FSR0L
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 45
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000038 C??? F???      02261         MOVFF   r0x02, FSR0H
+00003C CFEF F000      02262         MOVFF   INDF0, r0x03
+000040 0E07           02263         MOVLW   0x07
+000042 16??           02264         ANDWF   r0x00, F
+000044 0E01           02265         MOVLW   0x01
+000046 6E??           02266         MOVWF   r0x04
+000048 50??           02267         MOVF    r0x00, W
+00004A E0??           02268         BZ      _00159_DS_
+00004C 6CE8           02269         NEGF    WREG
+00004E 90D8           02270         BCF     STATUS, 0
+000050                02271 _00160_DS_:
+000050 36??           02272         RLCF    r0x04, F
+000052 0F01           02273         ADDLW   0x01
+000054 E3??           02274         BNC     _00160_DS_
+000056                02275 _00159_DS_:
+000056 1C??           02276         COMF    r0x04, W
+                      02277 ; #     MOVWF   r0x00
+                      02278 ; #     MOVF    r0x00, W
+000058 16??           02279         ANDWF   r0x03, F
+00005A C??? F???      02280         MOVFF   r0x01, FSR0L
+00005E C??? F???      02281         MOVFF   r0x02, FSR0H
+000062 C??? F???      02282         MOVFF   r0x03, INDF0
+000066 CFE4 F000      02283         MOVFF   PREINC1, r0x04
+00006A CFE4 F000      02284         MOVFF   PREINC1, r0x03
+00006E CFE4 F000      02285         MOVFF   PREINC1, r0x02
+000072 CFE4 F000      02286         MOVFF   PREINC1, r0x01
+000076 CFE4 F000      02287         MOVFF   PREINC1, r0x00
+00007A CFE4 FFD9      02288         MOVFF   PREINC1, FSR2L
+00007E 0012           02289         RETURN  
+                      02290 
+                      02291 ; ; Starting pCode block
+                      02292 S_analog__analogSelectAdcTouch  code
+000000                02293 _analogSelectAdcTouch:
+                      02294 ;       .line   91; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        void analogSelec
+                            tAdcTouch(unsigned char chan,unsigned char hwchan, unsigned char *port, unsigned char bit)
+000000 CFD9 FFE5      02295         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      02296         MOVFF   FSR1L, FSR2L
+000008 C??? F???      02297         MOVFF   r0x00, POSTDEC1
+00000C C??? F???      02298         MOVFF   r0x01, POSTDEC1
+000010 C??? F???      02299         MOVFF   r0x02, POSTDEC1
+000014 C??? F???      02300         MOVFF   r0x03, POSTDEC1
+000018 C??? F???      02301         MOVFF   r0x04, POSTDEC1
+00001C C??? F???      02302         MOVFF   r0x05, POSTDEC1
+000020 C??? F???      02303         MOVFF   r0x06, POSTDEC1
+000024 C??? F???      02304         MOVFF   r0x07, POSTDEC1
+000028 C??? F???      02305         MOVFF   r0x08, POSTDEC1
+00002C C??? F???      02306         MOVFF   r0x09, POSTDEC1
+000030 C??? F???      02307         MOVFF   r0x0a, POSTDEC1
+000034 0E02           02308         MOVLW   0x02
+000036 CFDB F000      02309         MOVFF   PLUSW2, r0x00
+00003A 0E03           02310         MOVLW   0x03
+00003C CFDB F000      02311         MOVFF   PLUSW2, r0x01
+000040 0E04           02312         MOVLW   0x04
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 46
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000042 CFDB F000      02313         MOVFF   PLUSW2, r0x02
+000046 0E05           02314         MOVLW   0x05
+000048 CFDB F000      02315         MOVFF   PLUSW2, r0x03
+00004C 0E06           02316         MOVLW   0x06
+00004E CFDB F000      02317         MOVFF   PLUSW2, r0x04
+000052 0E07           02318         MOVLW   0x07
+000054 CFDB F000      02319         MOVFF   PLUSW2, r0x05
+                      02320 ;       .line   93; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        bitset(Selected[
+                            chan>>3],chan&7);
+000058 38??           02321         SWAPF   r0x00, W
+00005A 44E8           02322         RLNCF   WREG, W
+00005C 0B1F           02323         ANDLW   0x1f
+00005E 6E??           02324         MOVWF   r0x06
+000060 6A??           02325         CLRF    r0x07
+000062 0E??           02326         MOVLW   LOW(_Selected)
+000064 26??           02327         ADDWF   r0x06, F
+000066 0E??           02328         MOVLW   HIGH(_Selected)
+000068 22??           02329         ADDWFC  r0x07, F
+00006A C??? F???      02330         MOVFF   r0x06, FSR0L
+00006E C??? F???      02331         MOVFF   r0x07, FSR0H
+000072 CFEF F000      02332         MOVFF   INDF0, r0x08
+000076 0E07           02333         MOVLW   0x07
+000078 14??           02334         ANDWF   r0x00, W
+00007A 6E??           02335         MOVWF   r0x09
+00007C 0E01           02336         MOVLW   0x01
+00007E 6E??           02337         MOVWF   r0x0a
+000080 50??           02338         MOVF    r0x09, W
+000082 E0??           02339         BZ      _00150_DS_
+000084 6CE8           02340         NEGF    WREG
+000086 90D8           02341         BCF     STATUS, 0
+000088                02342 _00151_DS_:
+000088 36??           02343         RLCF    r0x0a, F
+00008A 0F01           02344         ADDLW   0x01
+00008C E3??           02345         BNC     _00151_DS_
+00008E                02346 _00150_DS_:
+00008E 50??           02347         MOVF    r0x0a, W
+000090 12??           02348         IORWF   r0x08, F
+000092 C??? F???      02349         MOVFF   r0x06, FSR0L
+000096 C??? F???      02350         MOVFF   r0x07, FSR0H
+00009A C??? F???      02351         MOVFF   r0x08, INDF0
+                      02352 ;       .line   94; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        HWChan[chan]=hwc
+                            han;
+00009E 0E??           02353         MOVLW   LOW(_HWChan)
+0000A0 24??           02354         ADDWF   r0x00, W
+0000A2 6E??           02355         MOVWF   r0x06
+0000A4 6A??           02356         CLRF    r0x07
+0000A6 0E??           02357         MOVLW   HIGH(_HWChan)
+0000A8 22??           02358         ADDWFC  r0x07, F
+0000AA C??? F???      02359         MOVFF   r0x06, FSR0L
+0000AE C??? F???      02360         MOVFF   r0x07, FSR0H
+0000B2 C??? F???      02361         MOVFF   r0x01, INDF0
+                      02362 ;       .line   95; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        Pins[chan]=(((un
+                            signed int)(port-&PORTA)&7)<<4) + (bit&7);
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 47
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0000B6 6A??           02363         CLRF    r0x01
+0000B8 0E??           02364         MOVLW   LOW(_Pins)
+0000BA 26??           02365         ADDWF   r0x00, F
+0000BC 0E??           02366         MOVLW   HIGH(_Pins)
+0000BE 22??           02367         ADDWFC  r0x01, F
+0000C0 0E??           02368         MOVLW   LOW(_PORTA)
+0000C2 5E??           02369         SUBWF   r0x02, F
+0000C4 0E07           02370         MOVLW   0x07
+0000C6 16??           02371         ANDWF   r0x02, F
+0000C8 38??           02372         SWAPF   r0x02, W
+0000CA 0BF0           02373         ANDLW   0xf0
+0000CC 6E??           02374         MOVWF   r0x03
+0000CE 0E07           02375         MOVLW   0x07
+0000D0 16??           02376         ANDWF   r0x05, F
+0000D2 50??           02377         MOVF    r0x05, W
+0000D4 26??           02378         ADDWF   r0x03, F
+0000D6 C??? F???      02379         MOVFF   r0x00, FSR0L
+0000DA C??? F???      02380         MOVFF   r0x01, FSR0H
+0000DE C??? F???      02381         MOVFF   r0x03, INDF0
+0000E2 CFE4 F000      02382         MOVFF   PREINC1, r0x0a
+0000E6 CFE4 F000      02383         MOVFF   PREINC1, r0x09
+0000EA CFE4 F000      02384         MOVFF   PREINC1, r0x08
+0000EE CFE4 F000      02385         MOVFF   PREINC1, r0x07
+0000F2 CFE4 F000      02386         MOVFF   PREINC1, r0x06
+0000F6 CFE4 F000      02387         MOVFF   PREINC1, r0x05
+0000FA CFE4 F000      02388         MOVFF   PREINC1, r0x04
+0000FE CFE4 F000      02389         MOVFF   PREINC1, r0x03
+000102 CFE4 F000      02390         MOVFF   PREINC1, r0x02
+000106 CFE4 F000      02391         MOVFF   PREINC1, r0x01
+00010A CFE4 F000      02392         MOVFF   PREINC1, r0x00
+00010E CFE4 FFD9      02393         MOVFF   PREINC1, FSR2L
+000112 0012           02394         RETURN  
+                      02395 
+                      02396 ; ; Starting pCode block
+                      02397 S_analog__analogSelectAdc       code
+000000                02398 _analogSelectAdc:
+                      02399 ;       .line   84; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        void analogSelec
+                            tAdc(unsigned char chan,unsigned char hwchan )
+000000 CFD9 FFE5      02400         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      02401         MOVFF   FSR1L, FSR2L
+000008 C??? F???      02402         MOVFF   r0x00, POSTDEC1
+00000C C??? F???      02403         MOVFF   r0x01, POSTDEC1
+000010 C??? F???      02404         MOVFF   r0x02, POSTDEC1
+000014 C??? F???      02405         MOVFF   r0x03, POSTDEC1
+000018 C??? F???      02406         MOVFF   r0x04, POSTDEC1
+00001C C??? F???      02407         MOVFF   r0x05, POSTDEC1
+000020 C??? F???      02408         MOVFF   r0x06, POSTDEC1
+000024 0E02           02409         MOVLW   0x02
+000026 CFDB F000      02410         MOVFF   PLUSW2, r0x00
+00002A 0E03           02411         MOVLW   0x03
+00002C CFDB F000      02412         MOVFF   PLUSW2, r0x01
+                      02413 ;       .line   86; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        bitset(Selected[
+                            chan>>3],chan&7);
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 48
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000030 38??           02414         SWAPF   r0x00, W
+000032 44E8           02415         RLNCF   WREG, W
+000034 0B1F           02416         ANDLW   0x1f
+000036 6E??           02417         MOVWF   r0x02
+000038 6A??           02418         CLRF    r0x03
+00003A 0E??           02419         MOVLW   LOW(_Selected)
+00003C 26??           02420         ADDWF   r0x02, F
+00003E 0E??           02421         MOVLW   HIGH(_Selected)
+000040 22??           02422         ADDWFC  r0x03, F
+000042 C??? F???      02423         MOVFF   r0x02, FSR0L
+000046 C??? F???      02424         MOVFF   r0x03, FSR0H
+00004A CFEF F000      02425         MOVFF   INDF0, r0x04
+00004E 0E07           02426         MOVLW   0x07
+000050 14??           02427         ANDWF   r0x00, W
+000052 6E??           02428         MOVWF   r0x05
+000054 0E01           02429         MOVLW   0x01
+000056 6E??           02430         MOVWF   r0x06
+000058 50??           02431         MOVF    r0x05, W
+00005A E0??           02432         BZ      _00141_DS_
+00005C 6CE8           02433         NEGF    WREG
+00005E 90D8           02434         BCF     STATUS, 0
+000060                02435 _00142_DS_:
+000060 36??           02436         RLCF    r0x06, F
+000062 0F01           02437         ADDLW   0x01
+000064 E3??           02438         BNC     _00142_DS_
+000066                02439 _00141_DS_:
+000066 50??           02440         MOVF    r0x06, W
+000068 12??           02441         IORWF   r0x04, F
+00006A C??? F???      02442         MOVFF   r0x02, FSR0L
+00006E C??? F???      02443         MOVFF   r0x03, FSR0H
+000072 C??? F???      02444         MOVFF   r0x04, INDF0
+                      02445 ;       .line   87; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        HWChan[chan]=hwc
+                            han;
+000076 0E??           02446         MOVLW   LOW(_HWChan)
+000078 24??           02447         ADDWF   r0x00, W
+00007A 6E??           02448         MOVWF   r0x02
+00007C 6A??           02449         CLRF    r0x03
+00007E 0E??           02450         MOVLW   HIGH(_HWChan)
+000080 22??           02451         ADDWFC  r0x03, F
+000082 C??? F???      02452         MOVFF   r0x02, FSR0L
+000086 C??? F???      02453         MOVFF   r0x03, FSR0H
+00008A C??? F???      02454         MOVFF   r0x01, INDF0
+                      02455 ;       .line   88; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        Pins[chan]=255;
+00008E 6A??           02456         CLRF    r0x01
+000090 0E??           02457         MOVLW   LOW(_Pins)
+000092 26??           02458         ADDWF   r0x00, F
+000094 0E??           02459         MOVLW   HIGH(_Pins)
+000096 22??           02460         ADDWFC  r0x01, F
+000098 C??? F???      02461         MOVFF   r0x00, FSR0L
+00009C C??? F???      02462         MOVFF   r0x01, FSR0H
+0000A0 0EFF           02463         MOVLW   0xff
+0000A2 68EF           02464         SETF    INDF0
+0000A4 CFE4 F000      02465         MOVFF   PREINC1, r0x06
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 49
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0000A8 CFE4 F000      02466         MOVFF   PREINC1, r0x05
+0000AC CFE4 F000      02467         MOVFF   PREINC1, r0x04
+0000B0 CFE4 F000      02468         MOVFF   PREINC1, r0x03
+0000B4 CFE4 F000      02469         MOVFF   PREINC1, r0x02
+0000B8 CFE4 F000      02470         MOVFF   PREINC1, r0x01
+0000BC CFE4 F000      02471         MOVFF   PREINC1, r0x00
+0000C0 CFE4 FFD9      02472         MOVFF   PREINC1, FSR2L
+0000C4 0012           02473         RETURN  
+                      02474 
+                      02475 ; ; Starting pCode block
+                      02476 S_analog__analogInitTouch       code
+000000                02477 _analogInitTouch:
+000000 ????           02478         BANKSEL _CTMUCONH
+                      02479 ;       .line   78; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        CTMUCONH = 0x00;
+000002 6B??           02480         CLRF    _CTMUCONH, B
+                      02481 ;       .line   79; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        CTMUCONL = 0x90;
+000004 0E90           02482         MOVLW   0x90
+000006 ????           02483         BANKSEL _CTMUCONL
+000008 6F??           02484         MOVWF   _CTMUCONL, B
+                      02485 ;       .line   80; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        CTMUICON = 0x03;
+                                                    //55uA
+00000A 0E03           02486         MOVLW   0x03
+00000C ????           02487         BANKSEL _CTMUICON
+00000E 6F??           02488         MOVWF   _CTMUICON, B
+000010 ????           02489         BANKSEL _CTMUCONHbits
+                      02490 ;       .line   81; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        CTMUCONHbits.CTM
+                            UEN = 1;        //Enable CTMU
+000012 8F??           02491         BSF     _CTMUCONHbits, 7, B
+000014 0012           02492         RETURN  
+                      02493 
+                      02494 ; ; Starting pCode block
+                      02495 S_analog__analogInit    code
+000000                02496 _analogInit:
+                      02497 ;       .line   52; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        void analogInit(
+                            )
+000000 C??? F???      02498         MOVFF   r0x00, POSTDEC1
+000004 C??? F???      02499         MOVFF   r0x01, POSTDEC1
+000008 C??? F???      02500         MOVFF   r0x02, POSTDEC1
+00000C C??? F???      02501         MOVFF   r0x03, POSTDEC1
+000010 C??? F???      02502         MOVFF   r0x04, POSTDEC1
+                      02503 ;       .line   56; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        for(i=0;i<CHANNE
+                            LS_GROUPS;i++) {
+000014 6A??           02504         CLRF    r0x00
+000016                02505 _00107_DS_:
+                      02506 ;       .line   57; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        Selected[i]=0;
+000016 0E??           02507         MOVLW   LOW(_Selected)
+000018 24??           02508         ADDWF   r0x00, W
+00001A 6E??           02509         MOVWF   r0x01
+00001C 6A??           02510         CLRF    r0x02
+00001E 0E??           02511         MOVLW   HIGH(_Selected)
+000020 22??           02512         ADDWFC  r0x02, F
+000022 C??? F???      02513         MOVFF   r0x01, FSR0L
+000026 C??? F???      02514         MOVFF   r0x02, FSR0H
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 50
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00002A 6AEF           02515         CLRF    INDF0
+                      02516 ;       .line   56; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        for(i=0;i<CHANNE
+                            LS_GROUPS;i++) {
+00002C 2A??           02517         INCF    r0x00, F
+00002E 0E02           02518         MOVLW   0x02
+000030 5C??           02519         SUBWF   r0x00, W
+000032 E3??           02520         BNC     _00107_DS_
+                      02521 ;       .line   60; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        for(i=0;i<ANALOG
+                            _MAX_CHANNELS;i++) {
+000034 6A??           02522         CLRF    r0x00
+                      02523 ; ;multiply lit val:0x02 by variable r0x00 and store in r0x01
+000036                02524 _00109_DS_:
+                      02525 ;       .line   61; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        Value[i]=0;
+000036 50??           02526         MOVF    r0x00, W
+000038 0D02           02527         MULLW   0x02
+00003A 50F4           02528         MOVF    PRODH, W
+00003C 6E??           02529         MOVWF   r0x02
+00003E CFF3 F000      02530         MOVFF   PRODL, r0x01
+000042 0E??           02531         MOVLW   LOW(_Value)
+000044 24??           02532         ADDWF   r0x01, W
+000046 6E??           02533         MOVWF   r0x03
+000048 0E??           02534         MOVLW   HIGH(_Value)
+00004A 20??           02535         ADDWFC  r0x02, W
+00004C 6E??           02536         MOVWF   r0x04
+00004E C??? F???      02537         MOVFF   r0x03, FSR0L
+000052 C??? F???      02538         MOVFF   r0x04, FSR0H
+000056 6AEE           02539         CLRF    POSTINC0
+000058 6AEF           02540         CLRF    INDF0
+                      02541 ;       .line   62; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        inValue[i]=0;
+00005A 0E??           02542         MOVLW   LOW(_inValue)
+00005C 24??           02543         ADDWF   r0x01, W
+00005E 6E??           02544         MOVWF   r0x03
+000060 0E??           02545         MOVLW   HIGH(_inValue)
+000062 20??           02546         ADDWFC  r0x02, W
+000064 6E??           02547         MOVWF   r0x04
+000066 C??? F???      02548         MOVFF   r0x03, FSR0L
+00006A C??? F???      02549         MOVFF   r0x04, FSR0H
+00006E 6AEE           02550         CLRF    POSTINC0
+000070 6AEF           02551         CLRF    INDF0
+                      02552 ;       .line   63; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        oldValue[i]=0;
+000072 0E??           02553         MOVLW   LOW(_oldValue)
+000074 24??           02554         ADDWF   r0x01, W
+000076 6E??           02555         MOVWF   r0x03
+000078 0E??           02556         MOVLW   HIGH(_oldValue)
+00007A 20??           02557         ADDWFC  r0x02, W
+00007C 6E??           02558         MOVWF   r0x04
+00007E C??? F???      02559         MOVFF   r0x03, FSR0L
+000082 C??? F???      02560         MOVFF   r0x04, FSR0H
+000086 6AEE           02561         CLRF    POSTINC0
+000088 6AEF           02562         CLRF    INDF0
+                      02563 ;       .line   64; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        Min[i]=0;
+00008A 0E??           02564         MOVLW   LOW(_Min)
+00008C 24??           02565         ADDWF   r0x01, W
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 51
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00008E 6E??           02566         MOVWF   r0x03
+000090 0E??           02567         MOVLW   HIGH(_Min)
+000092 20??           02568         ADDWFC  r0x02, W
+000094 6E??           02569         MOVWF   r0x04
+000096 C??? F???      02570         MOVFF   r0x03, FSR0L
+00009A C??? F???      02571         MOVFF   r0x04, FSR0H
+00009E 6AEE           02572         CLRF    POSTINC0
+0000A0 6AEF           02573         CLRF    INDF0
+                      02574 ;       .line   65; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        Max[i]=0x7FFF;
+0000A2 0E??           02575         MOVLW   LOW(_Max)
+0000A4 26??           02576         ADDWF   r0x01, F
+0000A6 0E??           02577         MOVLW   HIGH(_Max)
+0000A8 22??           02578         ADDWFC  r0x02, F
+0000AA C??? F???      02579         MOVFF   r0x01, FSR0L
+0000AE C??? F???      02580         MOVFF   r0x02, FSR0H
+0000B2 68EE           02581         SETF    POSTINC0
+0000B4 0E7F           02582         MOVLW   0x7f
+0000B6 6EEF           02583         MOVWF   INDF0
+                      02584 ;       .line   66; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        Pins[i]=255;
+0000B8 0E??           02585         MOVLW   LOW(_Pins)
+0000BA 24??           02586         ADDWF   r0x00, W
+0000BC 6E??           02587         MOVWF   r0x01
+0000BE 6A??           02588         CLRF    r0x02
+0000C0 0E??           02589         MOVLW   HIGH(_Pins)
+0000C2 22??           02590         ADDWFC  r0x02, F
+0000C4 C??? F???      02591         MOVFF   r0x01, FSR0L
+0000C8 C??? F???      02592         MOVFF   r0x02, FSR0H
+0000CC 68EF           02593         SETF    INDF0
+                      02594 ;       .line   60; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        for(i=0;i<ANALOG
+                            _MAX_CHANNELS;i++) {
+0000CE 2A??           02595         INCF    r0x00, F
+0000D0 0E10           02596         MOVLW   0x10
+0000D2 5C??           02597         SUBWF   r0x00, W
+0000D4 A0D8           02598         BTFSS   STATUS, 0
+0000D6 D???           02599         BRA     _00109_DS_
+                      02600 ;       .line   69; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        ADCON2=0b1010111
+                            1; //right justified, 12 AD, RC
+0000D8 0EAF           02601         MOVLW   0xaf
+0000DA 6E??           02602         MOVWF   _ADCON2
+                      02603 ;       .line   70; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        ADCON1=0; //0->V
+                            dd
+0000DC 6A??           02604         CLRF    _ADCON1
+                      02605 ;       .line   71; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        ADCON0=1; //on, 
+                            channel 0
+0000DE 0E01           02606         MOVLW   0x01
+0000E0 6E??           02607         MOVWF   _ADCON0
+                      02608 ;       .line   73; C:/Users/sarto/Documents/Pd/externals/Fraise/analog/analog.c        ADCON0bits.GO=1;
+                             // go !
+0000E2 82??           02609         BSF     _ADCON0bits, 1
+0000E4 CFE4 F000      02610         MOVFF   PREINC1, r0x04
+0000E8 CFE4 F000      02611         MOVFF   PREINC1, r0x03
+0000EC CFE4 F000      02612         MOVFF   PREINC1, r0x02
+0000F0 CFE4 F000      02613         MOVFF   PREINC1, r0x01
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 52
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0000F4 CFE4 F000      02614         MOVFF   PREINC1, r0x00
+0000F8 0012           02615         RETURN  
+                      02616 
+                      02617 ; ; Starting pCode block
+0000FA                02618 ___str_0:
+0000FA 2043 2041 6425 02619         DB      0x43, 0x20, 0x41, 0x20, 0x25, 0x64, 0x20, 0x25, 0x64, 0x0a, 0x00
+       2520 0A64 0000 
+                      02620 
+                      02621 
+                      02622 ; Statistics:
+                      02623 ; code size:     4362 (0x110a) bytes ( 3.33%)
+                      02624 ;                2181 (0x0885) words
+                      02625 ; udata size:     226 (0x00e2) bytes ( 6.14%)
+                      02626 ; access size:     13 (0x000d) bytes
+                      02627 
+                      02628 
+                      02629         end
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 53
+
+
+SYMBOL TABLE
+  LABEL                             VALUE
+
+FSR0H                             00000FEA
+FSR0L                             00000FE9
+FSR1L                             00000FE1
+FSR2L                             00000FD9
+INDF0                             00000FEF
+INTCON                            00000FF2
+PLUSW2                            00000FDB
+POSTDEC1                          00000FE5
+POSTINC0                          00000FEE
+POSTINC1                          00000FE6
+PREINC1                           00000FE4
+PRODH                             00000FF4
+PRODL                             00000FF3
+STATUS                            00000FD8
+WREG                              00000FE8
+_00107_DS_                        00000016
+_00109_DS_                        00000036
+_00141_DS_                        00000066
+_00142_DS_                        00000060
+_00150_DS_                        0000008E
+_00151_DS_                        00000088
+_00159_DS_                        00000056
+_00160_DS_                        00000050
+_00166_DS_                        00000038
+_00168_DS_                        0000012A
+_00170_DS_                        00000218
+_00174_DS_                        00000272
+_00176_DS_                        00000276
+_00180_DS_                        00000426
+_00182_DS_                        0000042E
+_00183_DS_                        00000432
+_00213_DS_                        00000086
+_00215_DS_                        000000C6
+_00216_DS_                        000000C0
+_00219_DS_                        00000118
+_00220_DS_                        00000112
+_00223_DS_                        0000019E
+_00224_DS_                        000001FA
+_00225_DS_                        00000258
+_00228_DS_                        000002C0
+_00229_DS_                        000002B8
+_00232_DS_                        00000330
+_00234_DS_                        00000370
+_00235_DS_                        0000036A
+_00238_DS_                        000003CA
+_00239_DS_                        000003C4
+_00249_DS_                        00000152
+_00252_DS_                        0000011E
+_00253_DS_                        000001DE
+_00257_DS_                        000001FA
+_00260_DS_                        00000222
+_00262_DS_                        00000264
+_00266_DS_                        0000033C
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 54
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_00272_DS_                        0000035E
+_00274_DS_                        00000384
+_00276_DS_                        000003EA
+_00279_DS_                        0000003A
+_00283_DS_                        00000454
+_00307_DS_                        00000412
+_00352_DS_                        0000009A
+_00353_DS_                        00000092
+_00356_DS_                        00000116
+_00357_DS_                        00000148
+_00358_DS_                        000001F2
+_00359_DS_                        0000021A
+_00361_DS_                        0000027A
+_00364_DS_                        00000310
+_00366_DS_                        00000320
+_00381_DS_                        000000AA
+_00383_DS_                        000000BC
+_00386_DS_                        000000D0
+_00398_DS_                        000000B6
+_00415_DS_                        00000070
+_00416_DS_                        0000002E
+_10434_DS_                        0000005C
+_20435_DS_                        00000282
+_ADCON0                           00000000
+_ADCON0bits                       00000000
+_ADCON1                           00000000
+_ADCON1bits                       00000000
+_ADCON2                           00000000
+_ADCON2bits                       00000000
+_ADRES                            00000000
+_ADRESH                           00000000
+_ADRESL                           00000000
+_ANSELA                           00000000
+_ANSELAbits                       00000000
+_ANSELB                           00000000
+_ANSELBbits                       00000000
+_ANSELC                           00000000
+_ANSELCbits                       00000000
+_ANSELZ                           00000000
+_ANSELZbits                       00000000
+_BAUD1CON                         00000000
+_BAUD1CONbits                     00000000
+_BAUD2CON                         00000000
+_BAUD2CONbits                     00000000
+_BAUDCON                          00000000
+_BAUDCON1                         00000000
+_BAUDCON1bits                     00000000
+_BAUDCON2                         00000000
+_BAUDCON2bits                     00000000
+_BAUDCONbits                      00000000
+_BAUDCTL                          00000000
+_BAUDCTLbits                      00000000
+_BSR                              00000000
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 55
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_CCP1CON                          00000000
+_CCP1CONbits                      00000000
+_CCP2AS                           00000000
+_CCP2ASbits                       00000000
+_CCP2CON                          00000000
+_CCP2CONbits                      00000000
+_CCP3AS                           00000000
+_CCP3ASbits                       00000000
+_CCP3CON                          00000000
+_CCP3CONbits                      00000000
+_CCP4CON                          00000000
+_CCP4CONbits                      00000000
+_CCP5CON                          00000000
+_CCP5CONbits                      00000000
+_CCPR1                            00000000
+_CCPR1H                           00000000
+_CCPR1L                           00000000
+_CCPR2                            00000000
+_CCPR2H                           00000000
+_CCPR2L                           00000000
+_CCPR3                            00000000
+_CCPR3H                           00000000
+_CCPR3L                           00000000
+_CCPR4                            00000000
+_CCPR4H                           00000000
+_CCPR4L                           00000000
+_CCPR5                            00000000
+_CCPR5H                           00000000
+_CCPR5L                           00000000
+_CCPTMRS0                         00000000
+_CCPTMRS0bits                     00000000
+_CCPTMRS1                         00000000
+_CCPTMRS1bits                     00000000
+_CM12CON                          00000000
+_CM12CONbits                      00000000
+_CM1CON                           00000000
+_CM1CON0                          00000000
+_CM1CON0bits                      00000000
+_CM1CONbits                       00000000
+_CM2CON                           00000000
+_CM2CON0                          00000000
+_CM2CON0bits                      00000000
+_CM2CON1                          00000000
+_CM2CON1bits                      00000000
+_CM2CONbits                       00000000
+_CTMUCON0                         00000000
+_CTMUCON0bits                     00000000
+_CTMUCON1                         00000000
+_CTMUCON1bits                     00000000
+_CTMUCONH                         00000000
+_CTMUCONHbits                     00000000
+_CTMUCONL                         00000000
+_CTMUCONLbits                     00000000
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 56
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_CTMUICON                         00000000
+_CTMUICONH                        00000000
+_CTMUICONHbits                    00000000
+_CTMUICONbits                     00000000
+_DACCON0                          00000000
+_DACCON0bits                      00000000
+_DACCON1                          00000000
+_DACCON1bits                      00000000
+_DDRA                             00000000
+_DDRAbits                         00000000
+_DDRB                             00000000
+_DDRBbits                         00000000
+_DDRC                             00000000
+_DDRCbits                         00000000
+_Dist                             00000000
+_ECCP1AS                          00000000
+_ECCP1ASbits                      00000000
+_ECCP2AS                          00000000
+_ECCP2ASbits                      00000000
+_ECCP3AS                          00000000
+_ECCP3ASbits                      00000000
+_ECCPAS                           00000000
+_ECCPASbits                       00000000
+_EEADR                            00000000
+_EEADRH                           00000000
+_EEADRHbits                       00000000
+_EEADRbits                        00000000
+_EECON1                           00000000
+_EECON1bits                       00000000
+_EECON2                           00000000
+_EEDATA                           00000000
+_EEdeclareInt                     00000000
+_FSLP_analog_preconf              00000000
+_FSR0H                            00000000
+_FSR0L                            00000000
+_FSR1H                            00000000
+_FSR1L                            00000000
+_FSR2H                            00000000
+_FSR2L                            00000000
+_FVRCON                           00000000
+_FVRCONbits                       00000000
+_HLVDCON                          00000000
+_HLVDCONbits                      00000000
+_HWChan                           00000000
+_INDF0                            00000000
+_INDF1                            00000000
+_INDF2                            00000000
+_INTCON                           00000000
+_INTCON2                          00000000
+_INTCON2bits                      00000000
+_INTCON3                          00000000
+_INTCON3bits                      00000000
+_INTCONbits                       00000000
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 57
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_IOCB                             00000000
+_IOCBbits                         00000000
+_IPR1                             00000000
+_IPR1bits                         00000000
+_IPR2                             00000000
+_IPR2bits                         00000000
+_IPR3                             00000000
+_IPR3bits                         00000000
+_IPR4                             00000000
+_IPR4bits                         00000000
+_IPR5                             00000000
+_IPR5bits                         00000000
+_LATA                             00000000
+_LATAbits                         00000000
+_LATB                             00000000
+_LATBbits                         00000000
+_LATC                             00000000
+_LATCbits                         00000000
+_LATZ                             00000000
+_LATZbits                         00000000
+_LVDCON                           00000000
+_LVDCONbits                       00000000
+_Max                              00000000
+_Min                              00000000
+_Mode                             00000003
+_Now                              00000000
+_OSCCON                           00000000
+_OSCCON2                          00000000
+_OSCCON2bits                      00000000
+_OSCCONbits                       00000000
+_OSCTUNE                          00000000
+_OSCTUNEbits                      00000000
+_PC                               00000000
+_PCL                              00000000
+_PCLATH                           00000000
+_PCLATU                           00000000
+_PIE1                             00000000
+_PIE1bits                         00000000
+_PIE2                             00000000
+_PIE2bits                         00000000
+_PIE3                             00000000
+_PIE3bits                         00000000
+_PIE4                             00000000
+_PIE4bits                         00000000
+_PIE5                             00000000
+_PIE5bits                         00000000
+_PIR1                             00000000
+_PIR1bits                         00000000
+_PIR2                             00000000
+_PIR2bits                         00000000
+_PIR3                             00000000
+_PIR3bits                         00000000
+_PIR4                             00000000
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 58
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_PIR4bits                         00000000
+_PIR5                             00000000
+_PIR5bits                         00000000
+_PLUSW0                           00000000
+_PLUSW1                           00000000
+_PLUSW2                           00000000
+_PMD0                             00000000
+_PMD0bits                         00000000
+_PMD1                             00000000
+_PMD1bits                         00000000
+_PMD2                             00000000
+_PMD2bits                         00000000
+_PORTA                            00000000
+_PORTAbits                        00000000
+_PORTB                            00000000
+_PORTBbits                        00000000
+_PORTC                            00000000
+_PORTCbits                        00000000
+_PORTE                            00000000
+_PORTEbits                        00000000
+_PORTZ                            00000000
+_PORTZbits                        00000000
+_POSTDEC0                         00000000
+_POSTDEC1                         00000000
+_POSTDEC2                         00000000
+_POSTINC0                         00000000
+_POSTINC1                         00000000
+_POSTINC2                         00000000
+_PR2                              00000000
+_PR4                              00000000
+_PR6                              00000000
+_PREINC0                          00000000
+_PREINC1                          00000000
+_PREINC2                          00000000
+_PROD                             00000000
+_PRODH                            00000000
+_PRODL                            00000000
+_PSTR1CON                         00000000
+_PSTR1CONbits                     00000000
+_PSTR2CON                         00000000
+_PSTR2CONbits                     00000000
+_PSTR3CON                         00000000
+_PSTR3CONbits                     00000000
+_PSTRCON                          00000000
+_PSTRCONbits                      00000000
+_PWM1CON                          00000000
+_PWM1CONbits                      00000000
+_PWM2CON                          00000000
+_PWM2CONbits                      00000000
+_PWM3CON                          00000000
+_PWM3CONbits                      00000000
+_PWMCON                           00000000
+_PWMCONbits                       00000000
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 59
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_Pins                             00000000
+_RC1REG                           00000000
+_RC1STA                           00000000
+_RC1STAbits                       00000000
+_RC2REG                           00000000
+_RC2STA                           00000000
+_RC2STAbits                       00000000
+_RCON                             00000000
+_RCONbits                         00000000
+_RCREG                            00000000
+_RCREG1                           00000000
+_RCREG2                           00000000
+_RCSTA                            00000000
+_RCSTA1                           00000000
+_RCSTA1bits                       00000000
+_RCSTA2                           00000000
+_RCSTA2bits                       00000000
+_RCSTAbits                        00000000
+_SLRCON                           00000000
+_SLRCONbits                       00000000
+_SP1BRG                           00000000
+_SP1BRGH                          00000000
+_SP2BRG                           00000000
+_SP2BRGH                          00000000
+_SPBRG                            00000000
+_SPBRG1                           00000000
+_SPBRG2                           00000000
+_SPBRGH                           00000000
+_SPBRGH1                          00000000
+_SPBRGH2                          00000000
+_SRCON0                           00000000
+_SRCON0bits                       00000000
+_SRCON1                           00000000
+_SRCON1bits                       00000000
+_SSP1ADD                          00000000
+_SSP1BUF                          00000000
+_SSP1CON1                         00000000
+_SSP1CON1bits                     00000000
+_SSP1CON2                         00000000
+_SSP1CON2bits                     00000000
+_SSP1CON3                         00000000
+_SSP1CON3bits                     00000000
+_SSP1MSK                          00000000
+_SSP1MSKbits                      00000000
+_SSP1STAT                         00000000
+_SSP1STATbits                     00000000
+_SSP2ADD                          00000000
+_SSP2BUF                          00000000
+_SSP2CON1                         00000000
+_SSP2CON1bits                     00000000
+_SSP2CON2                         00000000
+_SSP2CON2bits                     00000000
+_SSP2CON3                         00000000
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 60
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_SSP2CON3bits                     00000000
+_SSP2MSK                          00000000
+_SSP2MSKbits                      00000000
+_SSP2STAT                         00000000
+_SSP2STATbits                     00000000
+_SSPADD                           00000000
+_SSPBUF                           00000000
+_SSPCON1                          00000000
+_SSPCON1bits                      00000000
+_SSPCON2                          00000000
+_SSPCON2bits                      00000000
+_SSPCON3                          00000000
+_SSPCON3bits                      00000000
+_SSPMSK                           00000000
+_SSPMSKbits                       00000000
+_SSPSTAT                          00000000
+_SSPSTATbits                      00000000
+_STATUS                           00000000
+_STATUSbits                       00000000
+_STKPTR                           00000000
+_STKPTRbits                       00000000
+_Scaling                          00000000
+_Selected                         00000000
+_T0CON                            00000000
+_T0CONbits                        00000000
+_T1CON                            00000000
+_T1CONbits                        00000000
+_T1GCON                           00000000
+_T1GCONbits                       00000000
+_T2CON                            00000000
+_T2CONbits                        00000000
+_T3CON                            00000000
+_T3CONbits                        00000000
+_T3GCON                           00000000
+_T3GCONbits                       00000000
+_T4CON                            00000000
+_T4CONbits                        00000000
+_T5CON                            00000000
+_T5CONbits                        00000000
+_T5GCON                           00000000
+_T5GCONbits                       00000000
+_T6CON                            00000000
+_T6CONbits                        00000000
+_TABLAT                           00000000
+_TBLPTR                           00000000
+_TBLPTRH                          00000000
+_TBLPTRL                          00000000
+_TBLPTRU                          00000000
+_TMR0                             00000000
+_TMR0H                            00000000
+_TMR0L                            00000000
+_TMR1                             00000000
+_TMR1H                            00000000
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 61
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_TMR1L                            00000000
+_TMR2                             00000000
+_TMR3                             00000000
+_TMR3H                            00000000
+_TMR3L                            00000000
+_TMR4                             00000000
+_TMR5                             00000000
+_TMR5H                            00000000
+_TMR5L                            00000000
+_TMR6                             00000000
+_TOS                              00000000
+_TOSH                             00000000
+_TOSL                             00000000
+_TOSU                             00000000
+_TRICZ                            00000000
+_TRISA                            00000000
+_TRISAbits                        00000000
+_TRISB                            00000000
+_TRISBbits                        00000000
+_TRISC                            00000000
+_TRISCbits                        00000000
+_TRISE                            00000000
+_TRISEbits                        00000000
+_TRISZbits                        00000000
+_TX1REG                           00000000
+_TX1STA                           00000000
+_TX1STAbits                       00000000
+_TX2REG                           00000000
+_TX2STA                           00000000
+_TX2STAbits                       00000000
+_TXREG                            00000000
+_TXREG1                           00000000
+_TXREG2                           00000000
+_TXSTA                            00000000
+_TXSTA1                           00000000
+_TXSTA1bits                       00000000
+_TXSTA2                           00000000
+_TXSTA2bits                       00000000
+_TXSTAbits                        00000000
+_Threshold                        00000001
+_VREFCON0                         00000000
+_VREFCON0bits                     00000000
+_VREFCON1                         00000000
+_VREFCON1bits                     00000000
+_VREFCON2                         00000000
+_VREFCON2bits                     00000000
+_Value                            00000000
+_WDTCON                           00000000
+_WDTCONbits                       00000000
+_WPUB                             00000000
+_WPUBbits                         00000000
+_WREG                             00000000
+__18F26K22                        00000001
+gpasm-1.0.0 #932 (Jan 21 2013) firmware2-objs   4-9-2021  17:01:41          PAGE 62
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+___str_0                          000000FA
+__divulong                        00000000
+__mullong                         00000000
+_analogDeclareEE                  00000000
+_analogDeselect                   00000000
+_analogGet                        00000000
+_analogGetDistance                00000000
+_analogInit                       00000000
+_analogInitTouch                  00000000
+_analogScaling                    00000000
+_analogSelectAdc                  00000000
+_analogSelectAdcTouch             00000000
+_analogSend                       00000000
+_analogSend_buf_1_105             00000007
+_analogSend_chan_1_105            00000006
+_analogService                    00000000
+_analogService_chan_1_98          00000004
+_analogService_conv_1_98          00000005
+_analogSet                        00000000
+_analogSetMode                    00000000
+_fraiseSend                       00000000
+_inValue                          00000000
+_oldValue                         00000000
+_printf                           00000000
+_stdin                            00000000
+_stdout                           00000000
+r0x00                             00000000
+r0x01                             00000001
+r0x02                             00000002
+r0x03                             00000003
+r0x04                             00000004
+r0x05                             00000005
+r0x06                             00000006
+r0x07                             00000007
+r0x08                             00000008
+r0x09                             00000009
+r0x0a                             0000000A
+r0x0b                             0000000B
+r0x0c                             0000000C
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+
